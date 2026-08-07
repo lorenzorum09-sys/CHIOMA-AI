@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chioma AI — Analisi Biometrica del Viso & Capelli</title>
+  <meta name="description" content="Carica la tua foto e lascia che l'AI calcoli il taglio di capelli ideale e la routine di cura per il tuo viso.">
+
+  <!-- Fonts Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+      <span class="logo-testo titolo-brand">Chioma AI</span>
+    </a>
+    <div class="badge-beta">Scanner AI</div>
+  </header>
+
+  <!-- Input nascosto per il caricamento file -->
+  <input type="file" id="foto-input" accept="image/*" style="display: none;">
+
+  <!-- Contenitore Principale -->
+  <main class="contenitore">
+    <div class="backdrop-privacy" id="backdrop-privacy"></div>
+    <div class="card-privacy" id="card-privacy"></div>
+
+    <!-- Scanner Box -->
+    <div class="scanner-wrap">
+      <div class="scanner-cornice" id="scanner-cornice" title="Clicca o trascina una foto qui">
+        <div class="scanline"></div>
+
+        <div class="upload-placeholder" id="upload-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; color: var(--rame); margin-bottom: 12px;">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px;">
+            Carica o scatta una foto
+          </span>
+          <span style="font-size: 12px; color: var(--testo-muto);">
+            Clicca o trascina qui l'immagine
+          </span>
+        </div>
+
+        <img id="anteprima-foto" class="anteprima-img" alt="Anteprima foto caricata">
+      </div>
+    </div>
+
+    <p class="scanner-testo" id="scanner-testo">
+      Rilevamento in tempo reale: <b id="parola-rotante">Forma del Viso</b>
+    </p>
+
+    <button type="button" class="bottone" id="btn-carica-foto">
+      <span>Seleziona una Foto</span>
+    </button>
+
+    <div class="gestione-foto" id="gestione-foto" style="display: none;">
+      <button type="button" class="bottone-secondario" id="btn-cambia-foto">Cambia Foto</button>
+      <button type="button" class="bottone-secondario elimina" id="btn-rimuovi-foto">Rimuovi</button>
+    </div>
+
+    <button type="button" class="bottone" id="btn-analizza" style="display: none; background: var(--salvia); color: #12100E;">
+      ✨ Analizza Viso e Taglio con l'AI
+    </button>
+
+    <div class="card" id="card-risultati" style="display: none;"></div>
+  </main>
+
+  <nav class="navigazione">
+    <a href="index.html" class="nav-link">
+      <span>🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="analizza.html" class="nav-link attivo">
+      <span>🔍</span>
+      <span>Scansiona AI</span>
+    </a>
+    <a href="istruzione.html" class="nav-link">
+      <span>🎓</span>
+      <span>Guida Cura</span>
+    </a>
+  </nav>
+
+  <!-- Overlay di transizione: posizionato prima della chiusura del body -->
+  <div class="transizione" id="overlay-transizione">
+    <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+  </div>
+
+  <!-- Inclusione Modulo Javascript -->
+  <script type="module" src="script.js"></script>
+  <script src="js/privacy.js"></script>
+</body>
+
+</html>

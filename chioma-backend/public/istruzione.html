@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header>
+        <a href="index.html" class="logo-container">
+            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+            <span class="logo-testo titolo-brand">Chioma AI</span>
+        </a>
+        <div class="badge-beta">Beta 2.0</div>
+    </header>
+        <!-- Features Grid -->
+     
+     <section>
+      <p class="eyebrow">Come funziona l'AI</p>
+      <h2 class="titolo-sezione">Tre passaggi, zero incertezze</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;padding-top: 40px;">
+        <div class="step">
+          <div class="step-numero">1</div>
+          <div class="step-testo">
+            <h3>Scatta una foto nitida</h3>
+            <p>Viso e capelli ben visibili e ben illuminati, al naturale.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-numero">2</div>
+          <div class="step-testo">
+            <h3>Elaborazione Visagistica</h3>
+            <p>L'AI individua le proporzioni del viso, il tipo di capello e il volume.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-numero">3</div>
+          <div class="step-testo">
+            <h3>Verdetto & Scheda Parrucchiere</h3>
+            <p>Ricevi i consigli sul taglio perfetto ed il messaggio pronto per il barbiere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contenitore rivela">
+            <p class="eyebrow">Perché scegliere Chioma AI</p>
+
+            <div class="card">
+                    <h3>Analisi Visagistica AI</h3>
+                    <p>Riconosce la forma esatta del viso (Ovale, Squadrato, Cuore, ecc.) e la natura dei tuoi capelli.</p>
+                </div>
+
+            <div class="card">
+                    <h3>Scheda per il Parrucchiere</h3>
+                    <p>Genera una spiegazione tecnica e precisa pronta da dire o mostrare al parrucchiere durante il taglio.</p>
+            </div>
+
+            <div class="card">
+                    <h3>Routine & Cura Personalizzata</h3>
+                    <p>Frequenza di lavaggio, asciugatura, prodotti ideali ed ingredienti da evitare per mantenere il taglio perfetto.</p>
+            </div>
+        </section>
+    <section class="contenitore rivela">
+        <p class="eyebrow">Cosa impari</p>
+        <h2 class="titolo-sezione">Non solo il taglio</h2>
+
+        <div class="card">
+            💦
+            <div>
+                <h3>Lavaggio</h3>
+                <p>Frequenza giusta, temperatura dell'acqua e tecnica per il tuo tipo di capello.</p>
+            </div>
+        </div>
+
+        <div class="card">
+
+            🧴
+            <div>
+                <h3>Prodotti</h3>
+                <p>Cosa ti serve davvero e cosa puoi tranquillamente evitare di comprare.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            💨
+            <div>
+                <h3>Asciugatura</h3>
+                <p>Phon, diffusore o aria naturale: impari a scegliere in base al risultato che vuoi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="navigazione">
+        <a href="index.html">
+            <span>🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="analizza.html">
+            <span>🔍</span>
+            <span>Scansiona AI</span>
+        </a>
+        <a href="istruzione.html" class="attivo">
+            <span>🎓</span>
+            <span>Guida Cura</span>
+        </a>
+    </nav>
+    <div class="transizione" id="overlay-transizione">
+  <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+</div>
+    <script>
+        const sezioniDaRivelare = document.querySelectorAll('.rivela');
+
+        const osservatore = new IntersectionObserver((voci) => {
+            voci.forEach((voce) => {
+                if (voce.isIntersecting) {
+                    voce.target.classList.add('visibile');
+                    osservatore.unobserve(voce.target); // basta una volta sola
+                }
+            });
+        }, { threshold: 0.15 });
+
+        sezioniDaRivelare.forEach((sezione) => osservatore.observe(sezione));
+    </script>
+
+</body>
+
+</html>

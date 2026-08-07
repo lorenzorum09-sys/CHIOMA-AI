@@ -1,0 +1,27 @@
+{
+  "name": "chioma-backend",
+  "version": "1.1.0",
+  "description": "Chioma AI - Analisi intelligente del taglio di capelli e routine su misura",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "haircare",
+    "gemini",
+    "express",
+    "visagismo"
+  ],
+  "author": "Chioma AI Team",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/genai": "^2.13.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
+  }
+}
