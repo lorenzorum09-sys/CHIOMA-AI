@@ -179,17 +179,7 @@ export function mostraRisultatiAnalisi(dati) {
             <p style="font-size: 14px; color: var(--testo-secondario);">${taglioAlt.descrizione || ''}</p>
             ` : ''}
         </div>
-        <!--PREFEREMZE -->
-        <div id="tab-preferenze" class="tab-content">
-            <h2 class="titolo-sezione" style="color: var(--oro);">${taglioPrinc.nome || 'Taglio Personalizzato'}</h2>
-            <p style="margin-bottom: 12px; font-size: 15px; line-height: 1.6;">${taglioPrinc.descrizione || ''}</p>
-            
-            <div style="background: rgba(226, 136, 89, 0.1); border-left: 3px solid var(--oro); padding: 12px 16px; border-radius: 4px; margin-bottom: 16px;">
-                <strong style="color: var(--oro); font-size: 13px;">Le tue preferenze:</strong>
-                <input type="text" placeholder="Scrivi un taglio che vorresti fare" id="preferenze-input" style="width: 100%; margin-top: 6px; padding: 6px 8px; border: 1px solid var(--testo-secondario); border-radius: 4px; font-size: 14px;">
-                <button class="bottone" id="btn-preferenze">Chiedi all'AI</button>
-                </div>
-                </div>
+      
         <!-- TAB 2: VISAGISMO -->
         <div id="tab-visagismo" class="tab-content">
             <div class="diag-grid">
