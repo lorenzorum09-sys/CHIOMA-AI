@@ -35,7 +35,7 @@ I presenti Termini sono regolati dalla legge italiana. Per eventuali controversi
 
 🔐 Informativa sulla Privacy — Chioma AI
 1. Titolare del Trattamento  
-Il titolare del trattamento dei dati è lo sviluppatore dell’app Chioma AI. Per richieste o chiarimenti è possibile contattare: chioma.ai.support@example.com (sostituibile con la tua email reale).
+Il titolare del trattamento dei dati è lo sviluppatore dell’app Chioma AI. Per richieste o chiarimenti è possibile contattare: lorenzorum09@gmail.com
 
 2. Dati Raccolti  
 L’app può raccogliere:
