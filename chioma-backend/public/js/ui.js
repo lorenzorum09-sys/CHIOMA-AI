@@ -162,20 +162,17 @@ export function mostraRisultatiAnalisi(dati) {
         <div id="tab-taglio" class="tab-content attivo">
             <h2 class="titolo-sezione" style="color: var(--oro);">${taglioPrinc.nome || 'Taglio Personalizzato'}</h2>
             <p style="margin-bottom: 12px; font-size: 15px; line-height: 1.6;">${taglioPrinc.descrizione || ''}</p>
-            <p style="font-size: 14px; color: var(--testo-secondario);"> <strong>Questo testo è stato generato da un'intelligenza artificiale</strong></p>
+            <p style="font-size: 14px; color: var(--testo-secondario); padding-bottom:12px;"> <strong>Questo testo è stato generato da un'intelligenza artificiale</strong></p>
             <div style="background: rgba(226, 136, 89, 0.1); border-left: 3px solid var(--oro); padding: 12px 16px; border-radius: 4px; margin-bottom: 16px;">
                 <strong style="color: var(--oro); font-size: 13px;">💡 Perché ti valorizza:</strong>
                 <p style="font-size: 14px; margin-top: 4px;">${taglioPrinc.perche_adatto || ''}</p>
             </div>
 
-            ${taglioPrinc.styling_tip ? `
-            <p style="font-size: 13px; color: var(--testo-secondario);">
-                <strong>Styling tip:</strong> ${taglioPrinc.styling_tip}
-            </p>` : ''}
+         
 
             ${taglioAlt.nome ? `
             <div class="divisore" style="margin: 20px 0;"></div>
-            <h3 style="font-size: 16px; color: var(--salvia); margin-bottom: 6px;">Alternativa Consigliata: ${taglioAlt.nome}</h3>
+            <h3 style="font-size: 16px; color: var(--oro); margin-bottom: 6px;">Alternativa Consigliata: ${taglioAlt.nome}</h3>
             <p style="font-size: 14px; color: var(--testo-secondario);">${taglioAlt.descrizione || ''}</p>
             ` : ''}
         </div>
@@ -215,7 +212,11 @@ export function mostraRisultatiAnalisi(dati) {
                     <div style="font-size: 14px; margin-top: 4px;">${routine.trattamenti || 'Balsamo districante dopo ogni lavaggio.'}</div>
                 </div>
             </div>
-
+   ${taglioPrinc.styling_tip ? `
+            <p style="font-size: 13px; color: var(--oro); padding-top: 16px; padding-bottom:16px;">
+                <strong>Styling tip:</strong> ${taglioPrinc.styling_tip}
+            </p>` : ''}
+            
             ${prodotti.length ? `
             <div style="margin-top: 18px;">
                 <strong style="font-size: 13px; color: var(--salvia);">Prodotti consigliati:</strong>
@@ -236,7 +237,7 @@ export function mostraRisultatiAnalisi(dati) {
         <!-- TAB 4: PARRUCCHIERE -->
         <div id="tab-parrucchiere" class="tab-content">
             <p style="font-size: 14px; color: var(--testo-secondario); margin-bottom: 12px;">
-                Mostra o leggi direttamente questo messaggio al tuo parrucchiere/barbiere quando ti siedi sulla poltrona:
+                Mostra o leggi direttamente questo messaggio al tuo parrucchiere/a quando ti siedi sulla poltrona:
             </p>
             <div class="scheda-parrucchiere-box">
                 <p id="testo-scheda-parrucchiere" style="font-size: 15px; font-weight: 600; color: var(--testo); line-height: 1.5; padding-right: 40px;">
