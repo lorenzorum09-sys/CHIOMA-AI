@@ -10,11 +10,12 @@ card.innerHTML = `
  l’utente accetta integralmente i presenti Termini e Condizioni.
   Se non accetta le condizioni del documento, non sarà possibile l’utilizzo della web app.
    Descrizione del servizio: Chioma AI è un’applicazione che analizza immagini di tagli di capelli e fornisce suggerimenti estetici basati su forma del viso, e stile. Il servizio ha finalità informative e non sostituisce consulenze professionali. 
-   Uso Consentito: L’utente si impegna a utilizzare la web app in modo lecito e conforme ai presenti Termini. 
+   Uso Consentito: L’utente si impegna a utilizzare la web app in modo lecito e conforme ai presenti Termini. Elaborazione tramite Intelligenza Artificiale: le immagini caricate vengono inviate a Google Gemini (Google LLC), servizio AI di terze parti, al solo scopo di generare l'analisi. Google può elaborare i dati anche fuori dallo Spazio Economico Europeo. L'immagine non viene salvata da Chioma AI.
    È vietato: caricare immagini non proprie o senza autorizzazione; utilizzare l’app per scopi commerciali non autorizzati; tentare di alterare, copiare o distribuire parti dell’app senza permesso. Contenuti dell’Utente: L’utente mantiene la proprietà delle immagini caricate. Caricando contenuti, concede a Chioma AI una licenza limitata, non esclusiva e revocabile per elaborare tali immagini al solo scopo di fornire il servizio. 
    Limitazione di Responsabilità: Chioma AI fornisce suggerimenti estetici basati su algoritmi. L’app non garantisce risultati, non è responsabile di decisioni prese dall’utente e non risponde di eventuali danni derivanti dall’uso del servizio. Modifiche ai Termini: I presenti Termini possono essere aggiornati. Le modifiche saranno comunicate tramite app.
     L’uso continuato del servizio implica accettazione delle modifiche. Dati Raccolti, l’app può raccogliere: immagini caricate dall’utente (solo per analisi temporanea). Finalità del Trattamento, I dati vengono utilizzati esclusivamente per: analizzare le immagini e generare suggerimenti; migliorare il funzionamento dell’app; garantire sicurezza e prevenzione di abusi. 
      Conservazione dei Dati: Le immagini caricate vengono elaborate e poi eliminate automaticamente. Nessuna foto viene conservata a lungo termine, condivisa o utilizzata per addestrare modelli di intelligenza artificiale.
+    Titolare del Trattamento: per richieste, chiarimenti o per esercitare i tuoi diritti, puoi contattare: lorenzorum09@gmail.com
      Aggiornamenti della Privacy Policy La presente informativa può essere aggiornata. Le modifiche saranno comunicate tramite app o sito web.   </p>
     <div style="display: flex; gap: 12px;">
         <button type="button" class="bottone" id="btn-privacy-accetta">Accetto</button>
