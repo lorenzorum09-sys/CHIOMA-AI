@@ -155,7 +155,6 @@ export function mostraRisultatiAnalisi(dati) {
             <button class="tab-btn" onclick="cambiaTab('tab-visagismo')">👤 Visagismo</button>
             <button class="tab-btn" onclick="cambiaTab('tab-routine')">🧴 Routine & Cura</button>
             <button class="tab-btn" onclick="cambiaTab('tab-parrucchiere')">💈 Scheda Parrucchiere</button>
-            <button class="tab-btn" onclick="cambiaTab('tab-preferenze')">💡 Preferenze</button>
         </div>
         
         <!-- TAB 1: TAGLIO -->
