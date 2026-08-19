@@ -26,8 +26,9 @@
     <div class="badge-beta">Scanner AI</div>
   </header>
 
-  <!-- Input nascosto per il caricamento file -->
-  <input type="file" id="foto-input" accept="image/*" style="display: none;">
+  <!-- Input separati: galleria e fotocamera. Tenerli nel DOM aiuta Safari mobile. -->
+  <input type="file" id="foto-input" class="input-file-nascosto" accept="image/*">
+  <input type="file" id="fotocamera-input" class="input-file-nascosto" accept="image/*" capture="user">
 
   <main class="contenitore">
     <div class="backdrop-privacy" id="backdrop-privacy"></div>
@@ -62,6 +63,8 @@
       <span>📷 Seleziona una Foto</span>
     </button>
 
+    <button type="button" class="bottone-secondario btn-fotocamera" id="btn-scatta-foto">Scatta una foto</button>
+
     <div class="gestione-foto" id="gestione-foto" style="display: none;">
       <button type="button" class="bottone-secondario" id="btn-cambia-foto">Cambia Foto</button>
       <button type="button" class="bottone-secondario elimina" id="btn-rimuovi-foto">Rimuovi</button>
@@ -94,9 +97,18 @@
     <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
   </div>
 
+  <div class="modal-fotocamera" id="modal-fotocamera" aria-hidden="true">
+    <div class="modal-fotocamera-card">
+      <video id="video-fotocamera" autoplay playsinline muted></video>
+      <div class="modal-fotocamera-azioni">
+        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera">Annulla</button>
+        <button type="button" class="bottone" id="btn-cattura-fotocamera">Scatta</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Inclusione Modulo Javascript -->
   <script type="module" src="script.js"></script>
-  <script src="js/privacy.js"></script>
 </body>
 
 </html>

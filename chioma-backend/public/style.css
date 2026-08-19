@@ -260,6 +260,14 @@ header {
   display: none;
 }
 
+.input-file-nascosto {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .scanner-testo {
   text-align: center;
   font-size: 14px;
@@ -355,6 +363,59 @@ header {
   background: rgba(255, 107, 107, 0.15);
 }
 
+.btn-fotocamera {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid var(--bordo-vetro);
+  display: inline-flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.anteprima-taglio-generata {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bordo-vetro);
+}
+
+.modal-fotocamera {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.82);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-fotocamera.mostra { display: flex; }
+
+.modal-fotocamera-card {
+  width: min(100%, 520px);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+#video-fotocamera {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.modal-fotocamera-azioni {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+}
+
+.modal-fotocamera-azioni > * { flex: 1; }
+
 .gestione-foto {
   display: flex;
   gap: 12px;
@@ -384,7 +445,17 @@ header {
   white-space: nowrap;
   transition: all var(--transition-fast);
 }
-
+.btn-trova-parrucchiere {
+  background: var(--salvia);
+  color: #FFFFFF;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
 .tab-btn.attivo {
   background: var(--rame);
   color: #FFFFFF;
@@ -624,3 +695,489 @@ header {
 }
 
 @media screen and (max-width:768px) {}
+
+/* =========================================================
+   OUTPUT RENDERING A 2 STEP
+========================================================= */
+
+.output-steps-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step-indicator-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordo-vetro);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--testo-muto);
+  transition: all var(--transition-smooth);
+}
+
+.step-indicator-pill.attivo {
+  background: rgba(162, 196, 172, 0.15);
+  border-color: var(--salvia);
+  color: var(--salvia);
+}
+
+.step-indicator-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bordo-vetro);
+  color: var(--testo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.step-indicator-pill.attivo .step-indicator-num {
+  background: var(--salvia);
+  color: #12100E;
+}
+
+.step-indicator-arrow {
+  color: var(--testo-muto);
+  font-size: 14px;
+}
+
+/* Transizione Step Container */
+.output-step {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.output-step.attivo {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header Risultati */
+.risultati-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.risultati-eyebrow {
+  display: inline-block;
+  color: var(--oro);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.risultati-header h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: var(--testo);
+}
+
+.risultati-header p {
+  font-size: 14px;
+  color: var(--testo-secondario);
+}
+
+/* Card Tagli */
+.tagli-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.taglio-card {
+  background: rgba(28, 25, 23, 0.85);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.taglio-card:hover {
+  border-color: rgba(226, 136, 89, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.taglio-card-immagine {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.taglio-card-immagine img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.taglio-card:hover .taglio-card-immagine img {
+  transform: scale(1.04);
+}
+
+.taglio-badge-migliore {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, var(--oro), var(--oro-soft));
+  color: #12100E;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.taglio-numero {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(18, 16, 14, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--bordo-vetro);
+  color: var(--testo);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.taglio-compatibilita {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(18, 16, 14, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--bordo-attivo);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.taglio-compatibilita strong {
+  color: var(--oro);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.taglio-compatibilita span {
+  color: var(--testo-secondario);
+  font-size: 11px;
+}
+
+.taglio-card-body {
+  padding: 20px;
+}
+
+.taglio-card-titolo {
+  font-size: 20px;
+  color: var(--testo);
+  margin-bottom: 8px;
+}
+
+.taglio-card-descrizione {
+  font-size: 14px;
+  color: var(--testo-secondario);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.taglio-card-perche {
+  background: rgba(226, 136, 89, 0.08);
+  border-left: 3px solid var(--oro-soft);
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.taglio-card-perche strong {
+  display: block;
+  font-size: 12px;
+  color: var(--oro);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.taglio-card-perche p {
+  font-size: 13px;
+  color: var(--testo);
+  line-height: 1.5;
+}
+
+.taglio-card-styling {
+  background: rgba(162, 196, 172, 0.08);
+  border-left: 3px solid var(--salvia);
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+.taglio-card-styling strong {
+  display: block;
+  font-size: 12px;
+  color: var(--salvia);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.taglio-card-styling p {
+  font-size: 13px;
+  color: var(--testo);
+  line-height: 1.5;
+}
+
+.btn-scopri-taglio {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: var(--radius-sm);
+  color: var(--testo);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-scopri-taglio:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* Pulsante Continua */
+.btn-continua {
+  width: 100%;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, var(--salvia) 0%, #88B793 100%);
+  color: #12100E;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 8px 25px rgba(162, 196, 172, 0.25);
+  transition: all var(--transition-fast);
+}
+
+.btn-continua:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(162, 196, 172, 0.4);
+  background: linear-gradient(135deg, var(--salvia-hover) 0%, var(--salvia) 100%);
+}
+
+/* Pulsante Indietro */
+.btn-indietro {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--bordo-vetro);
+  color: var(--testo-secondario);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  transition: all var(--transition-fast);
+}
+
+.btn-indietro:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--testo);
+  transform: translateX(-2px);
+}
+
+/* Sezioni Routine & Cura (Step 2) */
+.routine-box-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.routine-card-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.routine-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.routine-card-icon {
+  font-size: 20px;
+}
+
+.routine-card-head h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--salvia);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.routine-card-item p {
+  font-size: 14px;
+  color: var(--testo);
+  line-height: 1.6;
+}
+
+/* Grid Prodotti & Evitare */
+.prodotti-sezione-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 540px) {
+  .prodotti-sezione-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.prodotti-box {
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.prodotti-box.consigliati {
+  background: rgba(162, 196, 172, 0.06);
+  border: 1px solid rgba(162, 196, 172, 0.3);
+}
+
+.prodotti-box.da-evitare {
+  background: rgba(255, 107, 107, 0.06);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.prodotti-box-titolo {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prodotti-box.consigliati .prodotti-box-titolo {
+  color: var(--salvia);
+}
+
+.prodotti-box.da-evitare .prodotti-box-titolo {
+  color: #FF6B6B;
+}
+
+.chip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--testo);
+}
+
+.chip-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Modal Dettaglio Taglio */
+.modal-dettaglio-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-dettaglio-overlay.mostra {
+  display: flex;
+}
+
+.modal-dettaglio-card {
+  background: #1C1917;
+  border: 1px solid var(--bordo-attivo);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.btn-chiudi-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--testo-secondario);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-chiudi-modal:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}

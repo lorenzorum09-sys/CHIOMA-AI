@@ -30,7 +30,27 @@ function healthCheck(req, res) {
     });
 }
 
+async function generaImmagineTaglio(req, res, next) {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ errore: 'Nessuna foto selezionata.' });
+        }
+
+        const risultato = await aiService.generaImmagineTaglio(
+            req.file.buffer,
+            req.file.mimetype,
+            req.body.nomeTaglio,
+            req.body.descrizioneTaglio
+        );
+
+        return res.json({ success: true, data: risultato });
+    } catch (errore) {
+        next(errore);
+    }
+}
+
 module.exports = {
     analizzaFoto,
-    healthCheck
+    healthCheck,
+    generaImmagineTaglio
 };
