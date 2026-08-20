@@ -446,9 +446,10 @@ header {
   transition: all var(--transition-fast);
 }
 .btn-trova-parrucchiere {
-  background: var(--salvia);
-  color: #FFFFFF;
+  background: var(--white);
+  color: var(--testo);
   padding: 10px 16px;
+  padding-top: 12px;
   font-size: 14px;
   font-weight: 700;
   border-radius: var(--radius-sm);
@@ -791,15 +792,26 @@ header {
   color: var(--testo-secondario);
 }
 
-/* Card Tagli */
+/* Card Tagli - layout aggiornato con più spaziatura */
 .tagli-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px; /* più respiro tra le card */
   margin-bottom: 28px;
 }
 
+/* A partire da tablet, due colonne */
+@media (min-width: 720px) {
+  .tagli-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
 .taglio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   background: rgba(28, 25, 23, 0.85);
   border: 1px solid var(--bordo-vetro);
   border-radius: var(--radius-md);
@@ -813,12 +825,14 @@ header {
   transform: translateY(-2px);
 }
 
+/* Immagine in alto nella card */
 .taglio-card-immagine {
   position: relative;
   width: 100%;
   height: 210px;
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .taglio-card-immagine img {
@@ -828,65 +842,33 @@ header {
   transition: transform 0.4s ease;
 }
 
-.taglio-card:hover .taglio-card-immagine img {
-  transform: scale(1.04);
-}
-
-.taglio-badge-migliore {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: linear-gradient(135deg, var(--oro), var(--oro-soft));
-  color: #12100E;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
+/* Badges posizionati sopra l'immagine */
+.taglio-badge-migliore,
 .taglio-numero {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(18, 16, 14, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--bordo-vetro);
-  color: var(--testo);
-  font-size: 12px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 20px;
+  z-index: 6;
+}
+
+/* Compatibilità posizionata nel body per chiarezza */
+.taglio-card-body {
+  padding: 20px;
+  position: relative;
 }
 
 .taglio-compatibilita {
   position: absolute;
   top: 12px;
-  right: 12px;
+  right: 16px;
   background: rgba(18, 16, 14, 0.88);
   backdrop-filter: blur(10px);
   border: 1px solid var(--bordo-attivo);
-  padding: 4px 10px;
+  padding: 6px 10px;
   border-radius: 20px;
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.taglio-compatibilita strong {
-  color: var(--oro);
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.taglio-compatibilita span {
-  color: var(--testo-secondario);
-  font-size: 11px;
-}
-
-.taglio-card-body {
-  padding: 20px;
+  gap: 6px;
 }
 
 .taglio-card-titolo {

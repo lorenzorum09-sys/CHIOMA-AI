@@ -189,10 +189,21 @@ REGOLE IMPORTANTI:
     } catch (errore) {
         console.error('❌ Errore durante la chiamata Gemini AI:', errore);
 
-        throw new Error(
-            'Impossibile completare l\'analisi AI dell\'immagine. ' +
-            'Verifica che la foto mostri chiaramente il viso e i capelli.'
-        );
+        let messaggio = 'Impossibile completare l\'analisi AI dell\'immagine. ' +
+            'Verifica che la foto mostri chiaramente il viso e i capelli.';
+
+        if (errore.status === 429) {
+            messaggio = 'Hai raggiunto il limite di richieste consentite per il piano Gemini attuale. Riprova più tardi.';
+        } else if (errore.status === 503) {
+            messaggio = 'Il servizio AI è momentaneamente sovraccarico. Riprova tra qualche secondo.';
+        }
+
+        const erroreDaLanciare = new Error(messaggio);
+        // Conserva lo status originale (429, 503, ecc.) così il controller
+        // e l'error handler finale possono rispondere con il codice HTTP corretto.
+        erroreDaLanciare.status = errore.status || 500;
+
+        throw erroreDaLanciare;
     }
 }
 
@@ -251,7 +262,19 @@ Mantieni il viso della persona perfettamente riconoscibile, cambia solo l'acconc
 
     } catch (errore) {
         console.error('❌ Errore durante la generazione immagine:', errore);
-        throw new Error('Impossibile generare l\'immagine del taglio. Riprova con un\'altra foto o taglio.');
+
+        let messaggio = 'Impossibile generare l\'immagine del taglio. Riprova con un\'altra foto o taglio.';
+
+        if (errore.status === 429) {
+            messaggio = 'Hai raggiunto il limite di richieste consentite per il piano Gemini attuale. Riprova più tardi.';
+        } else if (errore.status === 503) {
+            messaggio = 'Il servizio AI è momentaneamente sovraccarico. Riprova tra qualche secondo.';
+        }
+
+        const erroreDaLanciare = new Error(messaggio);
+        erroreDaLanciare.status = errore.status || 500;
+
+        throw erroreDaLanciare;
     }
 }
 
