@@ -1,6 +1,7 @@
 :root {
   /* Palette Colori Premium */
   --bg-scuro: #12100E;
+    --rame: #E28859;
   --bg-card: rgba(28, 25, 23, 0.75);
   --bg-card-hover: rgba(40, 36, 33, 0.85); 
   --salvia: #A2C4AC;
@@ -800,11 +801,14 @@ header {
   margin-bottom: 28px;
 }
 
-/* A partire da tablet, due colonne */
+/* A partire da tablet, tutte e 3 le card affiancate e centrate */
 @media (min-width: 720px) {
   .tagli-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -816,16 +820,17 @@ header {
   border: 1px solid var(--bordo-vetro);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast);
 }
 
+/* Niente più transform/box-shadow in hover: l'aspetto resta stabile
+   e non "salta" al passaggio del mouse. */
 .taglio-card:hover {
   border-color: rgba(226, 136, 89, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  transform: translateY(-2px);
 }
 
-/* Immagine in alto nella card */
+/* Immagine in alto nella card (non più usata dalle card generate in JS,
+   lasciata qui nel caso venga riattivata in futuro) */
 .taglio-card-immagine {
   position: relative;
   width: 100%;
@@ -842,33 +847,91 @@ header {
   transition: transform 0.4s ease;
 }
 
-/* Badges posizionati sopra l'immagine */
+/* Header della card: badge ordine + compatibilità, sulla stessa riga,
+   nel normale flusso del documento (niente position:absolute) così
+   restano sempre leggibili e mai sovrapposti al testo sottostante. */
+.taglio-card-body {
+  padding: 20px;
+}
+
+.taglio-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.taglio-badge-ordine {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--testo);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordo-vetro);
+  padding: 5px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.taglio-compatibilita {
+  background: rgba(18, 16, 14, 0.88);
+  border: 1px solid var(--bordo-attivo);
+  padding: 6px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.taglio-compatibilita strong {
+  font-size: 15px;
+  color: var(--oro);
+}
+
+.taglio-compatibilita span {
+  font-size: 11px;
+  color: var(--testo-secondario);
+}
+
+/* Variante compatta: solo nome + perché ti sta bene, per un layout
+   più snello e dinamico quando ci sono 3 card affiancate. */
+.taglio-card-compatta {
+  padding: 16px;
+  gap: 8px;
+}
+
+.taglio-card-compatta .taglio-card-header {
+  margin-bottom: 8px;
+}
+
+.taglio-card-compatta .taglio-card-titolo {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.taglio-card-perche-compatta {
+  font-size: 13px;
+  color: var(--testo-secondario);
+  line-height: 1.4;
+  margin-bottom: 10px;
+  /* Limita il testo a 3 righe max, cosi tutte le card restano
+     della stessa altezza anche se il testo è più lungo del solito. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Badge "vecchio stile" sopra l'immagine: non più generati dal JS,
+   restano solo se in futuro riattivi .taglio-card-immagine */
 .taglio-badge-migliore,
 .taglio-numero {
   position: absolute;
   top: 12px;
   left: 12px;
   z-index: 6;
-}
-
-/* Compatibilità posizionata nel body per chiarezza */
-.taglio-card-body {
-  padding: 20px;
-  position: relative;
-}
-
-.taglio-compatibilita {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: rgba(18, 16, 14, 0.88);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--bordo-attivo);
-  padding: 6px 10px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .taglio-card-titolo {
