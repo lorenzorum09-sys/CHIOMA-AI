@@ -114,7 +114,16 @@ header {
   flex-direction: column;
   gap: 24px;
 }
-
+.trova-parruchiere-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+ padding-top:30px;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--bordo-vetro);
+}
 /* Hero Section */
 .hero {
   text-align: center;
@@ -156,6 +165,8 @@ header {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--bordo-vetro);
   border-radius: var(--radius-md);
+  padding-top:20px;
+  padding-bottom:20px;
   padding: 24px;
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
@@ -446,17 +457,184 @@ header {
   white-space: nowrap;
   transition: all var(--transition-fast);
 }
-.btn-trova-parrucchiere {
-  background: var(--white);
+.trova-parrucchiere-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--bordo-vetro);
+}
+
+
+.menu-hamburger.aperto {
+  display: block; /* o flex, a seconda del layout che vuoi */
+}
+.trova-parrucchiere-content {
+  width: 100%;
+}
+.menu-hamburger {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  z-index: 500;
+}
+/* Bottone Hamburger — separato da .bottone perché quello è pensato
+   per i CTA a piena larghezza, non per un'icona nell'header */
+.btn-hamburger {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--bordo-vetro);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--testo);
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.btn-hamburger:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.menu-hamburger {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 240px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  z-index: 500;
+  box-shadow: var(--shadow-glow);
+}
+
+.menu-hamburger.aperto {
+  display: block;
+}
+
+.menu-hamburger-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-voce {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-voce-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--testo);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.menu-voce-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.menu-voce-icona {
+  font-size: 16px;
+}
+
+.menu-voce-testo {
+  flex: 1;
+  text-align: left;
+}
+
+.menu-voce-freccia {
+  font-size: 13px;
+  color: var(--testo-muto);
+  transition: transform var(--transition-fast);
+}
+
+.menu-voce-btn[aria-expanded="true"] .menu-voce-freccia {
+  transform: rotate(90deg);
+}
+
+.menu-pannello {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 8px 8px 34px;
+}
+
+.menu-pannello.aperto {
+  display: flex;
+}
+
+.menu-opzione {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--testo-secondario);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.menu-opzione input {
+  accent-color: var(--rame);
+}
+
+.menu-divisore-hamburger {
+  height: 1px;
+  background: var(--bordo-vetro);
+  margin: 6px 4px;
+}
+.trova-parrucchiere-content .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.btn-trova-parrucchiere {
+  background: var(--testo);
+  color: var(--bg-scuro);
   padding: 10px 16px;
   padding-top: 12px;
   font-size: 14px;
   font-weight: 700;
+  border: none;
   border-radius: var(--radius-sm);
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  cursor: pointer;
+  width: 100%;
+  max-width: 260px;
+  transition: all var(--transition-fast);
+}
+
+.btn-trova-parrucchiere:hover {
+  background: var(--oro-soft);
 }
 .tab-btn.attivo {
   background: var(--rame);

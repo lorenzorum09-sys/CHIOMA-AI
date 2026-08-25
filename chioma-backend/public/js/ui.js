@@ -1000,7 +1000,7 @@ export function mostraRisultatiAnalisi(dati) {
 
       <div class="trova-parrucchiere-content">
 
-        <div>
+        <div class="card">
 
           <h3>
             Vuoi fare questo taglio?
@@ -1010,9 +1010,7 @@ export function mostraRisultatiAnalisi(dati) {
             Trova un parrucchiere vicino a te.
           </p>
 
-        </div>
 
-      </div>
 
       <button
         type="button"
@@ -1021,6 +1019,8 @@ export function mostraRisultatiAnalisi(dati) {
       >
         📍 Trova parrucchiere →
       </button>
+        </div>
+      </div>
 
     </div>
   `;

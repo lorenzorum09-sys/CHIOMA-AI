@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,7 +22,51 @@
       <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
       <span class="logo-testo titolo-brand">Chioma AI</span>
     </a>
-    <div class="badge-beta">Scanner AI</div>
+    <div class="badge-beta" data-i18n="badge_scanner">Scanner AI</div>
+
+    <button type="button" class="btn-hamburger" id="btn-hamburger" aria-label="Apri menu" aria-expanded="false">
+        <span>☰</span>
+    </button>
+
+    <div class="menu-hamburger" id="menu-hamburger">
+        <nav class="menu-hamburger-lista">
+
+            <div class="menu-voce">
+                <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
+                    <span class="menu-voce-icona">🌐</span>
+                    <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
+                    <span class="menu-voce-freccia">›</span>
+                </button>
+
+                <div class="menu-pannello" id="pannello-lingua">
+                    <label class="menu-opzione">
+                        <input type="radio" name="lingua" value="it" checked>
+                        <span>🇮🇹 Italiano</span>
+                    </label>
+                    <label class="menu-opzione">
+                        <input type="radio" name="lingua" value="en">
+                        <span>🇬🇧 English</span>
+                    </label>
+                    <label class="menu-opzione">
+                        <input type="radio" name="lingua" value="fr">
+                        <span>🇫🇷 Français</span>
+                    </label>
+                </div>
+            </div>
+              <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
+                <span class="menu-voce-icona">⚙️</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+            <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+           </div> 
+        </nav>
+    </div>
   </header>
 
   <!-- Input separati: galleria e fotocamera. Tenerli nel DOM aiuta Safari mobile. -->
@@ -43,10 +86,10 @@
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
             <circle cx="12" cy="13" r="4" />
           </svg>
-          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px;">
+          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px;" data-i18n="analizza_titolo_upload">
             Carica o scatta una foto
           </span>
-          <span style="font-size: 12px; color: var(--testo-muto);">
+          <span style="font-size: 12px; color: var(--testo-muto);" data-i18n="analizza_sub_upload">
             Clicca o trascina qui l'immagine
           </span>
         </div>
@@ -55,22 +98,18 @@
       </div>
     </div>
 
-    <p class="scanner-testo" id="scanner-testo">
-      Rilevamento in tempo reale: <b id="parola-rotante">Forma del Viso</b>
-    </p>
-
     <button type="button" class="bottone" id="btn-carica-foto">
-      <span>📷 Seleziona una Foto</span>
+      <span data-i18n="btn_seleziona_foto">📷 Seleziona una Foto</span>
     </button>
 
-    <button type="button" class="bottone-secondario btn-fotocamera" id="btn-scatta-foto">Scatta una foto</button>
+    <button type="button" class="bottone-secondario btn-fotocamera" id="btn-scatta-foto" data-i18n="btn_scatta_foto">Scatta una foto</button>
 
     <div class="gestione-foto" id="gestione-foto" style="display: none;">
-      <button type="button" class="bottone-secondario" id="btn-cambia-foto">Cambia Foto</button>
-      <button type="button" class="bottone-secondario elimina" id="btn-rimuovi-foto">Rimuovi</button>
+      <button type="button" class="bottone-secondario" id="btn-cambia-foto" data-i18n="btn_cambia_foto">Cambia Foto</button>
+      <button type="button" class="bottone-secondario elimina" id="btn-rimuovi-foto" data-i18n="btn_rimuovi_foto">Rimuovi</button>
     </div>
 
-    <button type="button" class="bottone" id="btn-analizza" style="display: none; background: var(--salvia); color: #12100E;">
+    <button type="button" class="bottone" id="btn-analizza" style="display: none; background: var(--salvia); color: #12100E;" data-i18n="btn_analizza">
       ✨ Analizza Viso e Taglio con l'AI
     </button>
 
@@ -80,15 +119,15 @@
   <nav class="navigazione">
     <a href="index.html" class="nav-link">
       <span>🏠</span>
-      <span>Home</span>
+      <span data-i18n="nav_home">Home</span>
     </a>
     <a href="analizza.html" class="nav-link attivo">
       <span>🔍</span>
-      <span>Scansiona AI</span>
+      <span data-i18n="nav_scansiona">Scansiona AI</span>
     </a>
     <a href="istruzione.html" class="nav-link">
       <span>🎓</span>
-      <span>Guida Cura</span>
+      <span data-i18n="nav_guida">Guida Cura</span>
     </a>
   </nav>
 
@@ -101,14 +140,15 @@
     <div class="modal-fotocamera-card">
       <video id="video-fotocamera" autoplay playsinline muted></video>
       <div class="modal-fotocamera-azioni">
-        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera">Annulla</button>
-        <button type="button" class="bottone" id="btn-cattura-fotocamera">Scatta</button>
+        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera" data-i18n="modal_annulla">Annulla</button>
+        <button type="button" class="bottone" id="btn-cattura-fotocamera" data-i18n="modal_scatta">Scatta</button>
       </div>
     </div>
   </div>
 
   <!-- Inclusione Modulo Javascript -->
   <script type="module" src="script.js"></script>
+  <script src="js/lingua.js"></script>
 </body>
 
 </html>

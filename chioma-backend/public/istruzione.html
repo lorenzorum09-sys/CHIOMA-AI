@@ -13,66 +13,117 @@
             <span class="logo-testo titolo-brand">Chioma AI</span>
         </a>
         <div class="badge-beta">Beta 2.0</div>
+        
+        <button type="button" class="btn-hamburger" id="btn-hamburger">
+            <span>☰</span>
+        </button>
+
+      <div class="menu-hamburger" id="menu-hamburger">
+    <nav class="menu-hamburger-lista">
+
+        <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
+                <span class="menu-voce-icona">🌐</span>
+                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+
+            <div class="menu-pannello" id="pannello-lingua">
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="it" checked>
+                    <span>🇮🇹 Italiano</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="en">
+                    <span>🇬🇧 English</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="fr">
+                    <span>🇫🇷 Français</span>
+                </label>
+            </div>
+        </div>
+         <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
+                <span class="menu-voce-icona">⚙️</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+           <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+           </div> 
+        <!--
+            Per aggiungere una nuova voce (es. Impostazioni), copia il blocco
+            ".menu-voce" sopra: cambia data-menu-toggle con un id nuovo e univoco,
+            e crea il ".menu-pannello" corrispondente con quell'id. Non serve
+            toccare js/lingua.js, funziona già in automatico.
+        -->
+
+    </nav>
+</div>
     </header>
         <!-- Features Grid -->
      
      <section>
-              <h2 class="titolo-sezione">Tre passaggi, zero incertezze</h2>
+              <h2 class="titolo-sezione" data-i18n="istr_come_titolo">Tre passaggi, zero incertezze</h2>
 
-      <p class="eyebrow">Come funziona l'AI</p>
+      <p class="eyebrow" data-i18n="istr_come_eyebrow">Come funziona l'AI</p>
 
       <div style="display: flex; flex-direction: column; gap: 12px;padding-top: 40px;">
         <div class="step">
           <div class="step-numero">1</div>
           <div class="step-testo">
-            <h3>Scatta una foto nitida</h3>
-            <p>Viso e capelli ben visibili e ben illuminati, al naturale.</p>
+            <h3 data-i18n="istr_step1_titolo">Scatta una foto nitida</h3>
+            <p data-i18n="istr_step1_testo">Viso e capelli ben visibili e ben illuminati, al naturale.</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-numero">2</div>
           <div class="step-testo">
-            <h3>Elaborazione Visagistica</h3>
-            <p>L'AI individua le proporzioni del viso, il tipo di capello e il volume.</p>
+            <h3 data-i18n="istr_step2_titolo">Elaborazione Visagistica</h3>
+            <p data-i18n="istr_step2_testo">L'AI individua le proporzioni del viso, il tipo di capello e il volume.</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-numero">3</div>
           <div class="step-testo">
-            <h3>Verdetto & Scheda Parrucchiere</h3>
-            <p>Ricevi i consigli sul taglio perfetto ed il messaggio pronto per il barbiere.</p>
+            <h3 data-i18n="istr_step3_titolo">Verdetto & Scheda Parrucchiere</h3>
+            <p data-i18n="istr_step3_testo">Ricevi i consigli sul taglio perfetto ed il messaggio pronto per il barbiere.</p>
           </div>
         </div>
       </div>
     </section>
     <section class="contenitore rivela">
-            <p class="eyebrow">Perché scegliere Chioma AI</p>
+            <p class="eyebrow" data-i18n="istr_perche_eyebrow">Perché scegliere Chioma AI</p>
 
             <div class="card">
-                    <h3>Analisi Visagistica AI</h3>
-                    <p>Riconosce la forma esatta del viso (Ovale, Squadrato, Cuore, ecc.) e la natura dei tuoi capelli.</p>
+                    <h3 data-i18n="istr_perche1_titolo">Analisi Visagistica AI</h3>
+                    <p data-i18n="istr_perche1_testo">Riconosce la forma esatta del viso (Ovale, Squadrato, Cuore, ecc.) e la natura dei tuoi capelli.</p>
                 </div>
 
             <div class="card">
-                    <h3>Scheda per il Parrucchiere</h3>
-                    <p>Genera una spiegazione tecnica e precisa pronta da dire o mostrare al parrucchiere durante il taglio.</p>
+                    <h3 data-i18n="istr_perche2_titolo">Scheda per il Parrucchiere</h3>
+                    <p data-i18n="istr_perche2_testo">Genera una spiegazione tecnica e precisa pronta da dire o mostrare al parrucchiere durante il taglio.</p>
             </div>
 
             <div class="card">
-                    <h3>Routine & Cura Personalizzata</h3>
-                    <p>Frequenza di lavaggio, asciugatura, prodotti ideali ed ingredienti da evitare per mantenere il taglio perfetto.</p>
+                    <h3 data-i18n="istr_perche3_titolo">Routine & Cura Personalizzata</h3>
+                    <p data-i18n="istr_perche3_testo">Frequenza di lavaggio, asciugatura, prodotti ideali ed ingredienti da evitare per mantenere il taglio perfetto.</p>
             </div>
         </section>
     <section class="contenitore rivela">
-        <p class="eyebrow">Cosa impari</p>
+        <p class="eyebrow" data-i18n="istr_impari_eyebrow">Cosa impari</p>
         
         <div class="card">
             💦
             <div>
-                <h3>Lavaggio</h3>
-                <p>Frequenza giusta, temperatura dell'acqua e tecnica per il tuo tipo di capello.</p>
+                <h3 data-i18n="istr_impari1_titolo">Lavaggio</h3>
+                <p data-i18n="istr_impari1_testo">Frequenza giusta, temperatura dell'acqua e tecnica per il tuo tipo di capello.</p>
             </div>
         </div>
 
@@ -80,36 +131,36 @@
 
             🧴
             <div>
-                <h3>Prodotti</h3>
-                <p>Cosa ti serve davvero e cosa puoi tranquillamente evitare di comprare.</p>
+                <h3 data-i18n="istr_impari2_titolo">Prodotti</h3>
+                <p data-i18n="istr_impari2_testo">Cosa ti serve davvero e cosa puoi tranquillamente evitare di comprare.</p>
             </div>
         </div>
 
         <div class="card">
             💨
             <div>
-                <h3>Asciugatura</h3>
-                <p>Phon, diffusore o aria naturale: impari a scegliere in base al risultato che vuoi.</p>
+                <h3 data-i18n="istr_impari3_titolo">Asciugatura</h3>
+                <p data-i18n="istr_impari3_testo">Phon, diffusore o aria naturale: impari a scegliere in base al risultato che vuoi.</p>
             </div>
         </div>
 
     </section>
 <p style="text-align:center; font-size:12px; color: var(--testo-muto); margin-top: 20px;">
-  <a href="analizza.html" style="color: var(--testo-muto); text-decoration: underline;">Privacy & Termini d'uso</a>
+  <a href="analizza.html" data-i18n="link_privacy" style="color: var(--testo-muto); text-decoration: underline;">Privacy & Termini d'uso</a>
 </p>
     <!-- Bottom Navigation Bar -->
     <nav class="navigazione">
         <a href="index.html">
             <span>🏠</span>
-            <span>Home</span>
+            <span data-i18n="nav_home">Home</span>
         </a>
         <a href="analizza.html">
             <span>🔍</span>
-            <span>Scansiona AI</span>
+            <span data-i18n="nav_scansiona">Scansiona AI</span>
         </a>
         <a href="istruzione.html" class="attivo">
             <span>🎓</span>
-            <span>Guida Cura</span>
+            <span data-i18n="nav_guida">Guida Cura</span>
         </a>
     </nav>
     <div class="transizione" id="overlay-transizione">
@@ -129,7 +180,7 @@
 
         sezioniDaRivelare.forEach((sezione) => osservatore.observe(sezione));
     </script>
-
+<script src="js/lingua.js"></script>
 </body>
 
 </html>
