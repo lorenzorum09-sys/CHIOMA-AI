@@ -1230,7 +1230,8 @@ function creaDettaglioTaglio(taglio) {
           `
           : ""
       }
-
+   <!-- =========================================================
+           BOTTONE GENERA ANTEPRIMA
       <section
         class="anteprima-taglio"
         style="margin-top:24px;"
@@ -1250,7 +1251,7 @@ function creaDettaglioTaglio(taglio) {
           Genera una simulazione del taglio
           sulla foto che hai analizzato.
         </p>
-
+   
         <button
           type="button"
           class="bottone"
@@ -1273,6 +1274,8 @@ function creaDettaglioTaglio(taglio) {
       </section>
 
     </div>
+          ========================================================== -->
+
   `;
 }
 
