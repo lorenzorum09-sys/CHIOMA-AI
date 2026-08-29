@@ -1230,52 +1230,10 @@ function creaDettaglioTaglio(taglio) {
           `
           : ""
       }
-   <!-- =========================================================
-           BOTTONE GENERA ANTEPRIMA
-      <section
-        class="anteprima-taglio"
-        style="margin-top:24px;"
-      >
 
-        <h3>
-          Prova questo taglio
-        </h3>
-
-        <p
-          style="
-            font-size:14px;
-            color:var(--testo-secondario);
-            margin:8px 0 12px;
-          "
-        >
-          Genera una simulazione del taglio
-          sulla foto che hai analizzato.
-        </p>
-   
-        <button
-          type="button"
-          class="bottone"
-          id="btn-genera-anteprima"
-          data-nome-taglio="${escapeAttribute(
-            taglio.nome || ""
-          )}"
-          data-descrizione-taglio="${escapeAttribute(
-            taglio.descrizione || ""
-          )}"
-        >
-          Genera prova del taglio
-        </button>
-
-        <div
-          id="risultato-anteprima-taglio"
-          style="margin-top:16px;"
-        ></div>
-
-      </section>
+      <!-- BOTTONE GENERA ANTEPRIMA disattivato temporaneamente -->
 
     </div>
-          ========================================================== -->
-
   `;
 }
 

@@ -6,9 +6,13 @@ async function analizzaFoto(req, res, next) {
             return res.status(400).json({ errore: 'Nessuna foto selezionata. Seleziona o scatta una foto per procedere.' });
         }
 
+        // Estrai la lingua dalla richiesta (body, query params, o headers)
+        const lingua = req.body.lingua || req.query.lingua || req.headers['accept-language']?.split(',')[0]?.split('-')[0] || 'it';
+
         const risultatoAnalisi = await aiService.analizzaFotoCapelli(
             req.file.buffer,
-            req.file.mimetype
+            req.file.mimetype,
+            lingua
         );
 
         return res.json({
@@ -36,11 +40,15 @@ async function generaImmagineTaglio(req, res, next) {
             return res.status(400).json({ errore: 'Nessuna foto selezionata.' });
         }
 
+        // Estrai la lingua dalla richiesta
+        const lingua = req.body.lingua || req.query.lingua || req.headers['accept-language']?.split(',')[0]?.split('-')[0] || 'it';
+
         const risultato = await aiService.generaImmagineTaglio(
             req.file.buffer,
             req.file.mimetype,
             req.body.nomeTaglio,
-            req.body.descrizioneTaglio
+            req.body.descrizioneTaglio,
+            lingua
         );
 
         return res.json({ success: true, data: risultato });
