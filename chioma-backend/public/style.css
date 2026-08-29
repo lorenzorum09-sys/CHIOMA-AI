@@ -437,6 +437,7 @@ header {
 /* Tabs Risultati Analisi */
 .tabs-header {
   display: flex;
+  flex-direction: column;
   gap: 8px;
   border-bottom: 1px solid var(--bordo-vetro);
   padding-bottom: 12px;
