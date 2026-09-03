@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chioma AI — Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+            <span class="logo-testo titolo-brand">Chioma AI</span>
+        </a>
+     
+        <button type="button" class="btn-hamburger" id="btn-hamburger">
+            <span>☰</span>
+        </button>
+               <div class="menu-hamburger" id="menu-hamburger">
+    <nav class="menu-hamburger-lista">
+
+        <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
+                <span class="menu-voce-icona">🌐</span>
+                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+
+            <div class="menu-pannello" id="pannello-lingua">
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="it" checked>
+                    <span>🇮🇹 Italiano</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="en">
+                    <span>🇬🇧 English</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="fr">
+                    <span>🇫🇷 Français</span>
+                </label>
+            </div>
+        </div>
+          <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
+                <span class="menu-voce-icona">⚙️</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+         <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="analizza.html" data-i18n="link_termini"> Termini di uso e Privacy </a></span>
+                <span class="menu-voce-freccia">›</span>
+           </div> 
+           <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+                <span class="menu-voce-icona">👤</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="account.html" data-i18n="link_account">Account</a></span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+            </div>
+                
+    </nav>
+</div>
+    </header>
+
+ <div class="card-iniziale">
+  <h2 class="titolo-sezione">Crea il tuo account</h2>
+
+  <form id="form-registrazione">
+    <div class="campo-gruppo">
+      <label for="email" class="campo-etichetta">Email</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="La tua email"
+        class="campo-input"
+        required
+      />
+    </div>
+
+    <div class="campo-gruppo">
+      <label for="password" class="campo-etichetta">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        class="campo-input"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primario" id="btn-registrati">
+      Registrati
+    </button>
+
+    <p id="messaggio-errore" class="messaggio-errore"></p>
+
+    <p class="testo-link">
+      Possiedi già un'account?
+      <a href="login.html" class="link-accento">Accedi</a>
+    </p>
+  </form>
+</div>
+
+    <script>document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form-registrazione");
+  const messaggioErrore = document.getElementById("messaggio-errore");
+  const bottoneRegistrati = document.getElementById("btn-registrati");
+
+  form.addEventListener("submit", async (evento) => {
+    evento.preventDefault(); // impedisce il reload automatico della pagina
+
+    // Puliamo eventuali errori precedenti
+    messaggioErrore.textContent = "";
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    // Disabilitiamo il bottone per evitare doppi invii mentre aspettiamo la risposta
+    bottoneRegistrati.disabled = true;
+    bottoneRegistrati.textContent = "Registrazione in corso...";
+
+    try {
+      const risposta = await fetch("/api/account/registrazione", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const dati = await risposta.json();
+
+      if (!risposta.ok) {
+        // Il server ha risposto con un errore (400, 409, ecc.)
+        throw new Error(dati.errore || "Errore durante la registrazione.");
+      }
+
+      // Successo! Qui puoi reindirizzare l'utente o mostrare un messaggio
+      alert(`Registrazione avvenuta con successo per ${dati.data.email}!`);
+      form.reset();
+
+    } catch (errore) {
+      messaggioErrore.textContent = errore.message;
+
+    } finally {
+      // Riabilitiamo il bottone in ogni caso, sia successo che errore
+      bottoneRegistrati.disabled = false;
+      bottoneRegistrati.textContent = "Registrati";
+    }
+  });
+});
+</script>
+<style>
+    .messaggio-errore {
+  color: #FF6B6B; /* stesso rosso che usi già per .elimina */
+  font-size: 13px;
+  margin-top: 8px;
+  min-height: 18px; /* riserva spazio così il layout non "salta" quando appare */
+}
+</style>
+   <div class="transizione" id="overlay-transizione">
+        <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+    </div>
+    <script src="js/lingua.js"></script>
+
+</body>
+</html>

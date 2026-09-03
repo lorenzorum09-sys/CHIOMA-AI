@@ -5,6 +5,7 @@ const https = require('https');
 require('dotenv').config();
 
 const aiRoutes = require('./src/routes/aiRoutes');
+const accountRoutes = require('./src/routes/accountRoutes'); // ← nuovo
 const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Rotte API
 app.use('/api', aiRoutes);
+app.use('/api/account', accountRoutes); // ← nuovo
 
 // Gestione rotte non trovate per API (Express 5 compatible)
 app.use('/api', (req, res) => {

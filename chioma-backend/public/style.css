@@ -170,6 +170,160 @@ header {
   padding: 24px;
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
+
+
+#testo-digitato {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--testo);
+  min-height: 2.4em; /* riserva spazio per 2 righe, evita "salti" mentre scrive */
+
+  white-space: normal;
+  word-wrap: break-word;
+
+}
+/* Card account/login */
+.card-iniziale {
+  background: linear-gradient(135deg, rgba(28, 25, 23, 0.95), rgba(226, 136, 89, 0.09));
+  border: 1px solid var(--bordo-attivo);
+  border-radius: var(--radius-md);
+  padding: 36px 28px;
+  max-width: 420px;
+  width: 100%;
+  margin: 40px auto;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-iniziale .titolo-sezione {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--testo);
+  margin: 0 0 28px 0;
+  padding: 0;
+  letter-spacing: -0.02em;
+}
+
+.campo-gruppo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.campo-etichetta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--testo-secondario);
+}
+
+.campo-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordo-vetro);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--testo);
+  font-size: 14px;
+  font-family: 'Manrope', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.campo-input::placeholder {
+  color: var(--testo-muto);
+}
+
+.campo-input:focus {
+  border-color: var(--rame);
+  background: rgba(226, 136, 89, 0.06);
+}
+
+.btn-primario {
+  display: block;
+  width: 100%;
+  background: var(--rame);
+  color: var(--bg-scuro);
+  font-weight: 800;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.btn-primario:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-primario:active {
+  transform: translateY(0);
+}
+
+.btn-primario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.messaggio-errore {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 10px;
+  min-height: 18px;
+}
+
+.testo-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--testo-muto);
+  margin-top: 20px;
+}
+
+.link-accento {
+  color: var(--rame);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.link-accento:hover {
+  text-decoration: underline;
+}
+a{
+  text-decoration: none;
+  color:white;
+  padding:10px;
+  margin-left: 0;
+  border-radius: 10%;
+}
+
+.top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:red;
+}
+
 .card-privacy {
   display: none;   /* stato di partenza: nascosto */
   background: var(--bg-card);
@@ -458,6 +612,22 @@ header {
   white-space: nowrap;
   transition: all var(--transition-fast);
 }
+.hero{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--bordo-vetro);
+}
+.hero-button{
+  text-decoration: none;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: red;
+}
 .trova-parrucchiere-section{
   display: flex;
   flex-direction: column;
@@ -608,12 +778,39 @@ header {
   background: var(--bordo-vetro);
   margin: 6px 4px;
 }
+.separatore {
+  display:flex;
+  justify-content: center;
+  height: 1px;
+
+  background: var(--bordo-vetro);
+  margin: 6px 0;
+  margin-top:10px;
+  margin-bottom:10px;
+}
 .trova-parrucchiere-content .card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 14px;
+}
+.btn{
+  text-decoration: none;
+  background: var(--testo);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--bg-scuro);
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.btn:hover{
+  background: var(--oro-soft);
+  transform: scale(1.02);
 }
 
 .btn-trova-parrucchiere {

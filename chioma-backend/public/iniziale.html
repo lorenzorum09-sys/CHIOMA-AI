@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YFNXMN0N2E');
+    </script>
+
+    <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
+    <meta name="description" content="...">
+
+    <!-- Fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1 id="testo-digitato"></h1>
+
+    <div class="card-iniziale">
+        <a href="analizza.html" class="btn">Voglio trovare il taglio giusto per me</a>
+        <p class="separatore">Oppure</p>
+        <a href="analizza.html" class="btn">Preferisco una routine per mantenere il mio stile</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const testo1 = "Cosa vuoi fare oggi?";
+            const testo2 = "Come possiamo aiutarti?";
+            const testo3 = "Qual è il tuo obiettivo?";
+            const testiRandom = [testo1, testo2, testo3];
+
+            const indiceCasuale = Math.floor(Math.random() * testiRandom.length);
+            const testoSelezionato = testiRandom[indiceCasuale];
+
+            const elemento = document.getElementById("testo-digitato");
+            let indice = 0;
+            const velocita = 100;
+
+            function scrivi() {
+                if (indice < testoSelezionato.length) {
+                    elemento.innerHTML += testoSelezionato.charAt(indice);
+                    indice++;
+                    setTimeout(scrivi, velocita);
+                }
+            }
+
+            scrivi();
+        });
+    </script>
+     <nav class="navigazione">
+    <a href="index.html" class="nav-link">
+      <span>🏠</span>
+      <span data-i18n="nav_home">Home</span>
+    </a>
+    <a href="iniziale.html" class="nav-link attivo">
+      <span>🔍</span>
+      <span data-i18n="nav_scansiona">Scansiona AI</span>
+    </a>
+    <a href="istruzione.html" class="nav-link">
+      <span>🎓</span>
+      <span data-i18n="nav_guida">Guida Cura</span>
+    </a>
+  </nav>
+</body>
+</html>

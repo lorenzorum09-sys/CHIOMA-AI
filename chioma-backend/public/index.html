@@ -30,7 +30,6 @@
             <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
             <span class="logo-testo titolo-brand">Chioma AI</span>
         </a>
-        <div class="badge-beta">Beta 2.0</div>
 
         <button type="button" class="btn-hamburger" id="btn-hamburger">
             <span>☰</span>
@@ -67,18 +66,17 @@
                 <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
                 <span class="menu-voce-freccia">›</span>
             </button>
-         <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+            <a href="analizza.html" class="menu-voce-btn">
                 <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Termini di uso e Privacy</span>
+                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
                 <span class="menu-voce-freccia">›</span>
-           </div> 
-        <!--
-            Per aggiungere una nuova voce (es. Impostazioni), copia il blocco
-            ".menu-voce" sopra: cambia data-menu-toggle con un id nuovo e univoco,
-            e crea il ".menu-pannello" corrispondente con quell'id. Non serve
-            toccare js/lingua.js, funziona già in automatico.
-        -->
+                </a>
+                <a href="account.html" class="menu-voce-btn">
+    <span class="menu-voce-icona">👤</span>
+    <span class="menu-voce-testo" data-i18n="link_account">Account</span>
+    <span class="menu-voce-freccia">›</span>
+</a>
+                
     </nav>
 </div>
     </header>
@@ -100,7 +98,7 @@
             <p data-i18n="descrizione_cta" style="font-size: 14px; color: var(--testo-secondario); margin-bottom: 20px;">
                 Zero dubbi prima di sederti sulla poltrona del barbiere o parrucchiere.
             </p>
-            <a href="analizza.html" class="bottone" data-i18n="btn_scansiona" style="text-decoration: none;">
+            <a href="iniziale.html" class="bottone" data-i18n="btn_scansiona" style="text-decoration: none;">
                 ✨ Scansiona la tua foto ora
             </a>
         </div>
@@ -116,7 +114,7 @@
             <span>🏠</span>
             <span data-i18n="nav_home">Home</span>
         </a>
-        <a href="analizza.html">
+        <a href="iniziale.html">
             <span>🔍</span>
             <span data-i18n="nav_scansiona">Scansiona AI</span>
         </a>

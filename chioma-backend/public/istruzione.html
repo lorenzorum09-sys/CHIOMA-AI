@@ -28,13 +28,11 @@
             <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
             <span class="logo-testo titolo-brand">Chioma AI</span>
         </a>
-        <div class="badge-beta">Beta 2.0</div>
         
         <button type="button" class="btn-hamburger" id="btn-hamburger">
             <span>☰</span>
         </button>
-
-      <div class="menu-hamburger" id="menu-hamburger">
+   <div class="menu-hamburger" id="menu-hamburger">
     <nav class="menu-hamburger-lista">
 
         <div class="menu-voce">
@@ -59,25 +57,26 @@
                 </label>
             </div>
         </div>
-         <div class="menu-voce">
+          <div class="menu-voce">
             <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
                 <span class="menu-voce-icona">⚙️</span>
                 <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
                 <span class="menu-voce-freccia">›</span>
             </button>
-           <div class="menu-voce">
+         <div class="menu-voce">
             <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
                 <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Termini di uso e Privacy</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="analizza.html" data-i18n="link_termini"> Termini di uso e Privacy </a></span>
                 <span class="menu-voce-freccia">›</span>
            </div> 
-        <!--
-            Per aggiungere una nuova voce (es. Impostazioni), copia il blocco
-            ".menu-voce" sopra: cambia data-menu-toggle con un id nuovo e univoco,
-            e crea il ".menu-pannello" corrispondente con quell'id. Non serve
-            toccare js/lingua.js, funziona già in automatico.
-        -->
-
+           <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
+                <span class="menu-voce-icona">👤</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="account.html" data-i18n="link_account">Account</a></span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+            </div>
+                
     </nav>
 </div>
     </header>
@@ -170,7 +169,7 @@
             <span>🏠</span>
             <span data-i18n="nav_home">Home</span>
         </a>
-        <a href="analizza.html">
+        <a href="iniziale.html">
             <span>🔍</span>
             <span data-i18n="nav_scansiona">Scansiona AI</span>
         </a>
