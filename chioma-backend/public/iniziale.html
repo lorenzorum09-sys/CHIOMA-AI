@@ -22,7 +22,60 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+<header>
+       <a href="index.html" class="logo-container">
+      <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+      <span class="logo-testo titolo-brand">Chioma AI</span>
+    </a>
+      <button type="button" class="btn-hamburger" id="btn-hamburger">
+            <span>☰</span>
+        </button>
 
+      <div class="menu-hamburger" id="menu-hamburger">
+    <nav class="menu-hamburger-lista">
+
+        <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
+                <span class="menu-voce-icona">🌐</span>
+                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+
+            <div class="menu-pannello" id="pannello-lingua">
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="it" checked>
+                    <span>🇮🇹 Italiano</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="en">
+                    <span>🇬🇧 English</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="fr">
+                    <span>🇫🇷 Français</span>
+                </label>
+            </div>
+        </div>
+          <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
+                <span class="menu-voce-icona">⚙️</span>
+                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+            <a href="analizza.html" class="menu-voce-btn">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+                </a>
+                <a href="account.html" class="menu-voce-btn">
+    <span class="menu-voce-icona">👤</span>
+    <span class="menu-voce-testo" data-i18n="link_account">Account</span>
+    <span class="menu-voce-freccia">›</span>
+</a>
+                
+    </nav>
+</div>
+</header>
 <body>
 
     <h1 id="testo-digitato"></h1>
@@ -72,5 +125,6 @@
       <span data-i18n="nav_guida">Guida Cura</span>
     </a>
   </nav>
+  <script src="js/lingua.js"></script>
 </body>
 </html>

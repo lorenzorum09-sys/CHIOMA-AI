@@ -618,9 +618,8 @@ a{
   align-items: center;
   gap: 12px;
   margin-top: 20px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  border-top: 1px solid var(--bordo-vetro);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .hero-button{
   text-decoration: none;

@@ -181,20 +181,7 @@
     <div class="transizione" id="overlay-transizione">
   <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
 </div>
-    <script>
-        const sezioniDaRivelare = document.querySelectorAll('.rivela');
 
-        const osservatore = new IntersectionObserver((voci) => {
-            voci.forEach((voce) => {
-                if (voce.isIntersecting) {
-                    voce.target.classList.add('visibile');
-                    osservatore.unobserve(voce.target); // basta una volta sola
-                }
-            });
-        }, { threshold: 0.15 });
-
-        sezioniDaRivelare.forEach((sezione) => osservatore.observe(sezione));
-    </script>
 <script src="js/lingua.js"></script>
 </body>
 
