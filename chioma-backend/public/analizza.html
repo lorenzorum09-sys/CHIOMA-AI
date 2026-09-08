@@ -25,22 +25,49 @@
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <a href="index.html" class="logo-container">
-      <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
-      <span class="logo-testo titolo-brand">Chioma AI</span>
-    </a>
-    <div class="badge-beta" data-i18n="badge_scanner">Scanner AI</div>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+            <span class="logo-testo titolo-brand">Chioma AI</span>
+        </a>
 
-    <button type="button" class="btn-hamburger" id="btn-hamburger" aria-label="Apri menu" aria-expanded="false">
-        <span>☰</span>
-    </button>
+        <button type="button" class="btn-hamburger" id="btn-hamburger" aria-expanded="false">
+            <span><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Testa -->
+  <circle cx="12" cy="7" r="4.5" fill="#D1D5DB" />
+  <!-- Busto -->
+  <path d="M12 13c-4.42 0-8 2.58-8 6v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-3.42-3.58-6-8-6z" fill="#D1D5DB" />
+</svg></span>
+        </button>
+            </header>
 
-   <div class="menu-hamburger" id="menu-hamburger">
+
+      <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
+      <div class="overlay-menu" id="overlay-menu"></div>
+
+      <div class="menu-hamburger" id="menu-hamburger">
+
+        <div class="menu-hamburger-header">
+                        <button type="button" class="btn-chiudi-menu" id="btn-chiudi-menu" aria-label="Chiudi menu">✕</button>
+            <span class="titolo-brand">Impostazioni</span>
+        </div>
+
     <nav class="menu-hamburger-lista">
-
-        <div class="menu-voce">
+        <h2 class="separe">Profilo</h2>
+         <a href="account.html" class="menu-voce-btn">
+    <span class="menu-voce-icona">👤</span>
+    <span class="menu-voce-testo" data-i18n="link_account">Account</span>
+    <span class="menu-voce-freccia">›</span>
+</a>
+            <h2 class="separe">Legale</h2>
+            <a href="analizza.html" class="menu-voce-btn">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+                </a>
+             
+<h2 class="separe">Generale</h2>
+  <div class="menu-voce">
             <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
                 <span class="menu-voce-icona">🌐</span>
                 <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
@@ -62,29 +89,10 @@
                 </label>
             </div>
         </div>
-          <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
-                <span class="menu-voce-icona">⚙️</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
-         <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
-                <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="analizza.html" data-i18n="link_termini"> Termini di uso e Privacy </a></span>
-                <span class="menu-voce-freccia">›</span>
-           </div> 
-           <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-terminieprivacy" aria-expanded="false">
-                <span class="menu-voce-icona">👤</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni"><a href="account.html" data-i18n="link_account">Account</a></span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
-            </div>
                 
     </nav>
 </div>
-  </header>
+
 
   <!-- Input separati: galleria e fotocamera. Tenerli nel DOM aiuta Safari mobile. -->
   <input type="file" id="foto-input" class="input-file-nascosto" accept="image/*">
@@ -134,11 +142,11 @@
   </main>
 
   <nav class="navigazione">
-    <a href="index.html" class="nav-link">
+    <a href="Home.html" class="nav-link">
       <span>🏠</span>
       <span data-i18n="nav_home">Home</span>
     </a>
-    <a href="iniziale.html" class="nav-link attivo">
+    <a href="index.html" class="nav-link attivo">
       <span>🔍</span>
       <span data-i18n="nav_scansiona">Scansiona AI</span>
     </a>

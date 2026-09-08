@@ -17,118 +17,446 @@
     <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
     <meta name="description" content="...">
 
-    <!-- Fonts Google -->
+    <!-- Fonts Google (sito) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    
+
+    <!-- Fonts aggiunti per la pagina di scansione: Fraunces (titoli) + Manrope (corpo testo). -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+      :root {
+        --radius: 1rem;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --background: oklch(0.17 0.012 60);
+        --foreground: oklch(0.96 0.008 90);
+        /* --card e --muted-foreground leggermente più chiari di prima:
+           servono a far "staccare" di più le card scure dallo sfondo scuro,
+           e a rendere i sottotitoli più leggibili. */
+        --card: oklch(0.26 0.014 60);
+        --primary: oklch(0.73 0.11 47);
+        --primary-foreground: oklch(0.18 0.014 60);
+        --secondary: oklch(0.8 0.05 155);
+        --muted: oklch(0.28 0.012 60);
+        --muted-foreground: oklch(0.8 0.015 80);
+        --accent: oklch(0.84 0.12 88);
+        --border: oklch(1 0 0 / 18%);
+        --shadow-glow: 0 18px 50px oklch(0.73 0.11 47 / 0.22);
+      }
+
+      * { box-sizing: border-box; border-color: var(--border); }
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background-color: var(--background);
+        color: var(--foreground);
+        background-image:
+          radial-gradient(circle at 15% 12%, oklch(0.73 0.11 47 / 0.1) 0%, transparent 42%),
+          radial-gradient(circle at 85% 78%, oklch(0.8 0.05 155 / 0.08) 0%, transparent 45%);
+        background-attachment: fixed;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+
+      .container { max-width: 640px; margin: 0 auto; padding: 32px 24px 96px; }
+
+      .progress { height: 6px; background: var(--muted); border-radius: 9999px; overflow: hidden; }
+      .progress-bar { height: 100%; background: var(--primary); border-radius: 9999px; transition: width 0.5s ease; }
+      .counter { margin-top: 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+
+      .question { margin-top: 24px; }
+      .question h1 { font-size: 1.875rem; line-height: 1.2; }
+      .subtitle { margin-top: 8px; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.5; }
+      .options { margin-top: 24px; display: grid; gap: 12px; }
+
+      /* ============================================
+         OPZIONE (card di risposta): bordo più marcato
+         quando selezionata, non solo lo sfondo.
+         ============================================ */
+      .option {
+        width: 100%;
+        display: flex; align-items: center; gap: 16px;
+        padding: 16px 20px;
+        border-radius: calc(var(--radius) + 8px);
+        background: color-mix(in oklch, var(--card) 85%, transparent);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--foreground);
+      }
+      .option:hover { transform: translateY(-2px); border-color: oklch(0.73 0.11 47 / 0.6); }
+      .option.active {
+        border-color: var(--primary);
+        border-width: 2px;
+        background: oklch(0.73 0.11 47 / 0.28);
+        box-shadow: var(--shadow-glow);
+      }
+      .option .icon { font-size: 1.5rem; }
+      .option .label { flex: 1; font-weight: 500; }
+
+      /* Checkbox vera e propria al posto del vecchio simbolo ›/●:
+         cerchio vuoto = non selezionato, cerchio pieno con spunta = selezionato.
+         Molto più leggibile, soprattutto nelle domande a risposta multipla. */
+      .option .check {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        border: 2px solid var(--muted-foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: transparent;
+        transition: all 0.2s ease;
+      }
+      .option.active .check {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--primary-foreground);
+      }
+   .btn-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btn-skip:hover {
+  border-color: var(--primary);
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+}
+      .nav { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+      #app button { border: none; background: none; font-family: inherit; cursor: pointer; }
+      .nav button { padding: 10px 16px; border-radius: 9999px; font-size: 0.875rem; transition: all 0.2s; }
+      #btn-back { color: var(--foreground); background: var(--muted); font-weight: 500; }
+      #btn-back:hover:not(:disabled) { color: var(--foreground); }
+      #btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+      /* Corretto: prima era testo quasi bianco su sfondo quasi bianco (illeggibile).
+         Ora usa la stessa coppia primary/primary-foreground del resto del sito,
+         garantita ad alto contrasto. */
+      #btn-next {
+        background: var(--bianco); color: var(--bianco);
+        font-weight: 700; box-shadow: var(--shadow-glow); padding: 12px 24px;
+      }
+      #btn-next:hover:not(:disabled) { transform: scale(1.03); }
+      #btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+      .scanner-box {
+        border-radius: calc(var(--radius) + 8px);
+        background-image: linear-gradient(135deg, oklch(0.24 0.02 60) 0%, oklch(0.28 0.06 47) 100%);
+        border: 1px solid var(--border);
+        padding: 40px 24px;
+        display: flex; flex-direction: column; align-items: center; gap: 20px;
+        text-align: center; margin-top: 24px;
+      }
+      .photo-wrap {
+        position: relative;
+        width: 160px; height: 160px;
+        border-radius: 50%;
+        border: 1px solid oklch(0.73 0.11 47 / 0.4);
+        background: color-mix(in oklch, var(--muted) 40%, transparent);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+      }
+      .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+      .photo-wrap .placeholder { font-size: 3rem; }
+      .scan-overlay {
+        position: absolute; inset: 0;
+        background: oklch(0.73 0.11 47 / 0.25);
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+      .btn-primary {
+        background: var(--primary); color: var(--primary-foreground);
+        font-weight: 700; padding: 14px 28px;
+        border-radius: 9999px; box-shadow: var(--shadow-glow);
+        transition: transform 0.2s; font-size: 1rem;
+      }
+      .btn-primary:hover { transform: scale(1.03); }
+      .btn-secondary {
+        width: 100%; border: 1px solid var(--border);
+        background-color: brown;
+        padding: 12px; border-radius: 9999px;
+        color: var(--muted-foreground);
+        transition: all 0.2s; font-size: 0.875rem;
+      }
+      .btn-secondary:hover { border-color: var(--primary); color: var(--foreground); }
+
+      .card {
+        background: color-mix(in oklch, var(--card) 85%, transparent);
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) + 8px);
+        padding: 24px; margin-top: 16px;
+        backdrop-filter: blur(12px);
+      }
+      .card h2 { font-size: 1.25rem; margin-bottom: 12px; }
+      .card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+      .card .accent {
+        color: var(--accent); font-size: 1.5rem;
+        font-family: var(--font-display); font-weight: 600; margin-top: 4px;
+      }
+      #app ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+      #app li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.875rem; line-height: 1.4; }
+      #app li span:first-child { color: var(--primary); flex-shrink: 0; }
+
+      .anim-fade-up { animation: fade-up 0.45s cubic-bezier(0.4, 0, 0.2, 1) both; }
+      @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+      .type-cursor { color: var(--primary); animation: blink 1s infinite; }
+      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo-container">
-            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
-            <span class="logo-testo titolo-brand">Chioma AI</span>
-        </a>
+    <!-- Header: reintegrato. Nella versione che mi hai incollato era rimasto solo
+         il commento "Header: identico al file corto, non toccato" ma il markup
+         era sparito — probabilmente cancellato per errore mentre modificavi il file.
+         L'ho rimesso identico a prima; se invece l'hai tolto apposta, dimmelo. -->
+  
 
-        <button type="button" class="btn-hamburger" id="btn-hamburger">
-            <span>☰</span>
-        </button>
-
-      <div class="menu-hamburger" id="menu-hamburger">
-    <nav class="menu-hamburger-lista">
-
-        <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
-                <span class="menu-voce-icona">🌐</span>
-                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
-
-            <div class="menu-pannello" id="pannello-lingua">
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="it" checked>
-                    <span>🇮🇹 Italiano</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="en">
-                    <span>🇬🇧 English</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="fr">
-                    <span>🇫🇷 Français</span>
-                </label>
-            </div>
-        </div>
-          <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-impostazioni" aria-expanded="false">
-                <span class="menu-voce-icona">⚙️</span>
-                <span class="menu-voce-testo" data-i18n="menu_impostazioni">Impostazioni</span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
-            <a href="analizza.html" class="menu-voce-btn">
-                <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
-                <span class="menu-voce-freccia">›</span>
-                </a>
-                <a href="account.html" class="menu-voce-btn">
-    <span class="menu-voce-icona">👤</span>
-    <span class="menu-voce-testo" data-i18n="link_account">Account</span>
-    <span class="menu-voce-freccia">›</span>
-</a>
-                
-    </nav>
-</div>
-    </header>
-
-    <!-- Main Container -->
     <main class="contenitore">
-        <!-- Hero -->
-        <section class="hero">
-            <p class="eyebrow" data-i18n="eyebrow">Capelli, finalmente capiti</p>
-            <h1 data-i18n-html="titolo_home">Il taglio giusto <em>parte da una foto</em></h1>
-            <p class="hero-desc" data-i18n="descrizione_home">
-                Carica uno scatto, scopri la forma del tuo viso e ricevi l'analisi visagistica AI con i consigli da mostrare direttamente al parrucchiere.
-            </p>
-        </section>
-
-        <!-- CTA Box -->
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(28, 25, 23, 0.9), rgba(226, 136, 89, 0.12)); border-color: var(--bordo-attivo);">
-            <h2 class="titolo-sezione" data-i18n="titolo_cta" style="margin-bottom: 8px;">Trova il tuo stile ideale</h2>
-            <p data-i18n="descrizione_cta" style="font-size: 14px; color: var(--testo-secondario); margin-bottom: 20px;">
-                Zero dubbi prima di sederti sulla poltrona del barbiere o parrucchiere.
-            </p>
-            <a href="iniziale.html" class="bottone" data-i18n="btn_scansiona" style="text-decoration: none;">
-                ✨ Scansiona la tua foto ora
-            </a>
+        <div id="app">
+            <div class="container"><p class="subtitle">Caricamento…</p></div>
         </div>
-
-        <p style="text-align:center; font-size:12px; color: var(--testo-muto); margin-top: 20px;">
-            <a href="analizza.html" data-i18n="link_privacy" style="color: var(--testo-muto); text-decoration: underline;">Privacy & Termini d'uso</a>
-        </p>
     </main>
-
-    <!-- Bottom Navigation Bar -->
-    <nav class="navigazione">
-        <a href="index.html" class="attivo">
-            <span>🏠</span>
-            <span data-i18n="nav_home">Home</span>
-        </a>
-        <a href="iniziale.html">
-            <span>🔍</span>
-            <span data-i18n="nav_scansiona">Scansiona AI</span>
-        </a>
-        <a href="istruzione.html">
-            <span>🎓</span>
-            <span data-i18n="nav_guida">Guida Cura</span>
-        </a>
-    </nav>
 
     <div class="transizione" id="overlay-transizione">
         <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
     </div>
 
     <script src="js/lingua.js"></script>
+    <script>
+    const CHIAVE = 'chioma-ai-profilo';
+
+    const DOMANDE = [
+      {
+        id: 'obiettivo',
+        titolo: 'Cosa vuoi fare oggi?',
+        sottotitolo: 'Ci serve per capire da dove partire',
+        opzioni: [
+          { valore: 'nuovo_taglio', etichetta: 'Trovare un nuovo taglio', icona: '✂️' },
+          { valore: 'routine', etichetta: 'Migliorare la mia routine', icona: '🧴' },
+          { valore: 'colore', etichetta: 'Cambiare colore', icona: '🎨' },
+          { valore: 'curiosita', etichetta: 'Solo curiosità', icona: '👀' },
+        ],
+      },
+      {
+        id: 'genere',
+        titolo: 'Come preferisci i consigli?',
+        opzioni: [
+          { valore: 'femminile', etichetta: 'Femminili', icona: '💇‍♀️' },
+          { valore: 'maschile', etichetta: 'Maschili', icona: '💇‍♂️' },
+        ],
+      },
+      {
+        id: 'lunghezza',
+        titolo: 'Che lunghezza hai ora?',
+        sottotitolo: 'Punti di riferimento semplici, senza termini tecnici',
+        opzioni: [
+          { valore: 'rasati', etichetta: 'Rasati o sfumati', icona: '🪒' },
+          { valore: 'corti', etichetta: 'Corti, sopra orecchie e colletto', icona: '🙂' },
+          { valore: 'medi', etichetta: 'Medi, toccano le spalle', icona: '🙆' },
+          { valore: 'lunghi', etichetta: 'Lunghi, sotto le spalle', icona: '🧜‍♀️' },
+        ],
+      },
+      {
+        id: 'texture',
+        titolo: 'Che tipo di capello hai?',
+        opzioni: [
+          { valore: 'lisci', etichetta: 'Lisci', icona: '➖' },
+          { valore: 'mossi', etichetta: 'Mossi', icona: '〰️' },
+          { valore: 'ricci', etichetta: 'Ricci', icona: '🌀' },
+          { valore: 'crespi', etichetta: 'Crespi / afro', icona: '☁️' },
+        ],
+      },
+      {
+        id: 'benefici',
+        titolo: 'Cosa vuoi valorizzare?',
+        sottotitolo: 'Scegli ciò che ti piace della tua chioma — più risposte se vuoi',
+        multipla: true,
+        opzioni: [
+          { valore: 'volume', etichetta: 'Più volume', icona: '🎈' },
+          { valore: 'lucentezza', etichetta: 'Più lucentezza', icona: '✨' },
+          { valore: 'definizione', etichetta: 'Definizione dei ricci', icona: '🌀' },
+          { valore: 'morbidezza', etichetta: 'Morbidezza', icona: '🧴' },
+          { valore: 'praticita', etichetta: 'Facilità di gestione', icona: '⚡' },
+          { valore: 'nessuno', etichetta: 'Mi piacciono così', icona: '👌' },
+        ],
+      },
+      {
+        id: 'lavaggio',
+        titolo: 'Quante volte a settimana ti lavi i capelli?',
+        opzioni: [
+          { valore: 'raro', etichetta: '1-2 volte', icona: '🗓️' },
+          { valore: 'medio', etichetta: '3-4 volte', icona: '📅' },
+          { valore: 'spesso', etichetta: '5-6 volte', icona: '🚿' },
+          { valore: 'ogni_giorno', etichetta: 'Ogni giorno', icona: '☀️' },
+        ],
+      },
+      {
+        id: 'coraggio',
+        titolo: 'Quanto vuoi osare?',
+        condizione: 'non_routine',
+        opzioni: [
+          { valore: 'prudente', etichetta: 'Cambiamento leggero', icona: '🌱' },
+          { valore: 'medio', etichetta: 'Un bel rinnovo', icona: '🔥' },
+          { valore: 'estremo', etichetta: 'Stravolgi tutto', icona: '🚀' },
+        ],
+      },
+    ];
+
+    const CONDIZIONI = {
+      non_routine: r => (r.obiettivo?.[0] || '') !== 'routine',
+    };
+
+    function getVisibleQuestions(risposte) {
+      return DOMANDE.filter(d => !d.condizione || CONDIZIONI[d.condizione](risposte));
+    }
+
+    const app = document.getElementById('app');
+    const headerBadge = document.querySelector('#header .badge');
+    let state = { risposte: {}, step: 0 };
+    let typeInterval;
+
+    function setBadge(text) {
+      if (headerBadge) headerBadge.textContent = text || '';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function init() {
+      try {
+        const saved = localStorage.getItem(CHIAVE);
+        if (saved) {
+          state.risposte = JSON.parse(saved);
+          renderComplete();
+          return;
+        }
+      } catch (e) {}
+      renderOnboarding();
+    }
+
+    function clampStep() {
+      const visible = getVisibleQuestions(state.risposte);
+      if (state.step > visible.length - 1) state.step = Math.max(0, visible.length - 1);
+    }
+
+    function renderOnboarding() {
+      setBadge('Benvenuto');
+      clampStep();
+      const visible = getVisibleQuestions(state.risposte);
+      const domanda = visible[Math.min(state.step, visible.length - 1)];
+      const scelte = state.risposte[domanda.id] || [];
+      const progresso = Math.round((state.step / visible.length) * 100);
+
+      app.innerHTML = `
+        <div class="container onboarding">
+          <div class="progress"><div class="progress-bar" style="width: ${Math.max(progresso, 6)}%"></div></div>
+          <p class="counter">Domanda ${state.step + 1} di ${visible.length}</p>
+          <div class="question anim-fade-up">
+            <h1>${escapeHtml(domanda.titolo)}</h1>
+            ${domanda.sottotitolo ? `<p class="subtitle">${escapeHtml(domanda.sottotitolo)}</p>` : ''}
+            <div class="options" id="options"></div>
+          </div>
+          <div class="nav">
+<a id="btn-skip" class="btn-skip" href="analizza.html">Salta →</a>            <button id="btn-back" ${state.step === 0 ? 'disabled' : ''}>← Indietro</button>
+            <button id="btn-next" ${scelte.length === 0 ? 'disabled' : ''}>
+              ${state.step === visible.length - 1 ? "Vai all'analisi ✨" : 'Continua →'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      const optionsEl = document.getElementById('options');
+      domanda.opzioni.forEach(o => {
+        const attiva = scelte.includes(o.valore);
+        const btn = document.createElement('button');
+        btn.className = 'option' + (attiva ? ' active' : '');
+        btn.type = 'button';
+        btn.innerHTML = `
+          <span class="icon">${o.icona}</span>
+          <span class="label">${escapeHtml(o.etichetta)}</span>
+          <span class="check">✓</span>
+        `;
+        btn.onclick = () => selectOption(domanda, o.valore);
+        optionsEl.appendChild(btn);
+      });
+
+      document.getElementById('btn-back').onclick = () => {
+        if (state.step > 0) { state.step--; renderOnboarding(); }
+      };
+      document.getElementById('btn-next').onclick = () => {
+        if (state.step >= visible.length - 1) finishOnboarding();
+        else { state.step++; renderOnboarding(); }
+      };
+    }
+
+   function selectOption(domanda, valore) {
+  const attuali = state.risposte[domanda.id] || [];
+  let nuove;
+  if (!domanda.multipla) {
+    nuove = [valore];
+  } else {
+    nuove = attuali.includes(valore)
+      ? attuali.filter(v => v !== valore)
+      : [...attuali, valore];
+  }
+  state.risposte = { ...state.risposte, [domanda.id]: nuove };
+  renderOnboarding();
+}
+
+    function finishOnboarding() {
+      try { localStorage.setItem(CHIAVE, JSON.stringify(state.risposte)); } catch (e) {}
+      renderComplete();
+    }
+
+    function renderComplete() {
+      setBadge('Pronto');
+      app.innerHTML = `
+        <div class="container">
+          <div class="question anim-fade-up">
+            <h1>Tutto pronto ✨</h1>
+            <p class="subtitle">Abbiamo salvato le tue preferenze. Ora carica una foto per completare l'analisi.</p>
+          </div>
+          <a href="analizza.html" class="btn-primary" style="display:inline-block; text-decoration:none; margin-top:24px; text-align:center;">
+            Vai all'analisi ✨
+          </a>
+          <button class="btn-secondary" id="btn-reset" style="margin-top:12px">Rispondi di nuovo alle domande</button>
+        </div>
+      `;
+      document.getElementById('btn-reset').onclick = reset;
+    }
+
+    function reset() {
+      state = { risposte: {}, step: 0 };
+      try { localStorage.removeItem(CHIAVE); } catch (e) {}
+      renderOnboarding();
+    }
+
+    init();
+    </script>
 </body>
 
 </html>

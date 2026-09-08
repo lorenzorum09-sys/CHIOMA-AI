@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YFNXMN0N2E');
+    </script>
+
+    <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
+    <meta name="description" content="...">
+
+    <!-- Fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
+            <span class="logo-testo titolo-brand">Chioma AI</span>
+        </a>
+
+        <button type="button" class="btn-hamburger" id="btn-hamburger" aria-expanded="false">
+            <span><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Testa -->
+  <circle cx="12" cy="7" r="4.5" fill="#4B5563" />
+  <!-- Busto -->
+  <path d="M12 13c-4.42 0-8 2.58-8 6v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-3.42-3.58-6-8-6z" fill="#4B5563" />
+</svg></span>
+        </button>
+            </header>
+
+
+      <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
+      <div class="overlay-menu" id="overlay-menu"></div>
+
+      <div class="menu-hamburger" id="menu-hamburger">
+
+        <div class="menu-hamburger-header">
+                        <button type="button" class="btn-chiudi-menu" id="btn-chiudi-menu" aria-label="Chiudi menu">✕</button>
+            <span class="titolo-brand">Impostazioni</span>
+        </div>
+
+    <nav class="menu-hamburger-lista">
+        <span class="menu-voce-descrizione" data-i18n="menu_profilo">Profilo</span>
+        <a href="account.html" class="menu-voce-btn">
+    <span class="menu-voce-icona">👤</span>
+    <span class="menu-voce-testo" data-i18n="link_account">Profilo</span>
+    <span class="menu-voce-freccia">›</span>
+</a>
+
+             
+        <span class="menu-voce-descrizione" data-i18n="menu_generale">Generale</span>
+  <div class="menu-voce">
+            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
+                <span class="menu-voce-icona">🌐</span>
+                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
+                <span class="menu-voce-freccia">›</span>
+            </button>
+
+            <div class="menu-pannello" id="pannello-lingua">
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="it" checked>
+                    <span>🇮🇹 Italiano</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="en">
+                    <span>🇬🇧 English</span>
+                </label>
+                <label class="menu-opzione">
+                    <input type="radio" name="lingua" value="fr">
+                    <span>🇫🇷 Français</span>
+                </label>
+            </div>
+                    <span class="menu-voce-descrizione" data-i18n="menu_legale">Legale</span>
+            <a href="analizza.html" class="menu-voce-btn">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+                </a>
+        </div>
+                
+    </nav>
+</div>
+
+    <main class="contenitore">
+        <section class="hero">
+            <p class="eyebrow" data-i18n="eyebrow">Capelli, finalmente capiti</p>
+            <h1 data-i18n-html="titolo_home">Il taglio giusto <em>parte da una foto</em></h1>
+            <p class="hero-desc" data-i18n="descrizione_home">
+                Carica uno scatto, scopri la forma del tuo viso e ricevi l'analisi visagistica AI con i consigli da mostrare direttamente al parrucchiere.
+            </p>
+        </section>
+
+        <!-- CTA Box -->
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(28, 25, 23, 0.9), rgba(226, 136, 89, 0.12)); border-color: var(--bordo-attivo);">
+            <h2 class="titolo-sezione" data-i18n="titolo_cta" style="margin-bottom: 8px;">Trova il tuo stile ideale</h2>
+            <p data-i18n="descrizione_cta" style="font-size: 14px; color: var(--testo-secondario); margin-bottom: 20px;">
+                Zero dubbi prima di sederti sulla poltrona del barbiere o parrucchiere.
+            </p>
+            <a href="index.html" class="bottone" data-i18n="btn_scansiona" style="text-decoration: none;">
+                ✨ Scansiona la tua foto ora
+            </a>
+        </div>
+
+        <p style="text-align:center; font-size:12px; color: var(--testo-muto); margin-top: 20px;">
+            <a href="analizza.html" data-i18n="link_privacy" style="color: var(--testo-muto); text-decoration: underline;">Privacy & Termini d'uso</a>
+        </p>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="navigazione">
+        <a href="index.html" class="attivo">
+            <span>🏠</span>
+            <span data-i18n="nav_home">Home</span>
+        </a>
+        <a href="index.html">
+            <span>🔍</span>
+            <span data-i18n="nav_scansiona">Scansiona AI</span>
+        </a>
+        <a href="istruzione.html">
+            <span>🎓</span>
+            <span data-i18n="nav_guida">Guida Cura</span>
+        </a>
+    </nav>
+
+    <div class="transizione" id="overlay-transizione">
+        <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+    </div>
+
+    <script src="js/lingua.js"></script>
+</body>
+
+</html>

@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const traduzioni = {
     it: {
       menu_lingua: "Lingua",
+      menu_impostazioni: "Impostazioni",
+      link_termini: "Termini di uso e Privacy",
+      link_account: "Account",
 
       eyebrow: "Capelli, finalmente capiti",
       titolo_home: "Il taglio giusto <em>parte da una foto</em>",
@@ -57,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     en: {
       menu_lingua: "Language",
+      menu_impostazioni: "Settings",
+      link_termini: "Terms of use and Privacy",
+      link_account: "Account",
 
       eyebrow: "Hair, finally understood",
       titolo_home: "The right cut <em>starts from a photo</em>",
@@ -106,6 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fr: {
       menu_lingua: "Langue",
+      menu_impostazioni: "Paramètres",
+      link_termini: "Conditions d'utilisation et Confidentialité",
+      link_account: "Compte",
 
       eyebrow: "Les cheveux, enfin compris",
       titolo_home: "La bonne coupe <em>part d'une photo</em>",
@@ -184,29 +193,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================================================
-     MENU HAMBURGER PRINCIPALE
+     MENU HAMBURGER PRINCIPALE — SCHEDA LATERALE
   ========================================================= */
   const btnHamburger = document.getElementById("btn-hamburger");
   const menuHamburger = document.getElementById("menu-hamburger");
+  const overlayMenu = document.getElementById("overlay-menu");
+  const btnChiudiMenu = document.getElementById("btn-chiudi-menu");
+
+  function apriMenuHamburger() {
+    menuHamburger.classList.add("aperto");
+    overlayMenu?.classList.add("attivo");
+    document.body.classList.add("menu-aperto");
+    btnHamburger?.setAttribute("aria-expanded", "true");
+  }
+
+  function chiudiMenuHamburger() {
+    menuHamburger.classList.remove("aperto");
+    overlayMenu?.classList.remove("attivo");
+    document.body.classList.remove("menu-aperto");
+    btnHamburger?.setAttribute("aria-expanded", "false");
+  }
 
   btnHamburger?.addEventListener("click", () => {
-    const ora_aperto = menuHamburger.classList.toggle("aperto");
-
-    btnHamburger.setAttribute("aria-expanded", ora_aperto ? "true" : "false");
-  });
-
-  // Chiude il menu se clicco fuori
-  document.addEventListener("click", (e) => {
-    if (!menuHamburger || !menuHamburger.classList.contains("aperto")) return;
-
-    const cliccoDentro =
-      menuHamburger.contains(e.target) || btnHamburger?.contains(e.target);
-
-    if (!cliccoDentro) {
-      menuHamburger.classList.remove("aperto");
-      btnHamburger?.setAttribute("aria-expanded", "false");
+    if (menuHamburger.classList.contains("aperto")) {
+      chiudiMenuHamburger();
+    } else {
+      apriMenuHamburger();
     }
   });
+
+  // Click sull'overlay scuro o sulla X → chiude il menu
+  btnChiudiMenu?.addEventListener("click", chiudiMenuHamburger);
+  overlayMenu?.addEventListener("click", chiudiMenuHamburger);
 
   /* =========================================================
      VOCI DEL MENU CON PANNELLO ESPANDIBILE
