@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chioma AI - Questionario Iniziale</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="iniziale.css">
+</head>
+<body>
+    <main>
+        <div id="app">
+            <div class="container"><p class="subtitle">Caricamento…</p></div>
+        </div>
+    </main>
+
+    <script src="iniziale.js"></script>
+
+    <style>
+      :root {
+  --raggio: 1rem;
+  --font-titolo: "Fraunces", Georgia, serif;
+  --font-testo: "Manrope", system-ui, sans-serif;
+  --bianco: #fff;
+  --sfondo: oklch(0.16 0.02 250);
+  --testo: oklch(0.95 0.01 250);
+  --scheda: oklch(0.24 0.02 250);
+  --primario: oklch(0.72 0.15 25);
+  --su-primario: oklch(0.15 0.02 25);
+  --secondario: oklch(0.75 0.12 190);
+  --attenuato: oklch(0.28 0.02 250);
+  --testo-attenuato: oklch(0.75 0.02 250);
+  --bordo: oklch(1 0 0 / 18%);
+  --ombra-glow: 0 18px 50px oklch(0.72 0.15 25 / 0.22);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-testo);
+  background-color: var(--sfondo);
+  color: var(--testo);
+}
+
+h1 {
+  font-family: var(--font-titolo);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-size: 1.875rem;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px 96px;
+}
+
+.progress {
+  height: 6px;
+  background: var(--attenuato);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--primario);
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+.counter {
+  margin-top: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--testo-attenuato);
+}
+
+.question { margin-top: 24px; }
+.subtitle { margin-top: 8px; color: var(--testo-attenuato); font-size: 0.875rem; line-height: 1.5; }
+
+/* Card per le domande a scelta */
+.options { margin-top: 24px; display: grid; gap: 12px; }
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: calc(var(--raggio) + 8px);
+  background: color-mix(in oklch, var(--scheda) 85%, transparent);
+  border: 1px solid var(--bordo);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--testo);
+  transition: all 0.2s ease;
+}
+.option:hover { transform: translateY(-2px); border-color: oklch(0.72 0.15 25 / 0.6); }
+.option.active {
+  border-color: var(--primario);
+  border-width: 2px;
+  background: oklch(0.72 0.15 25 / 0.28);
+  box-shadow: var(--ombra-glow);
+}
+.option .icon { font-size: 1.5rem; }
+.option .label { flex: 1; font-weight: 500; }
+.option .check {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--testo-attenuato);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+.option.active .check {
+  background: var(--primario);
+  border-color: var(--primario);
+  color: var(--su-primario);
+}
+
+/* Campo di testo/numero, stile coerente con le card */
+.campo-input { margin-top: 24px; }
+.campo-input input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: calc(var(--raggio) + 8px);
+  background: color-mix(in oklch, var(--scheda) 85%, transparent);
+  border: 1px solid var(--bordo);
+  color: var(--testo);
+  font-family: inherit;
+  font-size: 1rem;
+}
+.campo-input input:focus { outline: none; border-color: var(--primario); }
+
+.btn-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--bordo);
+  color: var(--testo-attenuato);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+.btn-skip:hover { border-color: var(--primario); color: var(--testo); }
+
+.nav {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+#app button { border: none; font-family: inherit; cursor: pointer; }
+.nav button { padding: 10px 16px; border-radius: 9999px; font-size: 0.875rem; transition: all 0.2s; }
+#btn-back { color: var(--testo); background: var(--attenuato); font-weight: 500; }
+#btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+#app #btn-next {
+  background: var(--primario);
+  color: var(--su-primario);
+  font-weight: 700;
+  box-shadow: var(--ombra-glow);
+  padding: 12px 24px;
+}
+#btn-next:hover:not(:disabled) { transform: scale(1.03); }
+#btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.successo { color: var(--secondario); }
+.errore { color: oklch(0.7 0.18 25); }
+
+.anim-fade-up { animation: fade-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+    </style>
+</body>
+</html>

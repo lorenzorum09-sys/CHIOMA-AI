@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
     <header>
         <a href="index.html" class="logo-container">
             <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
@@ -34,15 +33,15 @@
         <button type="button" class="btn-hamburger" id="btn-hamburger" aria-expanded="false">
             <span><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24">
   <!-- Testa -->
-  <circle cx="12" cy="7" r="4.5" fill="#D1D5DB" />
+  <circle cx="12" cy="7" r="4.5" fill="#4B5563" />
   <!-- Busto -->
-  <path d="M12 13c-4.42 0-8 2.58-8 6v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-3.42-3.58-6-8-6z" fill="#D1D5DB" />
+  <path d="M12 13c-4.42 0-8 2.58-8 6v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-3.42-3.58-6-8-6z" fill="#4B5563" />
 </svg></span>
         </button>
             </header>
 
-
-      <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
+ 
+  <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
       <div class="overlay-menu" id="overlay-menu"></div>
 
       <div class="menu-hamburger" id="menu-hamburger">
@@ -53,20 +52,15 @@
         </div>
 
     <nav class="menu-hamburger-lista">
-        <h2 class="separe">Profilo</h2>
-         <a href="account.html" class="menu-voce-btn">
+        <span class="menu-voce-descrizione" data-i18n="menu_profilo">Profilo</span>
+        <a href="account.html" class="menu-voce-btn">
     <span class="menu-voce-icona">👤</span>
-    <span class="menu-voce-testo" data-i18n="link_account">Account</span>
+    <span class="menu-voce-testo" data-i18n="link_account">Profilo</span>
     <span class="menu-voce-freccia">›</span>
 </a>
-            <h2 class="separe">Legale</h2>
-            <a href="analizza.html" class="menu-voce-btn">
-                <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
-                <span class="menu-voce-freccia">›</span>
-                </a>
+
              
-<h2 class="separe">Generale</h2>
+        <span class="menu-voce-descrizione" data-i18n="menu_generale">Generale</span>
   <div class="menu-voce">
             <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
                 <span class="menu-voce-icona">🌐</span>
@@ -88,10 +82,17 @@
                     <span>🇫🇷 Français</span>
                 </label>
             </div>
+                    <span class="menu-voce-descrizione" data-i18n="menu_legale">Legale</span>
+            <a href="analizza.html" class="menu-voce-btn">
+                <span class="menu-voce-icona">🔒</span>
+                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
+                <span class="menu-voce-freccia">›</span>
+                </a>
         </div>
                 
     </nav>
 </div>
+
 
 
   <!-- Input separati: galleria e fotocamera. Tenerli nel DOM aiuta Safari mobile. -->
@@ -111,7 +112,7 @@
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
             <circle cx="12" cy="13" r="4" />
           </svg>
-          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px;" data-i18n="analizza_titolo_upload">
+          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px; padding-bottom: 20px;" data-i18n="analizza_titolo_upload">
             Carica o scatta una foto
           </span>
           <span style="font-size: 12px; color: var(--testo-muto);" data-i18n="analizza_sub_upload">
@@ -139,6 +140,15 @@
     </button>
 
     <div class="card" id="card-risultati" style="display: none;"></div>
+      <div class="modal-fotocamera" id="modal-fotocamera" aria-hidden="true">
+    <div class="modal-fotocamera-card">
+      <video id="video-fotocamera" autoplay playsinline muted></video>
+      <div class="modal-fotocamera-azioni">
+        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera" data-i18n="modal_annulla">Annulla</button>
+        <button type="button" class="bottoneScatta" id="btn-cattura-fotocamera" data-i18n="modal_scatta">Scatta</button>
+      </div>
+    </div>
+  </div>
   </main>
 
   <nav class="navigazione">
@@ -146,7 +156,7 @@
       <span>🏠</span>
       <span data-i18n="nav_home">Home</span>
     </a>
-    <a href="index.html" class="nav-link attivo">
+    <a href="domande.html" class="nav-link attivo">
       <span>🔍</span>
       <span data-i18n="nav_scansiona">Scansiona AI</span>
     </a>
@@ -161,15 +171,7 @@
     <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
   </div>
 
-  <div class="modal-fotocamera" id="modal-fotocamera" aria-hidden="true">
-    <div class="modal-fotocamera-card">
-      <video id="video-fotocamera" autoplay playsinline muted></video>
-      <div class="modal-fotocamera-azioni">
-        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera" data-i18n="modal_annulla">Annulla</button>
-        <button type="button" class="bottone" id="btn-cattura-fotocamera" data-i18n="modal_scatta">Scatta</button>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Inclusione Modulo Javascript -->
   <script type="module" src="script.js"></script>

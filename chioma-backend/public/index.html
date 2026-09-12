@@ -1,462 +1,305 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YFNXMN0N2E');
-    </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YFNXMN0N2E');
+  </script>
 
-    <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
-    <meta name="description" content="...">
+  <title>Chioma AI — Benvenuto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-    <!-- Fonts Google (sito) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    /* ── Pagina benvenuto ── */
+    .benvenuto-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 48px 28px 52px;
+      position: relative;
+      overflow: hidden;
+    }
 
-    <!-- Fonts aggiunti per la pagina di scansione: Fraunces (titoli) + Manrope (corpo testo). -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    /* Alone decorativo sullo sfondo */
+    .benvenuto-wrap::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    /* Zona logo in alto */
+    .benvenuto-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      animation: saliSu 0.7s cubic-bezier(.4,0,.2,1) both;
+    }
 
-    <style>
-      :root {
-        --radius: 1rem;
-        --font-display: "Fraunces", Georgia, serif;
-        --font-body: "Manrope", system-ui, sans-serif;
-        --background: oklch(0.17 0.012 60);
-        --foreground: oklch(0.96 0.008 90);
-        /* --card e --muted-foreground leggermente più chiari di prima:
-           servono a far "staccare" di più le card scure dallo sfondo scuro,
-           e a rendere i sottotitoli più leggibili. */
-        --card: oklch(0.26 0.014 60);
-        --primary: oklch(0.73 0.11 47);
-        --primary-foreground: oklch(0.18 0.014 60);
-        --secondary: oklch(0.8 0.05 155);
-        --muted: oklch(0.28 0.012 60);
-        --muted-foreground: oklch(0.8 0.015 80);
-        --accent: oklch(0.84 0.12 88);
-        --border: oklch(1 0 0 / 18%);
-        --shadow-glow: 0 18px 50px oklch(0.73 0.11 47 / 0.22);
-      }
+    .benvenuto-logo-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rame);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      animation: pulsaLogo 2.5s ease-in-out infinite;
+    }
 
-      * { box-sizing: border-box; border-color: var(--border); }
-      body {
-        margin: 0;
-        font-family: var(--font-body);
-        background-color: var(--background);
-        color: var(--foreground);
-        background-image:
-          radial-gradient(circle at 15% 12%, oklch(0.73 0.11 47 / 0.1) 0%, transparent 42%),
-          radial-gradient(circle at 85% 78%, oklch(0.8 0.05 155 / 0.08) 0%, transparent 45%);
-        background-attachment: fixed;
-        -webkit-font-smoothing: antialiased;
-      }
-      h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+    .benvenuto-badge {
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--oro);
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.25);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
 
-      .container { max-width: 640px; margin: 0 auto; padding: 32px 24px 96px; }
+    /* Zona centrale – testo hero */
+    .benvenuto-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+      animation: saliSu 0.85s 0.1s cubic-bezier(.4,0,.2,1) both;
+    }
 
-      .progress { height: 6px; background: var(--muted); border-radius: 9999px; overflow: hidden; }
-      .progress-bar { height: 100%; background: var(--primary); border-radius: 9999px; transition: width 0.5s ease; }
-      .counter { margin-top: 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+    .benvenuto-titolo {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(30px, 8vw, 42px);
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--testo);
+      letter-spacing: -0.03em;
+    }
 
-      .question { margin-top: 24px; }
-      .question h1 { font-size: 1.875rem; line-height: 1.2; }
-      .subtitle { margin-top: 8px; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.5; }
-      .options { margin-top: 24px; display: grid; gap: 12px; }
+    .benvenuto-titolo em {
+      font-style: italic;
+      color: var(--rame);
+    }
 
-      /* ============================================
-         OPZIONE (card di risposta): bordo più marcato
-         quando selezionata, non solo lo sfondo.
-         ============================================ */
-      .option {
-        width: 100%;
-        display: flex; align-items: center; gap: 16px;
-        padding: 16px 20px;
-        border-radius: calc(var(--radius) + 8px);
-        background: color-mix(in oklch, var(--card) 85%, transparent);
-        border: 1px solid var(--border);
-        backdrop-filter: blur(12px);
-        text-align: left;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: inherit;
-        font-size: 1rem;
-        color: var(--foreground);
-      }
-      .option:hover { transform: translateY(-2px); border-color: oklch(0.73 0.11 47 / 0.6); }
-      .option.active {
-        border-color: var(--primary);
-        border-width: 2px;
-        background: oklch(0.73 0.11 47 / 0.28);
-        box-shadow: var(--shadow-glow);
-      }
-      .option .icon { font-size: 1.5rem; }
-      .option .label { flex: 1; font-weight: 500; }
+    .benvenuto-desc {
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--testo-secondario);
+      max-width: 320px;
+    }
 
-      /* Checkbox vera e propria al posto del vecchio simbolo ›/●:
-         cerchio vuoto = non selezionato, cerchio pieno con spunta = selezionato.
-         Molto più leggibile, soprattutto nelle domande a risposta multipla. */
-      .option .check {
-        width: 24px;
-        height: 24px;
-        flex-shrink: 0;
-        border-radius: 50%;
-        border: 2px solid var(--muted-foreground);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        font-weight: 700;
-        color: transparent;
-        transition: all 0.2s ease;
-      }
-      .option.active .check {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: var(--primary-foreground);
-      }
-   .btn-skip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted-foreground);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  transition: all 0.2s ease;
-}
+    /* Pillole feature */
+    .benvenuto-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 360px;
+      margin-top: 8px;
+    }
 
-.btn-skip:hover {
-  border-color: var(--primary);
-  color: var(--foreground);
-  background: color-mix(in oklch, var(--primary) 10%, transparent);
-}
-      .nav { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-      #app button { border: none; background: none; font-family: inherit; cursor: pointer; }
-      .nav button { padding: 10px 16px; border-radius: 9999px; font-size: 0.875rem; transition: all 0.2s; }
-      #btn-back { color: var(--foreground); background: var(--muted); font-weight: 500; }
-      #btn-back:hover:not(:disabled) { color: var(--foreground); }
-      #btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
-      /* Corretto: prima era testo quasi bianco su sfondo quasi bianco (illeggibile).
-         Ora usa la stessa coppia primary/primary-foreground del resto del sito,
-         garantita ad alto contrasto. */
-      #btn-next {
-        background: var(--bianco); color: var(--bianco);
-        font-weight: 700; box-shadow: var(--shadow-glow); padding: 12px 24px;
-      }
-      #btn-next:hover:not(:disabled) { transform: scale(1.03); }
-      #btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--bordo-vetro);
+      border-radius: 14px;
+      padding: 14px 18px;
+    }
 
-      .scanner-box {
-        border-radius: calc(var(--radius) + 8px);
-        background-image: linear-gradient(135deg, oklch(0.24 0.02 60) 0%, oklch(0.28 0.06 47) 100%);
-        border: 1px solid var(--border);
-        padding: 40px 24px;
-        display: flex; flex-direction: column; align-items: center; gap: 20px;
-        text-align: center; margin-top: 24px;
-      }
-      .photo-wrap {
-        position: relative;
-        width: 160px; height: 160px;
-        border-radius: 50%;
-        border: 1px solid oklch(0.73 0.11 47 / 0.4);
-        background: color-mix(in oklch, var(--muted) 40%, transparent);
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-      }
-      .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
-      .photo-wrap .placeholder { font-size: 3rem; }
-      .scan-overlay {
-        position: absolute; inset: 0;
-        background: oklch(0.73 0.11 47 / 0.25);
-        animation: pulse 1.5s infinite;
-      }
-      @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+    .feature-pill-icona {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
 
-      .btn-primary {
-        background: var(--primary); color: var(--primary-foreground);
-        font-weight: 700; padding: 14px 28px;
-        border-radius: 9999px; box-shadow: var(--shadow-glow);
-        transition: transform 0.2s; font-size: 1rem;
-      }
-      .btn-primary:hover { transform: scale(1.03); }
-      .btn-secondary {
-        width: 100%; border: 1px solid var(--border);
-        background-color: brown;
-        padding: 12px; border-radius: 9999px;
-        color: var(--muted-foreground);
-        transition: all 0.2s; font-size: 0.875rem;
-      }
-      .btn-secondary:hover { border-color: var(--primary); color: var(--foreground); }
+    .feature-pill-testi {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
 
-      .card {
-        background: color-mix(in oklch, var(--card) 85%, transparent);
-        border: 1px solid var(--border);
-        border-radius: calc(var(--radius) + 8px);
-        padding: 24px; margin-top: 16px;
-        backdrop-filter: blur(12px);
-      }
-      .card h2 { font-size: 1.25rem; margin-bottom: 12px; }
-      .card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
-      .card .accent {
-        color: var(--accent); font-size: 1.5rem;
-        font-family: var(--font-display); font-weight: 600; margin-top: 4px;
-      }
-      #app ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-      #app li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.875rem; line-height: 1.4; }
-      #app li span:first-child { color: var(--primary); flex-shrink: 0; }
+    .feature-pill-titolo {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--testo);
+    }
 
-      .anim-fade-up { animation: fade-up 0.45s cubic-bezier(0.4, 0, 0.2, 1) both; }
-      @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-      .type-cursor { color: var(--primary); animation: blink 1s infinite; }
-      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    </style>
+    .feature-pill-desc {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      color: var(--testo-muto);
+    }
+
+    /* Zona CTA in basso */
+    .benvenuto-cta {
+      display: flex;
+      padding-top: 24px;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 360px;
+      animation: saliSu 1s 0.2s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    .btn-scopri {
+      width: 100%;
+      padding: 17px 24px;
+      background: var(--oro);
+      color: var(--bg-scuro);
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 28px rgba(235, 217, 20, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-scopri:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(235, 217, 20, 0.45);
+      opacity: 0.93;
+    }
+
+    .btn-scopri:active {
+      transform: translateY(0);
+    }
+
+    .btn-scopri-freccia {
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+
+    .btn-scopri:hover .btn-scopri-freccia {
+      transform: translateX(3px);
+    }
+
+    .benvenuto-accedi {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      color: var(--testo-muto);
+    }
+
+    .benvenuto-accedi a {
+      color: var(--testo-secondario);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      background: none;
+    }
+
+    .benvenuto-accedi a:hover {
+      color: var(--rame);
+    }
+
+    /* Linea divisore tra CTA e link */
+    .benvenuto-divisore {
+      width: 48px;
+      height: 1px;
+      background: var(--bordo-vetro);
+    }
+
+    /* Animazione entrata */
+    @keyframes saliSu {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Header: reintegrato. Nella versione che mi hai incollato era rimasto solo
-         il commento "Header: identico al file corto, non toccato" ma il markup
-         era sparito — probabilmente cancellato per errore mentre modificavi il file.
-         L'ho rimesso identico a prima; se invece l'hai tolto apposta, dimmelo. -->
-  
+  <div class="benvenuto-wrap">
 
-    <main class="contenitore">
-        <div id="app">
-            <div class="container"><p class="subtitle">Caricamento…</p></div>
-        </div>
-    </main>
-
-    <div class="transizione" id="overlay-transizione">
-        <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+    <!-- Logo in alto -->
+    <div class="benvenuto-top">
+      <div class="benvenuto-logo-ring">✂️</div>
     </div>
 
-    <script src="js/lingua.js"></script>
-    <script>
-    const CHIAVE = 'chioma-ai-profilo';
+    <!-- Hero centrale -->
+    <div class="benvenuto-hero">
+      <h1 class="benvenuto-titolo">
+        Il taglio perfetto<br>
+        <em>parte da qui</em>
+      </h1>
+      <p class="benvenuto-desc">
+        Analizza la forma del tuo viso con l'AI e scopri i tagli che ti valorizzano davvero — in pochi secondi.
+      </p>
 
-    const DOMANDE = [
-      {
-        id: 'obiettivo',
-        titolo: 'Cosa vuoi fare oggi?',
-        sottotitolo: 'Ci serve per capire da dove partire',
-        opzioni: [
-          { valore: 'nuovo_taglio', etichetta: 'Trovare un nuovo taglio', icona: '✂️' },
-          { valore: 'routine', etichetta: 'Migliorare la mia routine', icona: '🧴' },
-          { valore: 'colore', etichetta: 'Cambiare colore', icona: '🎨' },
-          { valore: 'curiosita', etichetta: 'Solo curiosità', icona: '👀' },
-        ],
-      },
-      {
-        id: 'genere',
-        titolo: 'Come preferisci i consigli?',
-        opzioni: [
-          { valore: 'femminile', etichetta: 'Femminili', icona: '💇‍♀️' },
-          { valore: 'maschile', etichetta: 'Maschili', icona: '💇‍♂️' },
-        ],
-      },
-      {
-        id: 'lunghezza',
-        titolo: 'Che lunghezza hai ora?',
-        sottotitolo: 'Punti di riferimento semplici, senza termini tecnici',
-        opzioni: [
-          { valore: 'rasati', etichetta: 'Rasati o sfumati', icona: '🪒' },
-          { valore: 'corti', etichetta: 'Corti, sopra orecchie e colletto', icona: '🙂' },
-          { valore: 'medi', etichetta: 'Medi, toccano le spalle', icona: '🙆' },
-          { valore: 'lunghi', etichetta: 'Lunghi, sotto le spalle', icona: '🧜‍♀️' },
-        ],
-      },
-      {
-        id: 'texture',
-        titolo: 'Che tipo di capello hai?',
-        opzioni: [
-          { valore: 'lisci', etichetta: 'Lisci', icona: '➖' },
-          { valore: 'mossi', etichetta: 'Mossi', icona: '〰️' },
-          { valore: 'ricci', etichetta: 'Ricci', icona: '🌀' },
-          { valore: 'crespi', etichetta: 'Crespi / afro', icona: '☁️' },
-        ],
-      },
-      {
-        id: 'benefici',
-        titolo: 'Cosa vuoi valorizzare?',
-        sottotitolo: 'Scegli ciò che ti piace della tua chioma — più risposte se vuoi',
-        multipla: true,
-        opzioni: [
-          { valore: 'volume', etichetta: 'Più volume', icona: '🎈' },
-          { valore: 'lucentezza', etichetta: 'Più lucentezza', icona: '✨' },
-          { valore: 'definizione', etichetta: 'Definizione dei ricci', icona: '🌀' },
-          { valore: 'morbidezza', etichetta: 'Morbidezza', icona: '🧴' },
-          { valore: 'praticita', etichetta: 'Facilità di gestione', icona: '⚡' },
-          { valore: 'nessuno', etichetta: 'Mi piacciono così', icona: '👌' },
-        ],
-      },
-      {
-        id: 'lavaggio',
-        titolo: 'Quante volte a settimana ti lavi i capelli?',
-        opzioni: [
-          { valore: 'raro', etichetta: '1-2 volte', icona: '🗓️' },
-          { valore: 'medio', etichetta: '3-4 volte', icona: '📅' },
-          { valore: 'spesso', etichetta: '5-6 volte', icona: '🚿' },
-          { valore: 'ogni_giorno', etichetta: 'Ogni giorno', icona: '☀️' },
-        ],
-      },
-      {
-        id: 'coraggio',
-        titolo: 'Quanto vuoi osare?',
-        condizione: 'non_routine',
-        opzioni: [
-          { valore: 'prudente', etichetta: 'Cambiamento leggero', icona: '🌱' },
-          { valore: 'medio', etichetta: 'Un bel rinnovo', icona: '🔥' },
-          { valore: 'estremo', etichetta: 'Stravolgi tutto', icona: '🚀' },
-        ],
-      },
-    ];
-
-    const CONDIZIONI = {
-      non_routine: r => (r.obiettivo?.[0] || '') !== 'routine',
-    };
-
-    function getVisibleQuestions(risposte) {
-      return DOMANDE.filter(d => !d.condizione || CONDIZIONI[d.condizione](risposte));
-    }
-
-    const app = document.getElementById('app');
-    const headerBadge = document.querySelector('#header .badge');
-    let state = { risposte: {}, step: 0 };
-    let typeInterval;
-
-    function setBadge(text) {
-      if (headerBadge) headerBadge.textContent = text || '';
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function init() {
-      try {
-        const saved = localStorage.getItem(CHIAVE);
-        if (saved) {
-          state.risposte = JSON.parse(saved);
-          renderComplete();
-          return;
-        }
-      } catch (e) {}
-      renderOnboarding();
-    }
-
-    function clampStep() {
-      const visible = getVisibleQuestions(state.risposte);
-      if (state.step > visible.length - 1) state.step = Math.max(0, visible.length - 1);
-    }
-
-    function renderOnboarding() {
-      setBadge('Benvenuto');
-      clampStep();
-      const visible = getVisibleQuestions(state.risposte);
-      const domanda = visible[Math.min(state.step, visible.length - 1)];
-      const scelte = state.risposte[domanda.id] || [];
-      const progresso = Math.round((state.step / visible.length) * 100);
-
-      app.innerHTML = `
-        <div class="container onboarding">
-          <div class="progress"><div class="progress-bar" style="width: ${Math.max(progresso, 6)}%"></div></div>
-          <p class="counter">Domanda ${state.step + 1} di ${visible.length}</p>
-          <div class="question anim-fade-up">
-            <h1>${escapeHtml(domanda.titolo)}</h1>
-            ${domanda.sottotitolo ? `<p class="subtitle">${escapeHtml(domanda.sottotitolo)}</p>` : ''}
-            <div class="options" id="options"></div>
-          </div>
-          <div class="nav">
-<a id="btn-skip" class="btn-skip" href="analizza.html">Salta →</a>            <button id="btn-back" ${state.step === 0 ? 'disabled' : ''}>← Indietro</button>
-            <button id="btn-next" ${scelte.length === 0 ? 'disabled' : ''}>
-              ${state.step === visible.length - 1 ? "Vai all'analisi ✨" : 'Continua →'}
-            </button>
+      <!-- Feature pills -->
+      <div class="benvenuto-features">
+        <div class="feature-pill">
+          <span class="feature-pill-icona">📸</span>
+          <div class="feature-pill-testi">
+            <span class="feature-pill-titolo">Scatta o carica una foto</span>
+            <span class="feature-pill-desc">L' AI rileva la forma del viso</span>
           </div>
         </div>
-      `;
-
-      const optionsEl = document.getElementById('options');
-      domanda.opzioni.forEach(o => {
-        const attiva = scelte.includes(o.valore);
-        const btn = document.createElement('button');
-        btn.className = 'option' + (attiva ? ' active' : '');
-        btn.type = 'button';
-        btn.innerHTML = `
-          <span class="icon">${o.icona}</span>
-          <span class="label">${escapeHtml(o.etichetta)}</span>
-          <span class="check">✓</span>
-        `;
-        btn.onclick = () => selectOption(domanda, o.valore);
-        optionsEl.appendChild(btn);
-      });
-
-      document.getElementById('btn-back').onclick = () => {
-        if (state.step > 0) { state.step--; renderOnboarding(); }
-      };
-      document.getElementById('btn-next').onclick = () => {
-        if (state.step >= visible.length - 1) finishOnboarding();
-        else { state.step++; renderOnboarding(); }
-      };
-    }
-
-   function selectOption(domanda, valore) {
-  const attuali = state.risposte[domanda.id] || [];
-  let nuove;
-  if (!domanda.multipla) {
-    nuove = [valore];
-  } else {
-    nuove = attuali.includes(valore)
-      ? attuali.filter(v => v !== valore)
-      : [...attuali, valore];
-  }
-  state.risposte = { ...state.risposte, [domanda.id]: nuove };
-  renderOnboarding();
-}
-
-    function finishOnboarding() {
-      try { localStorage.setItem(CHIAVE, JSON.stringify(state.risposte)); } catch (e) {}
-      renderComplete();
-    }
-
-    function renderComplete() {
-      setBadge('Pronto');
-      app.innerHTML = `
-        <div class="container">
-          <div class="question anim-fade-up">
-            <h1>Tutto pronto ✨</h1>
-            <p class="subtitle">Abbiamo salvato le tue preferenze. Ora carica una foto per completare l'analisi.</p>
+        <div class="feature-pill">
+          <span class="feature-pill-icona">🎯</span>
+          <div class="feature-pill-testi">
+            <span class="feature-pill-titolo">Analisi visagistica AI</span>
+            <span class="feature-pill-desc">Consigli personalizzati al 100%</span>
           </div>
-          <a href="analizza.html" class="btn-primary" style="display:inline-block; text-decoration:none; margin-top:24px; text-align:center;">
-            Vai all'analisi ✨
-          </a>
-          <button class="btn-secondary" id="btn-reset" style="margin-top:12px">Rispondi di nuovo alle domande</button>
         </div>
-      `;
-      document.getElementById('btn-reset').onclick = reset;
-    }
+        <div class="feature-pill">
+          <span class="feature-pill-icona">💈</span>
+          <div class="feature-pill-testi">
+            <span class="feature-pill-titolo">Mostralo al parrucchiere</span>
+            <span class="feature-pill-desc">Scheda pronta da condividere</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    function reset() {
-      state = { risposte: {}, step: 0 };
-      try { localStorage.removeItem(CHIAVE); } catch (e) {}
-      renderOnboarding();
-    }
+    <!-- CTA in basso -->
+    <div class="benvenuto-cta">
+      <a href="iniziale.html" class="btn-scopri">
+        Scopri per iniziare
+        <span class="btn-scopri-freccia">→</span>
+      </a>
+      <div class="benvenuto-divisore"></div>
+      <p class="benvenuto-accedi">
+        Hai già un account? <a href="login.html">Accedi</a>
+      </p>
+    </div>
 
-    init();
-    </script>
+  </div>
 </body>
-
 </html>

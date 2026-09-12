@@ -462,6 +462,22 @@ a{
   gap: 10px;
   transition: all var(--transition-fast);
 }
+.bottoneScatta{
+   width: 100%;
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: white;
+  color: black;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
 .transizione {
   display: flex;
   flex-direction: column;
@@ -691,7 +707,221 @@ a{
   margin-bottom: 4px;
   margin-left: 8px;
 }
+/* ============================
+   CHIOMA AI - style.css
+   ============================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #1b1512;
+    --bg-alt: #241c18;
+    --text: #f3ece4;
+    --text-muted: #b8a99a;
+    --accent: #a13d4c;
+    --accent-hover: #b94f5f;
+    --accent-soft: #d8a65c;
+    --line: rgba(243, 236, 228, 0.18);
+    --radius: 4px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+}
+
+#questionario {
+    width: 100%;
+    max-width: 480px;
+}
+
+h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+}
+
+#questionario > p.intro {
+    color: var(--text-muted);
+    margin: 0 0 2.5rem;
+    font-size: 0.95rem;
+}
+
+/* riga decorativa sotto il titolo, invece della solita label ALL-CAPS */
+
+
+.campo {
+    margin-bottom: 2rem;
+    border: none;
+    padding: 0;
+}
+
+label,
+legend {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    padding: 0;
+}
+
+/* Input testo e numero: niente riquadro, solo sottolineatura */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.1rem;
+    transition: border-color 0.2s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-bottom-color: var(--accent-soft);
+}
+
+/* Radio button: nascondiamo quello nativo, costruiamo dei "pill" toggle */
+fieldset.campo {
+    display: flex;
+    gap: 0.75rem;
+}
+
+fieldset.campo legend {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+fieldset.campo input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+fieldset.campo label {
+    display: inline-block;
+    margin: 0;
+    padding: 0.55rem 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+fieldset.campo input[type="radio"]:checked + label {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+fieldset.campo input[type="radio"]:focus-visible + label {
+    outline: 2px solid var(--accent-soft);
+    outline-offset: 2px;
+}
+
+/* Select: stile coerente con gli input a sottolineatura */
+select {
+    width: 100%;
+    background: var(--bg);
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.1rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8a99a' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.3rem center;
+}
+
+select:focus {
+    outline: none;
+    border-bottom-color: var(--accent-soft);
+}
+
+select option {
+    background: var(--bg-alt);
+    color: var(--text);
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    margin-top: 1rem;
+    background: var(--accent);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: var(--accent-hover);
+}
+
+button[type="submit"]:focus-visible {
+    outline: 2px solid var(--accent-soft);
+    outline-offset: 3px;
+}
+
+/* messaggio di stato dopo l'invio (successo/errore) */
+#stato-invio {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+#stato-invio.successo {
+    color: #7fbf8e;
+}
+
+#stato-invio.errore {
+    color: #e07a7a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 420px) {
+    fieldset.campo {
+        flex-wrap: wrap;
+    }
+}
 .menu-hamburger-header {
   display: flex;
   align-items: center;
@@ -971,6 +1201,7 @@ body.menu-aperto {
 /* Navigazione Bottom Fixed */
 .navigazione {
   position: fixed;
+  margin-top:30px;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

@@ -1,0 +1,86 @@
+[
+  {
+    "nome": "Manlio",
+    "eta": 55,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-09-09T12:28:27.715Z"
+  },
+  {
+    "nome": "Manlio",
+    "eta": 55,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-09-09T12:28:28.557Z"
+  },
+  {
+    "nome": "Manlio",
+    "eta": 55,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-09-09T12:28:30.604Z"
+  },
+  {
+    "nome": "Lorenzo",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "altro",
+    "data": "2026-09-11T13:58:13.508Z"
+  },
+  {
+    "nome": "Lorenzo",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-09-11T13:58:30.649Z"
+  },
+  {
+    "nome": "lore",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-09-12T14:38:33.960Z"
+  },
+  {
+    "nome": "Lorenzo",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-09-12T14:39:29.487Z"
+  },
+  {
+    "nome": "Aia",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-09-12T14:40:06.211Z"
+  },
+  {
+    "nome": "Aia",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-09-12T14:40:36.706Z"
+  },
+  {
+    "nome": "bhv",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-09-12T14:55:29.416Z"
+  },
+  {
+    "nome": "dhbù",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-09-12T14:57:38.322Z"
+  },
+  {
+    "nome": "nnjgr",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-09-12T15:11:02.723Z"
+  }
+]
