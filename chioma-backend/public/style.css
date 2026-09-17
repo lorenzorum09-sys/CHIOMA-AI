@@ -43,7 +43,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 90px;
+  padding-bottom: 140px; 
   -webkit-font-smoothing: antialiased;
 }
 
@@ -533,7 +533,8 @@ a{
 }
 
 .bottone-secondario:hover {
-  background: rgba(255, 255, 255, 0.12);
+
+  transform: scale(1.04)
 }
 
 .bottone-secondario.elimina {
@@ -547,6 +548,9 @@ a{
 
 .btn-fotocamera {
   width: 100%;
+  padding: 16px 24px;
+  margin-bottom: 40px;
+  background-color: var(--rame);
   margin-top: 10px;
   border: 1px solid var(--bordo-vetro);
   display: inline-flex;
