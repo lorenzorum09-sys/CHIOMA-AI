@@ -643,7 +643,266 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         TABS
+         MODAL FULL-SCREEN TAGLIO (Nascosta inizialmente)
+    ================================================== -->
+
+    <div
+      id="modal-taglio-dettaglio"
+      class="modal-taglio-dettaglio"
+      style="display: none;"
+    >
+
+      <div class="modal-taglio-overlay"></div>
+
+      <div class="modal-taglio-content">
+
+        <button
+          type="button"
+          class="btn-chiudi-modal-taglio"
+          aria-label="Chiudi dettagli taglio"
+        >
+          ✕
+        </button>
+
+        <div class="modal-taglio-body">
+
+          <div class="modal-taglio-header">
+
+            <h2 id="modal-taglio-nome" class="titolo-sezione">
+              Taglio
+            </h2>
+
+            <div class="modal-taglio-stats">
+
+              <div class="stat-item">
+                <span class="stat-label">Compatibilità</span>
+                <span id="modal-taglio-compatibilita" class="stat-valore">0%</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- TAB NAVIGATION -->
+
+          <div class="modal-tab-nav">
+
+            <button
+              type="button"
+              class="modal-tab-link attivo"
+              data-tab="modal-tab-dettaglio"
+            >
+              ✂️ Dettaglio
+            </button>
+
+            <button
+              type="button"
+              class="modal-tab-link"
+              data-tab="modal-tab-visagismo"
+            >
+              👤 Visagismo
+            </button>
+
+            <button
+              type="button"
+              class="modal-tab-link"
+              data-tab="modal-tab-routine"
+            >
+              🧴 Routine
+            </button>
+
+            <button
+              type="button"
+              class="modal-tab-link"
+              data-tab="modal-tab-parrucchiere"
+            >
+              💈 Parrucchiere
+            </button>
+
+          </div>
+
+          <!-- TAB CONTENT -->
+
+          <div class="modal-tabs-container">
+
+            <!-- DETTAGLIO -->
+            <div id="modal-tab-dettaglio" class="modal-tab-pane attivo">
+              <div id="modal-dettaglio-taglio"></div>
+            </div>
+
+            <!-- VISAGISMO -->
+            <div id="modal-tab-visagismo" class="modal-tab-pane">
+
+              <div class="diag-grid">
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">Forma del Viso</div>
+                  <div class="diag-valore">${formaViso}</div>
+                </div>
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">Tipo di Capello</div>
+                  <div class="diag-valore">${tipoCapello}</div>
+                </div>
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">Densità & Volume</div>
+                  <div class="diag-valore">${densita}</div>
+                </div>
+
+              </div>
+
+              ${
+                descViso
+                  ? `
+                    <p style="
+                      font-size: 14px;
+                      color: var(--testo-secondario);
+                      line-height: 1.6;
+                      margin-top: 16px;
+                    ">
+                      ${descViso}
+                    </p>
+                  `
+                  : ""
+              }
+
+            </div>
+
+            <!-- ROUTINE -->
+            <div id="modal-tab-routine" class="modal-tab-pane">
+
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">🧼 Lavaggio</div>
+                  <div style="font-size: 14px; margin-top: 4px;">
+                    ${
+                      routine.lavaggio ||
+                      "Utilizzare uno shampoo delicato."
+                    }
+                  </div>
+                </div>
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">💨 Asciugatura</div>
+                  <div style="font-size: 14px; margin-top: 4px;">
+                    ${
+                      routine.asciugatura ||
+                      "Asciugare con aria tiepida."
+                    }
+                  </div>
+                </div>
+
+                <div class="diag-item">
+                  <div class="diag-etichetta">✨ Trattamenti</div>
+                  <div style="font-size: 14px; margin-top: 4px;">
+                    ${
+                      routine.trattamenti ||
+                      "Utilizzare un balsamo adatto alla propria struttura."
+                    }
+                  </div>
+                </div>
+
+              </div>
+
+              ${
+                prodotti.length
+                  ? `
+                    <div style="margin-top: 18px;">
+                      <strong style="font-size: 13px; color: var(--salvia);">
+                        Prodotti consigliati:
+                      </strong>
+                      <ul style="
+                        margin-top: 8px;
+                        padding-left: 20px;
+                        font-size: 14px;
+                        color: var(--testo-secondario);
+                      ">
+                        ${prodotti.map((p) => `<li>${p}</li>`).join("")}
+                      </ul>
+                    </div>
+                  `
+                  : ""
+              }
+
+              ${
+                daEvitare.length
+                  ? `
+                    <div style="margin-top: 14px;">
+                      <strong style="font-size: 13px; color: #FF6B6B;">
+                        Ingredienti da evitare:
+                      </strong>
+                      <ul style="
+                        margin-top: 8px;
+                        padding-left: 20px;
+                        font-size: 14px;
+                        color: var(--testo-secondario);
+                      ">
+                        ${daEvitare.map((i) => `<li>${i}</li>`).join("")}
+                      </ul>
+                    </div>
+                  `
+                  : ""
+              }
+
+            </div>
+
+            <!-- PARRUCCHIERE -->
+            <div id="modal-tab-parrucchiere" class="modal-tab-pane">
+
+              <p style="
+                font-size: 14px;
+                color: var(--testo-secondario);
+                margin-bottom: 12px;
+              ">
+                Mostra o leggi direttamente questo messaggio al tuo parrucchiere:
+              </p>
+
+              <div class="scheda-parrucchiere-box">
+
+                <p id="modal-scheda-parrucchiere" style="
+                  font-size: 15px;
+                  font-weight: 600;
+                  color: var(--testo);
+                  line-height: 1.5;
+                  padding-right: 40px;
+                ">
+                  "${schedaParrucchiere}"
+                </p>
+
+                <button
+                  type="button"
+                  class="bottone-secondario scheda-copia-btn"
+                  id="btn-copia-scheda-modal"
+                >
+                  📋 Copia
+                </button>
+
+              </div>
+
+              <div class="trova-parrucchiere-section" style="margin-top: 20px;">
+                <button
+                  type="button"
+                  class="btn-trova-parrucchiere"
+                  id="btn-trova-parrucchiere-modal"
+                >
+                  📍 Trova parrucchiere →
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =================================================
+         TABS LEGACY (Nascoste se si usa la modal)
     ================================================== -->
 
     <div
@@ -687,7 +946,7 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         DETTAGLIO
+         DETTAGLIO LEGACY
     ================================================== -->
 
     <div
@@ -702,7 +961,7 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         VISAGISMO
+         VISAGISMO LEGACY
     ================================================== -->
 
     <div
@@ -770,7 +1029,7 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         ROUTINE
+         ROUTINE LEGACY
     ================================================== -->
 
     <div
@@ -849,27 +1108,6 @@ export function mostraRisultatiAnalisi(dati) {
       </div>
 
       ${
-        primoTaglio.styling_tip
-          ? `
-            <p
-              style="
-                font-size:13px;
-                color:var(--oro);
-                padding-top:16px;
-                padding-bottom:16px;
-              "
-            >
-              <strong>
-                Styling tip:
-              </strong>
-
-              ${primoTaglio.styling_tip}
-            </p>
-          `
-          : ""
-      }
-
-      ${
         prodotti.length
           ? `
             <div style="margin-top:18px;">
@@ -946,7 +1184,7 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         PARRUCCHIERE
+         PARRUCCHIERE LEGACY
     ================================================== -->
 
     <div
@@ -993,7 +1231,7 @@ export function mostraRisultatiAnalisi(dati) {
     </div>
 
     <!-- =================================================
-         TROVA PARRUCCHIERE
+         TROVA PARRUCCHIERE LEGACY
     ================================================== -->
 
     <div class="trova-parrucchiere-section">
@@ -1043,7 +1281,7 @@ export function mostraRisultatiAnalisi(dati) {
   collegaTabs();
 
   /* =====================================================
-     CLICK "SCOPRI QUESTO TAGLIO"
+     CLICK "SCOPRI QUESTO TAGLIO" - APRI MODAL FULL-SCREEN
   ===================================================== */
 
   document
@@ -1059,43 +1297,8 @@ export function mostraRisultatiAnalisi(dati) {
 
         if (!taglio) return;
 
-        const dettaglio =
-          document.getElementById(
-            "dettaglio-taglio"
-          );
-
-        if (dettaglio) {
-          dettaglio.innerHTML =
-            creaDettaglioTaglio(taglio);
-
-          collegaGenerazioneAnteprima();
-        }
-
-        /* =============================================
-           MOSTRA LE TAB
-        ============================================= */
-
-        const tabsHeader =
-          document.getElementById(
-            "tabs-header"
-          );
-
-        if (tabsHeader) {
-          tabsHeader.style.display = "flex";
-        }
-
-        /* =============================================
-           APRI DETTAGLIO
-        ============================================= */
-
-        window.cambiaTab("tab-taglio");
-
-        document
-          .getElementById("tab-taglio")
-          ?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+        // Apri modal full-screen
+        apriModalTaglio(taglio, tagli, indice, dati);
       });
     });
 
@@ -1123,6 +1326,106 @@ export function mostraRisultatiAnalisi(dati) {
     });
 
   collegaGenerazioneAnteprima();
+}
+
+/* =========================================================
+   APRI MODAL FULL-SCREEN TAGLIO
+========================================================= */
+
+function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
+  const modal = document.getElementById("modal-taglio-dettaglio");
+
+  if (!modal) return;
+
+  // Aggiorna contenuto
+  document.getElementById("modal-taglio-nome").textContent =
+    taglio.nome || "Taglio Personalizzato";
+
+  document.getElementById("modal-taglio-compatibilita").textContent =
+    `${Number(taglio.compatibilita) || 0}%`;
+
+  document.getElementById("modal-dettaglio-taglio").innerHTML =
+    creaDettaglioTaglio(taglio);
+
+  document.getElementById("modal-scheda-parrucchiere").textContent =
+    `"${taglio.scheda_parrucchiere || taglio.nome || "Taglio personalizzato"}"`;
+
+  // Aggiorna buttons nella modal
+  document
+    .getElementById("btn-copia-scheda-modal")
+    ?.addEventListener("click", () => {
+      copiaInAppunti(
+        taglio.scheda_parrucchiere ||
+          taglio.nome ||
+          "Taglio personalizzato"
+      );
+
+      mostraToast("📋 Scheda copiata!");
+    });
+
+  document
+    .getElementById("btn-trova-parrucchiere-modal")
+    ?.addEventListener("click", () => {
+      trovaParrucchiere();
+    });
+
+  // Mostra modal con animazione
+  modal.style.display = "flex";
+
+  // Trigger animation
+  setTimeout(() => {
+    modal.classList.add("mostra");
+  }, 10);
+
+  // Chiudi modal
+  document
+    .querySelector(".btn-chiudi-modal-taglio")
+    ?.addEventListener("click", chiudiModalTaglio);
+
+  document
+    .querySelector(".modal-taglio-overlay")
+    ?.addEventListener("click", chiudiModalTaglio);
+
+  // Collega tab navigation nella modal
+  document.querySelectorAll(".modal-tab-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      const tabId = link.dataset.tab;
+
+      // Rimuovi attivo da tutti i tab
+      document.querySelectorAll(".modal-tab-link").forEach((l) => {
+        l.classList.remove("attivo");
+      });
+
+      document.querySelectorAll(".modal-tab-pane").forEach((pane) => {
+        pane.classList.remove("attivo");
+      });
+
+      // Aggiungi attivo al tab selezionato
+      link.classList.add("attivo");
+
+      const pane = document.getElementById(tabId);
+
+      if (pane) {
+        pane.classList.add("attivo");
+      }
+    });
+  });
+}
+
+/* =========================================================
+   CHIUDI MODAL FULL-SCREEN TAGLIO
+========================================================= */
+
+function chiudiModalTaglio() {
+  const modal = document.getElementById("modal-taglio-dettaglio");
+
+  if (!modal) return;
+
+  modal.classList.remove("mostra");
+
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 300);
 }
 
 /* =========================================================
