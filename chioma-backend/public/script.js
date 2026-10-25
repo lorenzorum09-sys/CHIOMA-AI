@@ -7,24 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function inizializzaTransizioniNav() {
   const overlay = document.getElementById('overlay-transizione');
-  const linkNav = document.querySelectorAll('.nav-link');
+  const linkNav = document.querySelectorAll('.nav-link, .bottom-nav a, .brand');
 
   if (!overlay || linkNav.length === 0) return;
 
   linkNav.forEach((link) => {
     link.addEventListener('click', (e) => {
-      if (link.classList.contains('attivo')) return;
+      if (link.classList.contains('attivo') || link.classList.contains('active')) return;
+
+      const destinazione = link.getAttribute('href');
+      if (!destinazione || destinazione === '#' || destinazione.startsWith('javascript:')) return;
 
       e.preventDefault();
       overlay.classList.add('attiva');
 
       setTimeout(() => {
-        window.location.href = link.getAttribute('href');
+        window.location.href = destinazione;
       }, 350);
     });
   });
 }
-document.getElementById('questionario').addEventListener('submit', async (e) => {
+
+document.getElementById('questionario')?.addEventListener('submit', async (e) => {
     e.preventDefault(); // blocca il comportamento di default (reload della pagina)
 
     const form = e.target;

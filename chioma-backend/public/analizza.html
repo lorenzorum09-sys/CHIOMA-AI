@@ -1,164 +1,484 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YFNXMN0N2E');
-    </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YFNXMN0N2E');
+  </script>
 
-    <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
-    <meta name="description" content="...">
+  <title>Chioma AI — Scansiona il tuo Viso &amp; Trova il Taglio Ideale</title>
+  <meta
+    name="description"
+    content="Scansiona il tuo viso con Chioma AI e ricevi un'analisi visagistica istantanea con i tagli di capelli più adatti alle tue proporzioni."
+  >
+  <meta name="theme-color" content="#151311">
 
-    <!-- Fonts Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-    <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
-      <div class="overlay-menu" id="overlay-menu"></div>
-
-      <div class="menu-hamburger" id="menu-hamburger">
-
-        <div class="menu-hamburger-header">
-                        <button type="button" class="btn-chiudi-menu" id="btn-chiudi-menu" aria-label="Chiudi menu">✕</button>
-            <span class="titolo-brand">Impostazioni</span>
-        </div>
-
-    <nav class="menu-hamburger-lista">
-        <span class="menu-voce-descrizione" data-i18n="menu_profilo">Profilo</span>
-        <a href="account.html" class="menu-voce-btn">
-    <span class="menu-voce-icona">👤</span>
-    <span class="menu-voce-testo" data-i18n="link_account">Profilo</span>
-    <span class="menu-voce-freccia">›</span>
-</a>
-
-             
-        <span class="menu-voce-descrizione" data-i18n="menu_generale">Generale</span>
-  <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
-                <span class="menu-voce-icona">🌐</span>
-                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
-
-            <div class="menu-pannello" id="pannello-lingua">
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="it" checked>
-                    <span>🇮🇹 Italiano</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="en">
-                    <span>🇬🇧 English</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="fr">
-                    <span>🇫🇷 Français</span>
-                </label>
-            </div>
-                    <span class="menu-voce-descrizione" data-i18n="menu_legale">Legale</span>
-            <a href="analizza.html" class="menu-voce-btn">
-                <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
-                <span class="menu-voce-freccia">›</span>
-                </a>
-        </div>
-                
-    </nav>
-</div>
-
-
-
-  <!-- Input separati: galleria e fotocamera. Tenerli nel DOM aiuta Safari mobile. -->
+  <!-- Input File Nascosti per Upload e Fotocamera -->
   <input type="file" id="foto-input" class="input-file-nascosto" accept="image/*">
   <input type="file" id="fotocamera-input" class="input-file-nascosto" accept="image/*" capture="user">
 
-  <main class="contenitore">
-    <div class="backdrop-privacy" id="backdrop-privacy"></div>
-    <div class="card-privacy" id="card-privacy"></div>
+  <div class="app-shell">
 
-    <div class="scanner-wrap">
-      <div class="scanner-cornice" id="scanner-cornice" title="Clicca o trascina una foto qui">
-        <div class="scanline"></div>
+    <!-- Controller Menu Hamburger -->
+    <input
+      class="menu-controller"
+      type="checkbox"
+      id="menu-controller"
+      aria-hidden="true"
+    >
 
-        <div class="upload-placeholder" id="upload-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; color: var(--rame); margin-bottom: 12px;">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-            <circle cx="12" cy="13" r="4" />
+    <!-- Header App Unificato e Responsive -->
+    <header class="app-header">
+      <a class="brand nav-link" href="Home.html" aria-label="Chioma AI, home">
+        <img class="brand-mark" src="Copilot_20260728_144629.png" alt="Logo Chioma AI">
+        <span class="brand-name">Chioma AI</span>
+      </a>
+
+      <div class="header-actions">
+        <span class="beta-badge">Beta 2.0</span>
+
+        <a class="register-link link-registrati nav-link" href="account.html">
+          Registrati
+        </a>
+        <a class="register-link link-accedi nav-link" href="login.html">
+          Accedi
+        </a>
+
+        <label
+          class="icon-button"
+          for="menu-controller"
+          aria-label="Apri menu"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
           </svg>
-          <span style="font-size: 15px; font-weight: 700; color: var(--testo); margin-bottom: 4px; padding-bottom: 20px;" data-i18n="analizza_titolo_upload">
-            Carica o scatta una foto
-          </span>
-          <span style="font-size: 12px; color: var(--testo-muto);" data-i18n="analizza_sub_upload">
-            Clicca o trascina qui l'immagine
-          </span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Menu Laterale (Drawer) -->
+    <div class="drawer-layer">
+      <label
+        class="drawer-backdrop"
+        for="menu-controller"
+        aria-label="Chiudi menu"
+      ></label>
+
+      <aside class="drawer" aria-label="Menu principale">
+        <div class="drawer-header">
+          <span>Menu</span>
+
+          <label
+            class="icon-button"
+            for="menu-controller"
+            aria-label="Chiudi menu"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+          </label>
         </div>
 
-        <img id="anteprima-foto" class="anteprima-img" alt="Anteprima foto caricata">
-      </div>
+        <nav class="drawer-nav">
+          <!-- Lingua -->
+          <details>
+            <summary>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path
+                  d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"
+                ></path>
+              </svg>
+
+              <span data-i18n="menu_lingua">Lingua</span>
+              <span class="chevron">›</span>
+            </summary>
+
+            <div class="drawer-panel">
+              <label class="language-option">
+                <input type="radio" name="lingua" value="it" checked>
+                <span class="language-code">IT</span>
+                <span>Italiano</span>
+              </label>
+
+              <label class="language-option">
+                <input type="radio" name="lingua" value="en">
+                <span class="language-code">EN</span>
+                <span>English</span>
+              </label>
+
+              <label class="language-option">
+                <input type="radio" name="lingua" value="fr">
+                <span class="language-code">FR</span>
+                <span>Français</span>
+              </label>
+            </div>
+          </details>
+
+          <!-- Impostazioni -->
+          <details>
+            <summary>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"
+                ></path>
+              </svg>
+
+              <span data-i18n="menu_impostazioni">Impostazioni</span>
+              <span class="chevron">›</span>
+            </summary>
+
+            <div class="drawer-panel">
+              <p>Nessuna impostazione disponibile.</p>
+            </div>
+          </details>
+
+          <!-- Privacy -->
+          <a href="#privacy-info">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+
+            <span data-i18n="link_termini">Termini di uso e Privacy</span>
+            <span class="chevron">›</span>
+          </a>
+
+          <!-- Account -->
+          <a href="account.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.25"></circle>
+              <path d="M5.5 20c.4-4 2.7-6 6.5-6s6.1 2 6.5 6"></path>
+            </svg>
+
+            <span data-i18n="link_account">Account</span>
+            <span class="chevron">›</span>
+          </a>
+        </nav>
+      </aside>
     </div>
 
-    <button type="button" class="bottone" id="btn-carica-foto">
-      <span data-i18n="btn_seleziona_foto">📷 Seleziona una Foto</span>
-    </button>
+    <!-- Contenuto Principale -->
+    <main class="home-main analizza-main" id="analizza">
 
-    <button type="button" class="bottone-secondario btn-fotocamera" id="btn-scatta-foto" data-i18n="btn_scatta_foto">Scatta una foto</button>
+      <!-- Modale Privacy & Termini (gestita da privacy.js) -->
+      <div class="backdrop-privacy" id="backdrop-privacy"></div>
+      <div class="card-privacy" id="card-privacy"></div>
 
-    <div class="gestione-foto" id="gestione-foto" style="display: none;">
-      <button type="button" class="bottone-secondario" id="btn-cambia-foto" data-i18n="btn_cambia_foto">Cambia Foto</button>
-      <button type="button" class="bottone-secondario elimina" id="btn-rimuovi-foto" data-i18n="btn_rimuovi_foto">Rimuovi</button>
-    </div>
+      <!-- HERO ANALIZZA -->
+      <section class="hero">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span data-i18n="badge_scanner">Analisi Visagistica con AI</span>
+        </div>
 
-    <button type="button" class="bottone" id="btn-analizza" style="display: none; background: var(--salvia); color: #12100E;" data-i18n="btn_analizza">
-      ✨ Analizza Viso e Taglio con l'AI
-    </button>
+        <h1>
+          Il taglio ideale
+          <span>su misura per la tua <span id="parola-rotante" class="parola-rotante">Forma del Viso</span></span>
+        </h1>
 
-    <div class="card" id="card-risultati" style="display: none;"></div>
+        <p>
+          Carica una foto frontale o scatta con la fotocamera. Chioma AI elabora lineamenti e proporzioni per suggerirti i 3 migliori tagli con scheda tecnica per il parrucchiere.
+        </p>
+
+        <div class="feature-pills" aria-label="Vantaggi di Chioma AI">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+            Analisi in 2 minuti
+          </span>
+
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+            3 Tagli personalizzati
+          </span>
+
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+            Foto 100% protetta
+          </span>
+        </div>
+      </section>
+
+      <!-- CARD SCANSIONE PRINCIPALE -->
+      <section class="scan-card-analizza" id="scansiona">
+
+        <!-- Colonna Sinistra: Viewport Scanner Interattivo -->
+        <div class="scan-visual-analizza" aria-label="Visualizzatore scanner">
+          <div class="scanner-wrap">
+            <div
+              class="scanner-cornice"
+              id="scanner-cornice"
+              title="Clicca o trascina una foto qui"
+              tabindex="0"
+              role="button"
+              aria-label="Carica o scatta foto"
+            >
+              <!-- Angoli HUD Hi-Tech -->
+              <span class="corner-bracket corner-tl" aria-hidden="true"></span>
+              <span class="corner-bracket corner-tr" aria-hidden="true"></span>
+              <span class="corner-bracket corner-bl" aria-hidden="true"></span>
+              <span class="corner-bracket corner-br" aria-hidden="true"></span>
+
+              <!-- Orbite animate dinamiche -->
+              <div class="scanner-ambient-orbits" aria-hidden="true">
+                <span class="scan-orbit-outer"></span>
+                <span class="scan-orbit-inner"></span>
+              </div>
+
+              <!-- Linea Laser Animata -->
+              <div class="scanline" aria-hidden="true"></div>
+
+              <!-- Placeholder Caricamento Foto -->
+              <div class="upload-placeholder" id="upload-placeholder">
+                <div class="upload-icon-circle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+
+                <span class="upload-titolo" data-i18n="analizza_titolo_upload">
+                  Carica o scatta una foto
+                </span>
+
+                <span class="upload-sub" data-i18n="analizza_sub_upload">
+                  Clicca o trascina qui l'immagine
+                </span>
+
+                <span class="upload-hint-tag">
+                  💡 JPG, PNG, WebP • Viso frontale e nitido
+                </span>
+              </div>
+
+              <!-- Immagine di Anteprima -->
+              <img id="anteprima-foto" class="anteprima-img" alt="Anteprima foto caricata">
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonna Destra: Controlli e Azioni -->
+        <div class="scan-content-analizza">
+          <span class="step-label">Step 01 • Foto Viso</span>
+
+          <h2>Inquadra il tuo viso</h2>
+
+          <p>
+            Assicurati una buona illuminazione frontale e un'espressione rilassata. Puoi scattare direttamente in tempo reale oppure caricare una foto dalla tua galleria.
+          </p>
+
+          <div class="scanner-actions">
+            <!-- Pulsanti Selezione (Visibili prima del caricamento) -->
+            <div class="pulsanti-scelta-foto" id="pulsanti-scelta-foto">
+              <button
+                type="button"
+                class="btn-scatta"
+                id="btn-scatta-foto"
+                data-i18n="btn_scatta_foto"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <span>Scatta una foto</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn-carica"
+                id="btn-carica-foto"
+                data-i18n="btn_seleziona_foto"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Carica foto</span>
+              </button>
+            </div>
+
+            <!-- Pulsanti Gestione Foto (Visibili dopo il caricamento) -->
+            <div class="gestione-foto" id="gestione-foto" style="display: none;">
+              <button
+                type="button"
+                class="btn-cambia"
+                id="btn-cambia-foto"
+                data-i18n="btn_cambia_foto"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 4v6h6M23 20v-6h-6"></path>
+                  <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                </svg>
+                <span>Cambia Foto</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn-rimuovi"
+                id="btn-rimuovi-foto"
+                data-i18n="btn_rimuovi_foto"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Rimuovi</span>
+              </button>
+            </div>
+
+            <!-- Grande CTA di Avvio Analisi AI -->
+            <button
+              type="button"
+              class="bottoneAnalizza"
+              id="btn-analizza"
+              style="display: none;"
+              data-i18n="btn_analizza"
+            >
+              <span>✨ Analizza Viso e Taglio con l'AI</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14m-5-5 5 5-5 5"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Nota di Privacy e Sicurezza -->
+          <div class="scanner-privacy-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+            <span>Le tue foto restano private. Vengono elaborate in memoria per l'analisi visagistica e cancellate subito dopo.</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SEZIONE RISULTATI ANALISI (Popolata dinamicamente da ui.js) -->
+      <section class="card" id="card-risultati" style="display: none;"></section>
+
+      <!-- MODALE FOTOCAMERA LIVE -->
       <div class="modal-fotocamera" id="modal-fotocamera" aria-hidden="true">
-    <div class="modal-fotocamera-card">
-      <video id="video-fotocamera" autoplay playsinline muted></video>
-      <div class="modal-fotocamera-azioni">
-        <button type="button" class="bottone-secondario" id="btn-chiudi-fotocamera" data-i18n="modal_annulla">Annulla</button>
-        <button type="button" class="bottoneScatta" id="btn-cattura-fotocamera" data-i18n="modal_scatta">Scatta</button>
+        <div class="modal-fotocamera-card">
+          <div class="modal-fotocamera-header">
+            <span>Fotocamera Live</span>
+            <button
+              type="button"
+              class="icon-button"
+              id="btn-chiudi-fotocamera-icon"
+              aria-label="Chiudi fotocamera"
+              onclick="document.getElementById('btn-chiudi-fotocamera').click()"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-container">
+            <video id="video-fotocamera" autoplay playsinline muted></video>
+            <div class="video-overlay-guide" aria-hidden="true"></div>
+          </div>
+
+          <div class="modal-fotocamera-azioni">
+            <button
+              type="button"
+              class="bottone-secondario"
+              id="btn-chiudi-fotocamera"
+              data-i18n="modal_annulla"
+            >
+              Annulla
+            </button>
+
+            <button
+              type="button"
+              class="bottoneScatta"
+              id="btn-cattura-fotocamera"
+              data-i18n="modal_scatta"
+            >
+              Scatta Foto
+            </button>
+          </div>
+        </div>
       </div>
+
+      <!-- Link e info privacy a fondo pagina -->
+      <p class="privacy-link" id="privacy-info">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+        </svg>
+
+        Le tue foto restano private.
+
+        <a href="analizza.html">
+          Privacy &amp; Termini d&apos;uso
+        </a>
+      </p>
+
+    </main>
+
+    <!-- Barra di Navigazione Inferiore Unificata -->
+    <nav class="bottom-nav" aria-label="Navigazione principale">
+      <a class="nav-link" href="Home.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m3 11 9-7 9 7m-2 0v9h-5v-6h-4v6H5v-9"></path>
+        </svg>
+        <span data-i18n="nav_home">Home</span>
+      </a>
+
+      <a class="nav-link active attivo" href="analizza.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 8.5h3l1.3-2h7.4l1.3 2h3v10H4z"></path>
+          <circle cx="12" cy="13.5" r="3.25"></circle>
+        </svg>
+        <span data-i18n="nav_scansiona">Scansiona AI</span>
+      </a>
+
+      <a class="nav-link" href="istruzione.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5c3-.5 5.7.1 8 2v12c-2.3-1.9-5-2.5-8-2z"></path>
+          <path d="M20 5.5c-3-.5-5.7.1-8 2v12c2.3-1.9 5-2.5 8-2z"></path>
+        </svg>
+        <span data-i18n="nav_guida">Guida cura</span>
+      </a>
+    </nav>
+
+    <!-- Overlay di transizione -->
+    <div class="transizione" id="overlay-transizione">
+      <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
     </div>
-  </div>
-  </main>
 
-  <nav class="navigazione">
-    <a href="Home.html" class="nav-link">
-      <span>🏠</span>
-      <span data-i18n="nav_home">Home</span>
-    </a>
-    <a href="domande.html" class="nav-link attivo">
-      <span>🔍</span>
-      <span data-i18n="nav_scansiona">Scansiona AI</span>
-    </a>
-    <a href="istruzione.html" class="nav-link">
-      <span>🎓</span>
-      <span data-i18n="nav_guida">Guida Cura</span>
-    </a>
-  </nav>
-
-  <!-- Overlay di transizione: posizionato prima della chiusura del body -->
-  <div class="transizione" id="overlay-transizione">
-    <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
   </div>
 
-
-
-  <!-- Inclusione Modulo Javascript -->
+  <!-- Inclusione Moduli Javascript -->
   <script type="module" src="script.js"></script>
   <script src="js/lingua.js"></script>
 </body>
-
 </html>

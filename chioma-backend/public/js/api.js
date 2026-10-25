@@ -19,13 +19,13 @@ export async function inviaFotoAnalisi(fileImmagine) {
     return dati;
 }
 
-export async function generaAnteprimaTaglio(fileImmagine, nomeTaglio, descrizioneTaglio) {
+export async function generaTryOn(fileImmagine, nomeTaglio, descrizioneTaglio) {
     const formData = new FormData();
     formData.append('foto', fileImmagine);
     formData.append('nomeTaglio', nomeTaglio);
     formData.append('descrizioneTaglio', descrizioneTaglio || '');
 
-    const risposta = await fetch('/api/genera-immagine', {
+    const risposta = await fetch('/api/try-on', {
         method: 'POST',
         body: formData
     });

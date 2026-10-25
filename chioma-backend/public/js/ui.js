@@ -1,4 +1,4 @@
-import { inviaFotoAnalisi, generaAnteprimaTaglio } from "./api.js";
+import { inviaFotoAnalisi, generaTryOn } from "./api.js";
 import { eseguiConConsenso } from "./privacy.js";
 import {
   salvaAnalisiInCronologia,
@@ -273,10 +273,10 @@ export function inizializzaUI() {
       const scala = Math.min(
         1,
         latoMassimo /
-          Math.max(
-            immagine.naturalWidth,
-            immagine.naturalHeight
-          )
+        Math.max(
+          immagine.naturalWidth,
+          immagine.naturalHeight
+        )
       );
 
       const canvas = document.createElement("canvas");
@@ -421,10 +421,10 @@ function avviaParolaRotante() {
 
   const parole = [
     "Forma del Viso",
-    "Capelli Mossi",
-    "Texture & Densità",
-    "Ricci a Spirale",
-    "Taglio Ideale",
+    "Texture dei Capelli",
+    "Densità & Volume",
+    "Routine di Cura",
+    "Bellezza e Stile",
   ];
 
   let indice = 0;
@@ -489,15 +489,14 @@ function creaCardTaglio(taglio, indice) {
         ${nome}
       </h3>
 
-      ${
-        percheAdatto
-          ? `
+      ${percheAdatto
+      ? `
             <p class="taglio-card-perche-compatta">
               ${percheAdatto}
             </p>
           `
-          : ""
-      }
+      : ""
+    }
 
       <button
         type="button"
@@ -630,15 +629,14 @@ export function mostraRisultatiAnalisi(dati) {
 
     <div class="tagli-grid">
 
-      ${
-        cardsTagli ||
-        `
+      ${cardsTagli ||
+    `
           <div class="nessun-risultato">
             Non è stato possibile trovare
             dei tagli consigliati.
           </div>
         `
-      }
+    }
 
     </div>
 
@@ -1009,9 +1007,8 @@ export function mostraRisultatiAnalisi(dati) {
 
       </div>
 
-      ${
-        descViso
-          ? `
+      ${descViso
+      ? `
             <p
               style="
                 font-size:14px;
@@ -1023,8 +1020,8 @@ export function mostraRisultatiAnalisi(dati) {
               ${descViso}
             </p>
           `
-          : ""
-      }
+      : ""
+    }
 
     </div>
 
@@ -1057,10 +1054,9 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${
-              routine.lavaggio ||
-              "Utilizzare uno shampoo delicato."
-            }
+            ${routine.lavaggio ||
+    "Utilizzare uno shampoo delicato."
+    }
           </div>
 
         </div>
@@ -1077,10 +1073,9 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${
-              routine.asciugatura ||
-              "Asciugare con aria tiepida."
-            }
+            ${routine.asciugatura ||
+    "Asciugare con aria tiepida."
+    }
           </div>
 
         </div>
@@ -1097,19 +1092,43 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${
-              routine.trattamenti ||
-              "Utilizzare un balsamo adatto alla propria struttura."
-            }
+            ${routine.trattamenti ||
+    "Utilizzare un balsamo adatto alla propria struttura."
+    }
           </div>
 
         </div>
 
       </div>
 
+<<<<<<< HEAD
       ${
         prodotti.length
           ? `
+=======
+      ${primoTaglio.styling_tip
+      ? `
+            <p
+              style="
+                font-size:13px;
+                color:var(--oro);
+                padding-top:16px;
+                padding-bottom:16px;
+              "
+            >
+              <strong>
+                Styling tip:
+              </strong>
+
+              ${primoTaglio.styling_tip}
+            </p>
+          `
+      : ""
+    }
+
+      ${prodotti.length
+      ? `
+>>>>>>> f309a25 (modifica)
             <div style="margin-top:18px;">
 
               <strong
@@ -1131,22 +1150,21 @@ export function mostraRisultatiAnalisi(dati) {
               >
 
                 ${prodotti
-                  .map(
-                    (prodotto) =>
-                      `<li>${prodotto}</li>`
-                  )
-                  .join("")}
+        .map(
+          (prodotto) =>
+            `<li>${prodotto}</li>`
+        )
+        .join("")}
 
               </ul>
 
             </div>
           `
-          : ""
-      }
+      : ""
+    }
 
-      ${
-        daEvitare.length
-          ? `
+      ${daEvitare.length
+      ? `
             <div style="margin-top:14px;">
 
               <strong
@@ -1168,18 +1186,18 @@ export function mostraRisultatiAnalisi(dati) {
               >
 
                 ${daEvitare
-                  .map(
-                    (ingrediente) =>
-                      `<li>${ingrediente}</li>`
-                  )
-                  .join("")}
+        .map(
+          (ingrediente) =>
+            `<li>${ingrediente}</li>`
+        )
+        .join("")}
 
               </ul>
 
             </div>
           `
-          : ""
-      }
+      : ""
+    }
 
     </div>
 
@@ -1297,8 +1315,56 @@ export function mostraRisultatiAnalisi(dati) {
 
         if (!taglio) return;
 
+<<<<<<< HEAD
         // Apri modal full-screen
         apriModalTaglio(taglio, tagli, indice, dati);
+=======
+        const schedaEsistente =
+          document.getElementById("scheda-taglio-overlay");
+
+        schedaEsistente?.remove();
+
+        const overlay = document.createElement("div");
+        overlay.id = "scheda-taglio-overlay";
+        overlay.className = "scheda-taglio-overlay";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+        overlay.setAttribute("aria-label", `Dettaglio ${taglio.nome || "taglio consigliato"}`);
+        overlay.innerHTML = `
+          <section class="scheda-taglio-panel">
+            <header class="scheda-taglio-toolbar">
+              <span>LA TUA SCHEDA STILE</span>
+              <button type="button" class="scheda-taglio-chiudi" aria-label="Chiudi scheda">×</button>
+            </header>
+            <div class="scheda-taglio-contenuto">
+              ${creaDettaglioTaglio(taglio)}
+            </div>
+          </section>
+        `;
+
+        document.body.appendChild(overlay);
+        document.body.classList.add("scheda-taglio-aperta");
+
+        function chiudiConEscape(evento) {
+          if (evento.key === "Escape") chiudiScheda();
+        }
+
+        const chiudiScheda = () => {
+          overlay.classList.add("in-chiusura");
+          document.body.classList.remove("scheda-taglio-aperta");
+          document.removeEventListener("keydown", chiudiConEscape);
+          window.setTimeout(() => overlay.remove(), 220);
+        };
+
+        overlay.querySelector(".scheda-taglio-chiudi")
+          ?.addEventListener("click", chiudiScheda);
+        overlay.addEventListener("click", (evento) => {
+          if (evento.target === overlay) chiudiScheda();
+        });
+        document.addEventListener("keydown", chiudiConEscape);
+
+        collegaGenerazioneAnteprima();
+>>>>>>> f309a25 (modifica)
       });
     });
 
@@ -1497,9 +1563,8 @@ function creaDettaglioTaglio(taglio) {
         ${taglio.nome || "Taglio Personalizzato"}
       </h2>
 
-      ${
-        taglio.perche_adatto
-          ? `
+      ${taglio.perche_adatto
+      ? `
             <div
               style="
                 background:rgba(226,136,89,0.1);
@@ -1531,11 +1596,21 @@ function creaDettaglioTaglio(taglio) {
 
             </div>
           `
-          : ""
-      }
+      : ""
+    }
 
-      <!-- BOTTONE GENERA ANTEPRIMA disattivato temporaneamente -->
+<button
+  type="button"
+  id="btn-genera-anteprima"
+  class="btn-continua"
+  data-nome-taglio="${escapeAttribute(taglio.nome || '')}"
+  data-descrizione-taglio="${escapeAttribute(taglio.descrizione || '')}"
+  style="margin-top:18px;"
+>
+  🪄 Prova questo taglio su di te
+</button>
 
+<div id="risultato-anteprima-taglio" style="margin-top:16px;"></div>
     </div>
   `;
 }
@@ -1759,7 +1834,7 @@ function inizializzaTransizioniNav() {
 
   const linkNav =
     document.querySelectorAll(
-      ".nav-link"
+      ".nav-link, .bottom-nav a, .brand"
     );
 
   if (!overlay || linkNav.length === 0) {
@@ -1777,15 +1852,15 @@ function inizializzaTransizioniNav() {
 
         if (
           !destinazione ||
-          destinazione === "#"
+          destinazione === "#" ||
+          destinazione.startsWith("javascript:")
         ) {
           return;
         }
 
         if (
-          link.classList.contains(
-            "attivo"
-          )
+          link.classList.contains("attivo") ||
+          link.classList.contains("active")
         ) {
           return;
         }

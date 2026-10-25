@@ -1,145 +1,333 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFNXMN0N2E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YFNXMN0N2E');
-    </script>
+  <meta
+    name="description"
+    content="Chioma AI analizza la forma del tuo viso e consiglia tagli di capelli personalizzati."
+  >
+  <meta name="theme-color" content="#151311">
 
-    <title>Chioma AI — Il Taglio Perfetto per il tuo Viso</title>
-    <meta name="description" content="...">
+  <title>Chioma AI — Il taglio perfetto per il tuo viso</title>
 
-    <!-- Fonts Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <a href="Home.html" class="logo-container">
-            <img src="Copilot_20260728_144629.png" alt="Chioma AI Logo" class="logo-img">
-            <span class="logo-testo titolo-brand">Chioma AI</span>
+  <div class="app-shell">
+
+    <input
+      class="menu-controller"
+      type="checkbox"
+      id="menu-controller"
+      aria-hidden="true">
+    <header class="app-header">
+
+      <a class="brand nav-link" href="Home.html" aria-label="Chioma AI, home">
+       <img class="brand-mark" src="Copilot_20260728_144629.png" alt="Logo Chioma AI">
+        <span class="brand-name">Chioma AI</span>
+      </a>
+
+      <div class="header-actions">
+        <span class="beta-badge">Beta 2.0</span>
+
+        <a class="register-link link-registrati nav-link" href="account.html">
+          Registrati
         </a>
+        <a class="register-link link-accedi nav-link" href="login.html">
+          Accedi
+        </a>
+        <label
+          class="icon-button"
+          for="menu-controller"
+          aria-label="Apri menu"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </label>
+      </div>
+    </header>
 
-        <button type="button" class="btn-hamburger" id="btn-hamburger" aria-expanded="false">
-            <span><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24">
-  <!-- Testa -->
-  <circle cx="12" cy="7" r="4.5" fill="#4B5563" />
-  <!-- Busto -->
-  <path d="M12 13c-4.42 0-8 2.58-8 6v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-3.42-3.58-6-8-6z" fill="#4B5563" />
-</svg></span>
-        </button>
-            </header>
+    <!-- MENU LATERALE -->
+    <div class="drawer-layer">
 
+      <label
+        class="drawer-backdrop"
+        for="menu-controller"
+        aria-label="Chiudi menu"
+      ></label>
 
-      <!-- Overlay scuro dietro alla scheda laterale: cliccandoci sopra si chiude il menu -->
-      <div class="overlay-menu" id="overlay-menu"></div>
+      <aside class="drawer" aria-label="Menu principale">
 
-      <div class="menu-hamburger" id="menu-hamburger">
+        <div class="drawer-header">
+          <span>Menu</span>
 
-        <div class="menu-hamburger-header">
-                        <button type="button" class="btn-chiudi-menu" id="btn-chiudi-menu" aria-label="Chiudi menu">✕</button>
-            <span class="titolo-brand">Impostazioni</span>
+          <label
+            class="icon-button"
+            for="menu-controller"
+            aria-label="Chiudi menu"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+          </label>
         </div>
 
-    <nav class="menu-hamburger-lista">
-        <span class="menu-voce-descrizione" data-i18n="menu_profilo">Profilo</span>
-        <a href="account.html" class="menu-voce-btn">
-    <span class="menu-voce-icona">👤</span>
-    <span class="menu-voce-testo" data-i18n="link_account">Profilo</span>
-    <span class="menu-voce-freccia">›</span>
-</a>
+        <nav class="drawer-nav">
 
-             
-        <span class="menu-voce-descrizione" data-i18n="menu_generale">Generale</span>
-  <div class="menu-voce">
-            <button type="button" class="menu-voce-btn" data-menu-toggle="pannello-lingua" aria-expanded="false">
-                <span class="menu-voce-icona">🌐</span>
-                <span class="menu-voce-testo" data-i18n="menu_lingua">Lingua</span>
-                <span class="menu-voce-freccia">›</span>
-            </button>
+          <!-- Lingua -->
+          <details>
+            <summary>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path
+                  d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"
+                ></path>
+              </svg>
 
-            <div class="menu-pannello" id="pannello-lingua">
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="it" checked>
-                    <span>🇮🇹 Italiano</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="en">
-                    <span>🇬🇧 English</span>
-                </label>
-                <label class="menu-opzione">
-                    <input type="radio" name="lingua" value="fr">
-                    <span>🇫🇷 Français</span>
-                </label>
+              <span>Lingua</span>
+              <span class="chevron">›</span>
+            </summary>
+
+            <div class="drawer-panel">
+              <label class="language-option">
+                <input type="radio" name="lingua" value="it" checked>
+                <span class="language-code">IT</span>
+                <span>Italiano</span>
+              </label>
+
+              <label class="language-option">
+                <input type="radio" name="lingua" value="en">
+                <span class="language-code">EN</span>
+                <span>English</span>
+              </label>
+
+              <label class="language-option">
+                <input type="radio" name="lingua" value="fr">
+                <span class="language-code">FR</span>
+                <span>Français</span>
+              </label>
             </div>
-                    <span class="menu-voce-descrizione" data-i18n="menu_legale">Legale</span>
-            <a href="analizza.html" class="menu-voce-btn">
-                <span class="menu-voce-icona">🔒</span>
-                <span class="menu-voce-testo" data-i18n="link_termini">Termini di uso e Privacy</span>
-                <span class="menu-voce-freccia">›</span>
-                </a>
-        </div>
-                
-    </nav>
-</div>
+          </details>
 
-    <main class="contenitore">
-        <section class="hero">
-            <p class="eyebrow" data-i18n="eyebrow">Capelli, finalmente capiti</p>
-            <h1 data-i18n-html="titolo_home">Il taglio giusto <em>parte da una foto</em></h1>
-            <p class="hero-desc" data-i18n="descrizione_home">
-                Carica uno scatto, scopri la forma del tuo viso e ricevi l'analisi visagistica AI con i consigli da mostrare direttamente al parrucchiere.
-            </p>
-        </section>
+          <!-- Impostazioni -->
+          <details>
+            <summary>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"
+                ></path>
+              </svg>
 
-        <!-- CTA Box -->
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(28, 25, 23, 0.9), rgba(226, 136, 89, 0.12)); border-color: var(--bordo-attivo);">
-            <h2 class="titolo-sezione" data-i18n="titolo_cta" style="margin-bottom: 8px;">Trova il tuo stile ideale</h2>
-            <p data-i18n="descrizione_cta" style="font-size: 14px; color: var(--testo-secondario); margin-bottom: 20px;">
-                Zero dubbi prima di sederti sulla poltrona del barbiere o parrucchiere.
-            </p>
-            <a href="domande.html" class="bottone" data-i18n="btn_scansiona" style="text-decoration: none;">
-                ✨ Scansiona la tua foto ora
-            </a>
-        </div>
+              <span>Impostazioni</span>
+              <span class="chevron">›</span>
+            </summary>
 
-        <p style="text-align:center; font-size:12px; color: var(--testo-muto); margin-top: 20px;">
-            <a href="analizza.html" data-i18n="link_privacy" style="color: var(--testo-muto); text-decoration: underline;">Privacy & Termini d'uso</a>
-        </p>
-    </main>
+            <div class="drawer-panel">
+              <p>Nessuna impostazione disponibile.</p>
+            </div>
+          </details>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="navigazione">
-        <a href="Home.html" class="attivo">
-            <span>🏠</span>
-            <span data-i18n="nav_home">Home</span>
-        </a>
-        <a href="domande.html">
-            <span>🔍</span>
-            <span data-i18n="nav_scansiona">Scansiona AI</span>
-        </a>
-        <a href="istruzione.html">
-            <span>🎓</span>
-            <span data-i18n="nav_guida">Guida Cura</span>
-        </a>
-    </nav>
+          <!-- Privacy -->
+          <a href="analizza.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
 
-    <div class="transizione" id="overlay-transizione">
-        <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+            <span>Termini di uso e Privacy</span>
+            <span class="chevron">›</span>
+          </a>
+
+          <!-- Account -->
+          <a href="account.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.25"></circle>
+              <path d="M5.5 20c.4-4 2.7-6 6.5-6s6.1 2 6.5 6"></path>
+            </svg>
+
+            <span>Account</span>
+            <span class="chevron">›</span>
+          </a>
+
+        </nav>
+      </aside>
     </div>
 
-    <script src="js/lingua.js"></script>
-</body>
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="home-main" id="home">
 
+      <!-- HERO -->
+      <section class="hero">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Analisi visagistica con AI
+        </div>
+
+        <h1>
+          Il taglio giusto
+          <span>parte da una foto</span>
+        </h1>
+
+        <p>
+          Scopri la forma del tuo viso e ricevi consigli personalizzati
+          da mostrare direttamente al tuo parrucchiere.
+        </p>
+
+        <div class="feature-pills" aria-label="Vantaggi di Chioma AI">
+
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+            Analisi in 2 minuti
+          </span>
+
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+            Risultato personalizzato
+          </span>
+
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+            Foto protetta
+          </span>
+
+        </div>
+      </section>
+
+      <!-- CARD ANALISI -->
+      <section class="scan-card" id="scansiona">
+
+        <div class="scan-visual" aria-hidden="true">
+          <span class="scan-orbit scan-orbit-outer"></span>
+          <span class="scan-orbit scan-orbit-inner"></span>
+
+          <span class="scan-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 8.5h3l1.3-2h7.4l1.3 2h3v10H4z"></path>
+              <circle cx="12" cy="13.5" r="3.25"></circle>
+            </svg>
+          </span>
+
+          <span class="scan-sparkle scan-sparkle-one">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2c.7 6.2 3.8 9.3 10 10-6.2.7-9.3 3.8-10 10-.7-6.2-3.8-9.3-10-10 6.2-.7 9.3-3.8 10-10z"
+              ></path>
+            </svg>
+          </span>
+
+          <span class="scan-sparkle scan-sparkle-two">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2c.7 6.2 3.8 9.3 10 10-6.2.7-9.3 3.8-10 10-.7-6.2-3.8-9.3-10-10 6.2-.7 9.3-3.8 10-10z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+
+        <div class="scan-content">
+
+          <span class="step-label">Il primo passo</span>
+
+          <h2>Trova il tuo stile ideale</h2>
+
+          <p>
+            Basta una foto frontale. Chioma AI analizza proporzioni e
+            lineamenti per suggerirti tagli davvero adatti a te.
+          </p>
+
+          <a class="primary-cta" href="domande.html">
+            <span>Inizia l&apos;analisi</span>
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-5-5 5 5-5 5"></path>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <div class="social-proof">
+        <div class="proof-faces" aria-hidden="true">
+          <span>A</span>
+          <span>M</span>
+          <span>L</span>
+        </div>
+        <p>
+          <strong>Consigli pensati per te,</strong>
+          non il solito taglio generico.
+        </p>
+      </div>
+
+      <p class="privacy-link" id="privacy">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+        </svg>
+
+        Le tue foto restano private.
+
+        <a href="analizza.html">
+          Privacy &amp; Termini d&apos;uso
+        </a>
+      </p>
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigazione principale">
+
+      <a class="nav-link active attivo" href="Home.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m3 11 9-7 9 7m-2 0v9h-5v-6h-4v6H5v-9"></path>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <a class="nav-link" href="analizza.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 8.5h3l1.3-2h7.4l1.3 2h3v10H4z"></path>
+          <circle cx="12" cy="13.5" r="3.25"></circle>
+        </svg>
+        <span>Scansiona AI</span>
+      </a>
+
+      <a class="nav-link" href="istruzione.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5c3-.5 5.7.1 8 2v12c-2.3-1.9-5-2.5-8-2z"></path>
+          <path d="M20 5.5c-3-.5-5.7.1-8 2v12c2.3-1.9 5-2.5 8-2z"></path>
+        </svg>
+        <span>Guida cura</span>
+      </a>
+
+    </nav>
+
+    <!-- Overlay di transizione -->
+    <div class="transizione" id="overlay-transizione" aria-hidden="true">
+      <img src="Copilot_20260728_144629.png" alt="Chioma AI" class="transizione-logo">
+    </div>
+
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
 </html>

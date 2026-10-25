@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const aiRoutes = require('./src/routes/aiRoutes');
 const accountRoutes = require('./src/routes/accountRoutes');
-const questionarioRoutes = require('./src/routes/questionario'); // ← spostato qui
+const questionarioRoutes = require('./src/routes/questionario'); 
 const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
@@ -17,12 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rotte API — tutte insieme, PRIMA del gestore 404
 app.use('/api', aiRoutes);
 app.use('/api/account', accountRoutes);
 app.use('/api', questionarioRoutes); // ← spostato qui
 
-// Gestione rotte non trovate per API (deve stare DOPO tutte le route valide)
 app.use('/api', (req, res) => {
     res.status(404).json({ errore: 'Endpoint API non trovato.' });
 });

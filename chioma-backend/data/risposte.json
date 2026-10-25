@@ -89,5 +89,68 @@
     "sesso": "donna",
     "conoscenza": "amico",
     "data": "2026-09-17T09:37:14.743Z"
+  },
+  {
+    "nome": "jj",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "social",
+    "data": "2026-09-29T11:44:41.202Z"
+  },
+  {
+    "nome": "jnf",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-10-03T12:49:40.351Z"
+  },
+  {
+    "nome": "Lorenzo",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "google",
+    "data": "2026-10-03T13:13:43.773Z"
+  },
+  {
+    "nome": "bn ",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "google",
+    "data": "2026-10-03T13:20:24.588Z"
+  },
+  {
+    "nome": "hhi",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-10-05T07:07:50.471Z"
+  },
+  {
+    "nome": "hbds",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-10-05T14:26:46.328Z"
+  },
+  {
+    "nome": "kjn",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-10-10T10:41:16.459Z"
+  },
+  {
+    "nome": "Lorenzo",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-10-24T15:14:57.979Z"
+  },
+  {
+    "nome": "nj",
+    "eta": null,
+    "sesso": "donna",
+    "conoscenza": "amico",
+    "data": "2026-10-25T09:17:08.382Z"
   }
 ]

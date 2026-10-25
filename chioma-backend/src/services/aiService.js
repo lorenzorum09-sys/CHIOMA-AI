@@ -1,3 +1,23 @@
+const attendi = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function conRetry(funzione, tentativiMax = 3, ritardoBase = 1000) {
+  for (let tentativo = 1; tentativo <= tentativiMax; tentativo++) {
+    try {
+      return await funzione();
+    } catch (errore) {
+      const erroreTemporaneo = errore.status === 503 || errore.status === 429;
+      const ultimoTentativo = tentativo === tentativiMax;
+
+      if (!erroreTemporaneo || ultimoTentativo) {
+        throw errore; // errore vero, o tentativi finiti: lo passo al chiamante
+      }
+
+      const ritardo = ritardoBase * 2 ** (tentativo - 1); // 1s, 2s, 4s...
+      console.log(`⏳ Tentativo ${tentativo} fallito (${errore.status}). Riprovo tra ${ritardo}ms...`);
+      await attendi(ritardo);
+    }
+  }
+}
 const { ai } = require('../config/gemini');
 
 /**
@@ -475,7 +495,6 @@ async function analizzaFotoCapelli(fileBuffer, mimeType, lingua = 'it') {
 
     try {
         const rispostaAI = await ai.models.generateContent({
-            // Il precedente modello Flash non è più disponibile per le nuove chiavi.
             model: 'gemini-3.6-flash',
 
             contents: [
@@ -502,7 +521,6 @@ async function analizzaFotoCapelli(fileBuffer, mimeType, lingua = 'it') {
             throw new Error('Gemini non ha restituito alcun risultato.');
         }
 
-        // Rimuove eventuali blocchi markdown nel caso Gemini li restituisca comunque
         const testoPulito = testoGrezzo
             .replace(/^```json\s*/i, '')
             .replace(/^```\s*/i, '')

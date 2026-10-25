@@ -8,3 +8,4 @@ router.post('/analizza', upload.single('foto'), aiController.analizzaFoto);
 router.post('/genera-immagine', upload.single('foto'), aiController.generaImmagineTaglio);
 
 module.exports = router
+router.post('/try-on', upload.single('foto'), aiController.generaTryOn);

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titolo_home: "Il taglio giusto <em>parte da una foto</em>",
       descrizione_home: "Carica uno scatto, scopri la forma del tuo viso e ricevi l'analisi visagistica AI con i consigli da mostrare direttamente al parrucchiere.",
       titolo_cta: "Trova il tuo stile ideale",
-      descrizione_cta: "Zero dubbi prima di sederti sulla poltrona del barbiere o parrucchiere.",
+      descrizione_cta: "Niente più dubbi prima di sederti sulla poltrona del barbiere o del parrucchiere.",
       btn_scansiona: "✨ Scansiona la tua foto ora",
       link_privacy: "Privacy & Termini d'uso",
       nav_home: "Home",
