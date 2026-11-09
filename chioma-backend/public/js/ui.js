@@ -1,4 +1,4 @@
-import { inviaFotoAnalisi, generaTryOn } from "./api.js";
+import { inviaFotoAnalisi, generaTryOn as generaAnteprimaTaglio } from "./api.js";
 import { eseguiConConsenso } from "./privacy.js";
 import {
   salvaAnalisiInCronologia,
@@ -19,12 +19,8 @@ export function inizializzaUI() {
   const btnScattaFoto = document.getElementById("btn-scatta-foto");
   const modalFotocamera = document.getElementById("modal-fotocamera");
   const videoFotocamera = document.getElementById("video-fotocamera");
-  const btnCatturaFotocamera = document.getElementById(
-    "btn-cattura-fotocamera"
-  );
-  const btnChiudiFotocamera = document.getElementById(
-    "btn-chiudi-fotocamera"
-  );
+  const btnCatturaFotocamera = document.getElementById("btn-cattura-fotocamera");
+  const btnChiudiFotocamera = document.getElementById("btn-chiudi-fotocamera");
   const btnCambiaFoto = document.getElementById("btn-cambia-foto");
   const btnRimuoviFoto = document.getElementById("btn-rimuovi-foto");
   const gestioneFoto = document.getElementById("gestione-foto");
@@ -62,10 +58,7 @@ export function inizializzaUI() {
   });
 
   async function apriFotocamera() {
-    if (
-      !window.isSecureContext ||
-      !navigator.mediaDevices?.getUserMedia
-    ) {
+    if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
       mostraToast(
         "Per scattare dalla fotocamera apri l'app da un indirizzo HTTPS."
       );
@@ -108,10 +101,7 @@ export function inizializzaUI() {
     modalFotocamera?.setAttribute("aria-hidden", "true");
   }
 
-  btnChiudiFotocamera?.addEventListener(
-    "click",
-    chiudiFotocamera
-  );
+  btnChiudiFotocamera?.addEventListener("click", chiudiFotocamera);
 
   btnCatturaFotocamera?.addEventListener("click", async () => {
     if (!videoFotocamera?.videoWidth) return;
@@ -123,13 +113,7 @@ export function inizializzaUI() {
 
     const context = canvas.getContext("2d");
 
-    context.drawImage(
-      videoFotocamera,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    context.drawImage(videoFotocamera, 0, 0, canvas.width, canvas.height);
 
     const blob = await new Promise((resolve) =>
       canvas.toBlob(resolve, "image/jpeg", 0.9)
@@ -151,25 +135,20 @@ export function inizializzaUI() {
   });
 
   scannerCornice.addEventListener("click", () => {
-    if (
-      !anteprimaFoto.src ||
-      anteprimaFoto.style.display === "none"
-    ) {
+    if (!anteprimaFoto.src || anteprimaFoto.style.display === "none") {
       apriSelettore(fotoInput);
     }
   });
 
-  [fotoInput, fotocameraInput]
-    .filter(Boolean)
-    .forEach((input) => {
-      input.addEventListener("change", (e) => {
-        const file = e.target.files?.[0];
+  [fotoInput, fotocameraInput].filter(Boolean).forEach((input) => {
+    input.addEventListener("change", (e) => {
+      const file = e.target.files?.[0];
 
-        if (file) {
-          gestisciFileSelezionato(file);
-        }
-      });
+      if (file) {
+        gestisciFileSelezionato(file);
+      }
     });
+  });
 
   /* =====================================================
      DRAG & DROP
@@ -204,9 +183,7 @@ export function inizializzaUI() {
 
   async function gestisciFileSelezionato(file) {
     if (!file.type.startsWith("image/")) {
-      mostraToast(
-        "⚠️ Seleziona un file immagine valido (JPEG, PNG, WebP)."
-      );
+      mostraToast("⚠️ Seleziona un file immagine valido (JPEG, PNG, WebP).");
       return;
     }
 
@@ -238,10 +215,7 @@ export function inizializzaUI() {
         btnAnalizza.style.display = "inline-flex";
       }
     } catch (errore) {
-      console.error(
-        "Errore durante la preparazione della foto:",
-        errore
-      );
+      console.error("Errore durante la preparazione della foto:", errore);
 
       mostraToast(
         "Impossibile leggere questa foto. Riprova con un file JPEG o PNG."
@@ -250,10 +224,7 @@ export function inizializzaUI() {
   }
 
   async function ottimizzaFotoPerAnalisi(file) {
-    if (
-      !file.type.startsWith("image/") ||
-      file.type === "image/gif"
-    ) {
+    if (!file.type.startsWith("image/") || file.type === "image/gif") {
       return file;
     }
 
@@ -272,34 +243,17 @@ export function inizializzaUI() {
 
       const scala = Math.min(
         1,
-        latoMassimo /
-        Math.max(
-          immagine.naturalWidth,
-          immagine.naturalHeight
-        )
+        latoMassimo / Math.max(immagine.naturalWidth, immagine.naturalHeight)
       );
 
       const canvas = document.createElement("canvas");
 
-      canvas.width = Math.max(
-        1,
-        Math.round(immagine.naturalWidth * scala)
-      );
-
-      canvas.height = Math.max(
-        1,
-        Math.round(immagine.naturalHeight * scala)
-      );
+      canvas.width = Math.max(1, Math.round(immagine.naturalWidth * scala));
+      canvas.height = Math.max(1, Math.round(immagine.naturalHeight * scala));
 
       canvas
         .getContext("2d")
-        .drawImage(
-          immagine,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
+        .drawImage(immagine, 0, 0, canvas.width, canvas.height);
 
       const blob = await new Promise((resolve) =>
         canvas.toBlob(resolve, "image/jpeg", 0.88)
@@ -389,9 +343,7 @@ export function inizializzaUI() {
 
         mostraToast("✨ Analisi completata con successo!");
       } else {
-        throw new Error(
-          "Dati non validi ricevuti dal server."
-        );
+        throw new Error("Dati non validi ricevuti dal server.");
       }
     } catch (errore) {
       console.error(errore);
@@ -414,8 +366,7 @@ export function inizializzaUI() {
 ========================================================= */
 
 function avviaParolaRotante() {
-  const elParola =
-    document.getElementById("parola-rotante");
+  const elParola = document.getElementById("parola-rotante");
 
   if (!elParola) return;
 
@@ -448,14 +399,11 @@ function avviaParolaRotante() {
 function creaCardTaglio(taglio, indice) {
   if (!taglio) return "";
 
-  const nome =
-    taglio.nome || "Taglio personalizzato";
+  const nome = taglio.nome || "Taglio personalizzato";
 
-  const compatibilita =
-    Number(taglio.compatibilita) || 0;
+  const compatibilita = Number(taglio.compatibilita) || 0;
 
-  const percheAdatto =
-    taglio.perche_adatto || "";
+  const percheAdatto = taglio.perche_adatto || "";
 
   const etichetteOrdine = [
     "🥇 Primo taglio",
@@ -463,9 +411,7 @@ function creaCardTaglio(taglio, indice) {
     "🥉 Terzo taglio",
   ];
 
-  const etichetta =
-    etichetteOrdine[indice] ||
-    `Taglio #${indice + 1}`;
+  const etichetta = etichetteOrdine[indice] || `Taglio #${indice + 1}`;
 
   return `
     <article
@@ -489,14 +435,15 @@ function creaCardTaglio(taglio, indice) {
         ${nome}
       </h3>
 
-      ${percheAdatto
-      ? `
+      ${
+        percheAdatto
+          ? `
             <p class="taglio-card-perche-compatta">
               ${percheAdatto}
             </p>
           `
-      : ""
-    }
+          : ""
+      }
 
       <button
         type="button"
@@ -516,8 +463,7 @@ function creaCardTaglio(taglio, indice) {
 ========================================================= */
 
 export function mostraRisultatiAnalisi(dati) {
-  const cardContainer =
-    document.getElementById("card-risultati");
+  const cardContainer = document.getElementById("card-risultati");
 
   if (!cardContainer) return;
 
@@ -525,47 +471,34 @@ export function mostraRisultatiAnalisi(dati) {
      DATI
   ===================================================== */
 
-  const formaViso =
-    dati.forma_viso || "Non specificata";
+  const formaViso = dati.forma_viso || "Non specificata";
 
-  const descViso =
-    dati.forma_viso_descrizione || "";
+  const descViso = dati.forma_viso_descrizione || "";
 
-  const tipoCapello =
-    dati.tipo_capello || "Non specificato";
+  const tipoCapello = dati.tipo_capello || "Non specificato";
 
-  const densita =
-    dati.densita_volume || "Non specificata";
+  const densita = dati.densita_volume || "Non specificata";
 
-  const routine =
-    dati.routine_cura || {};
+  const routine = dati.routine_cura || {};
 
-  const prodotti =
-    Array.isArray(dati.prodotti_consigliati)
-      ? dati.prodotti_consigliati
-      : [];
+  const prodotti = Array.isArray(dati.prodotti_consigliati)
+    ? dati.prodotti_consigliati
+    : [];
 
-  const daEvitare =
-    Array.isArray(dati.ingredienti_da_evitare)
-      ? dati.ingredienti_da_evitare
-      : [];
+  const daEvitare = Array.isArray(dati.ingredienti_da_evitare)
+    ? dati.ingredienti_da_evitare
+    : [];
 
   /* =====================================================
      TAGLI
   ===================================================== */
 
-  let tagli = Array.isArray(
-    dati.tagli_consigliati
-  )
+  let tagli = Array.isArray(dati.tagli_consigliati)
     ? dati.tagli_consigliati
     : [];
 
   tagli = [...tagli]
-    .sort(
-      (a, b) =>
-        Number(b.compatibilita || 0) -
-        Number(a.compatibilita || 0)
-    )
+    .sort((a, b) => Number(b.compatibilita || 0) - Number(a.compatibilita || 0))
     .slice(0, 3);
 
   /* =====================================================
@@ -588,9 +521,7 @@ export function mostraRisultatiAnalisi(dati) {
 
   const cardsTagli = tagli
     .slice(0, 3)
-    .map((taglio, indice) =>
-      creaCardTaglio(taglio, indice)
-    )
+    .map((taglio, indice) => creaCardTaglio(taglio, indice))
     .join("");
 
   /* =====================================================
@@ -629,14 +560,15 @@ export function mostraRisultatiAnalisi(dati) {
 
     <div class="tagli-grid">
 
-      ${cardsTagli ||
-    `
+      ${
+        cardsTagli ||
+        `
           <div class="nessun-risultato">
             Non è stato possibile trovare
             dei tagli consigliati.
           </div>
         `
-    }
+      }
 
     </div>
 
@@ -775,20 +707,14 @@ export function mostraRisultatiAnalisi(dati) {
                 <div class="diag-item">
                   <div class="diag-etichetta">🧼 Lavaggio</div>
                   <div style="font-size: 14px; margin-top: 4px;">
-                    ${
-                      routine.lavaggio ||
-                      "Utilizzare uno shampoo delicato."
-                    }
+                    ${routine.lavaggio || "Utilizzare uno shampoo delicato."}
                   </div>
                 </div>
 
                 <div class="diag-item">
                   <div class="diag-etichetta">💨 Asciugatura</div>
                   <div style="font-size: 14px; margin-top: 4px;">
-                    ${
-                      routine.asciugatura ||
-                      "Asciugare con aria tiepida."
-                    }
+                    ${routine.asciugatura || "Asciugare con aria tiepida."}
                   </div>
                 </div>
 
@@ -1007,8 +933,9 @@ export function mostraRisultatiAnalisi(dati) {
 
       </div>
 
-      ${descViso
-      ? `
+      ${
+        descViso
+          ? `
             <p
               style="
                 font-size:14px;
@@ -1020,8 +947,8 @@ export function mostraRisultatiAnalisi(dati) {
               ${descViso}
             </p>
           `
-      : ""
-    }
+          : ""
+      }
 
     </div>
 
@@ -1054,9 +981,7 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${routine.lavaggio ||
-    "Utilizzare uno shampoo delicato."
-    }
+            ${routine.lavaggio || "Utilizzare uno shampoo delicato."}
           </div>
 
         </div>
@@ -1073,9 +998,7 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${routine.asciugatura ||
-    "Asciugare con aria tiepida."
-    }
+            ${routine.asciugatura || "Asciugare con aria tiepida."}
           </div>
 
         </div>
@@ -1092,22 +1015,19 @@ export function mostraRisultatiAnalisi(dati) {
               margin-top:4px;
             "
           >
-            ${routine.trattamenti ||
-    "Utilizzare un balsamo adatto alla propria struttura."
-    }
+            ${
+              routine.trattamenti ||
+              "Utilizzare un balsamo adatto alla propria struttura."
+            }
           </div>
 
         </div>
 
       </div>
 
-<<<<<<< HEAD
       ${
-        prodotti.length
+        primoTaglio.styling_tip
           ? `
-=======
-      ${primoTaglio.styling_tip
-      ? `
             <p
               style="
                 font-size:13px;
@@ -1123,12 +1043,12 @@ export function mostraRisultatiAnalisi(dati) {
               ${primoTaglio.styling_tip}
             </p>
           `
-      : ""
-    }
+          : ""
+      }
 
-      ${prodotti.length
-      ? `
->>>>>>> f309a25 (modifica)
+      ${
+        prodotti.length
+          ? `
             <div style="margin-top:18px;">
 
               <strong
@@ -1149,22 +1069,18 @@ export function mostraRisultatiAnalisi(dati) {
                 "
               >
 
-                ${prodotti
-        .map(
-          (prodotto) =>
-            `<li>${prodotto}</li>`
-        )
-        .join("")}
+                ${prodotti.map((prodotto) => `<li>${prodotto}</li>`).join("")}
 
               </ul>
 
             </div>
           `
-      : ""
-    }
+          : ""
+      }
 
-      ${daEvitare.length
-      ? `
+      ${
+        daEvitare.length
+          ? `
             <div style="margin-top:14px;">
 
               <strong
@@ -1186,18 +1102,15 @@ export function mostraRisultatiAnalisi(dati) {
               >
 
                 ${daEvitare
-        .map(
-          (ingrediente) =>
-            `<li>${ingrediente}</li>`
-        )
-        .join("")}
+                  .map((ingrediente) => `<li>${ingrediente}</li>`)
+                  .join("")}
 
               </ul>
 
             </div>
           `
-      : ""
-    }
+          : ""
+      }
 
     </div>
 
@@ -1266,16 +1179,16 @@ export function mostraRisultatiAnalisi(dati) {
             Trova un parrucchiere vicino a te.
           </p>
 
+          <button
+            type="button"
+            class="btn-trova-parrucchiere"
+            id="btn-trova-parrucchiere"
+          >
+            📍 Trova parrucchiere →
+          </button>
 
-
-      <button
-        type="button"
-        class="btn-trova-parrucchiere"
-        id="btn-trova-parrucchiere"
-      >
-        📍 Trova parrucchiere →
-      </button>
         </div>
+
       </div>
 
     </div>
@@ -1299,87 +1212,79 @@ export function mostraRisultatiAnalisi(dati) {
   collegaTabs();
 
   /* =====================================================
-     CLICK "SCOPRI QUESTO TAGLIO" - APRI MODAL FULL-SCREEN
+     CLICK "SCOPRI QUESTO TAGLIO" - APRI SCHEDA OVERLAY
   ===================================================== */
 
-  document
-    .querySelectorAll(".btn-scopri-taglio")
-    .forEach((button) => {
-      button.addEventListener("click", () => {
+  document.querySelectorAll(".btn-scopri-taglio").forEach((button) => {
+    button.addEventListener("click", () => {
+      const indice = Number(button.dataset.taglioIndex);
 
-        const indice = Number(
-          button.dataset.taglioIndex
-        );
+      const taglio = tagli[indice];
 
-        const taglio = tagli[indice];
+      if (!taglio) return;
 
-        if (!taglio) return;
+      const schedaEsistente = document.getElementById("scheda-taglio-overlay");
 
-<<<<<<< HEAD
-        // Apri modal full-screen
-        apriModalTaglio(taglio, tagli, indice, dati);
-=======
-        const schedaEsistente =
-          document.getElementById("scheda-taglio-overlay");
+      schedaEsistente?.remove();
 
-        schedaEsistente?.remove();
+      const overlay = document.createElement("div");
+      overlay.id = "scheda-taglio-overlay";
+      overlay.className = "scheda-taglio-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute(
+        "aria-label",
+        `Dettaglio ${taglio.nome || "taglio consigliato"}`
+      );
+      overlay.innerHTML = `
+        <section class="scheda-taglio-panel">
+          <header class="scheda-taglio-toolbar">
+            <span>LA TUA SCHEDA STILE</span>
+            <button type="button" class="scheda-taglio-chiudi" aria-label="Chiudi scheda">×</button>
+          </header>
+          <div class="scheda-taglio-contenuto">
+            ${creaDettaglioTaglio(taglio)}
+          </div>
+        </section>
+      `;
 
-        const overlay = document.createElement("div");
-        overlay.id = "scheda-taglio-overlay";
-        overlay.className = "scheda-taglio-overlay";
-        overlay.setAttribute("role", "dialog");
-        overlay.setAttribute("aria-modal", "true");
-        overlay.setAttribute("aria-label", `Dettaglio ${taglio.nome || "taglio consigliato"}`);
-        overlay.innerHTML = `
-          <section class="scheda-taglio-panel">
-            <header class="scheda-taglio-toolbar">
-              <span>LA TUA SCHEDA STILE</span>
-              <button type="button" class="scheda-taglio-chiudi" aria-label="Chiudi scheda">×</button>
-            </header>
-            <div class="scheda-taglio-contenuto">
-              ${creaDettaglioTaglio(taglio)}
-            </div>
-          </section>
-        `;
+      document.body.appendChild(overlay);
+      document.body.classList.add("scheda-taglio-aperta");
 
-        document.body.appendChild(overlay);
-        document.body.classList.add("scheda-taglio-aperta");
+      function chiudiConEscape(evento) {
+        if (evento.key === "Escape") chiudiScheda();
+      }
 
-        function chiudiConEscape(evento) {
-          if (evento.key === "Escape") chiudiScheda();
-        }
+      const chiudiScheda = () => {
+        overlay.classList.add("in-chiusura");
+        document.body.classList.remove("scheda-taglio-aperta");
+        document.removeEventListener("keydown", chiudiConEscape);
+        window.setTimeout(() => overlay.remove(), 220);
+      };
 
-        const chiudiScheda = () => {
-          overlay.classList.add("in-chiusura");
-          document.body.classList.remove("scheda-taglio-aperta");
-          document.removeEventListener("keydown", chiudiConEscape);
-          window.setTimeout(() => overlay.remove(), 220);
-        };
+      overlay
+        .querySelector(".scheda-taglio-chiudi")
+        ?.addEventListener("click", chiudiScheda);
 
-        overlay.querySelector(".scheda-taglio-chiudi")
-          ?.addEventListener("click", chiudiScheda);
-        overlay.addEventListener("click", (evento) => {
-          if (evento.target === overlay) chiudiScheda();
-        });
-        document.addEventListener("keydown", chiudiConEscape);
-
-        collegaGenerazioneAnteprima();
->>>>>>> f309a25 (modifica)
+      overlay.addEventListener("click", (evento) => {
+        if (evento.target === overlay) chiudiScheda();
       });
+
+      document.addEventListener("keydown", chiudiConEscape);
+
+      collegaGenerazioneAnteprima();
     });
+  });
 
   /* =====================================================
      COPIA SCHEDA PARRUCCHIERE
   ===================================================== */
 
-  document
-    .getElementById("btn-copia-scheda")
-    ?.addEventListener("click", () => {
+  document.getElementById("btn-copia-scheda")?.addEventListener("click", () => {
+    copiaInAppunti(schedaParrucchiere);
 
-      copiaInAppunti(schedaParrucchiere);
-
-      mostraToast("📋 Scheda copiata!");
-    });
+    mostraToast("📋 Scheda copiata!");
+  });
 
   /* =====================================================
      TROVA PARRUCCHIERE
@@ -1395,7 +1300,7 @@ export function mostraRisultatiAnalisi(dati) {
 }
 
 /* =========================================================
-   APRI MODAL FULL-SCREEN TAGLIO
+   APRI MODAL FULL-SCREEN TAGLIO (non usata al momento)
 ========================================================= */
 
 function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
@@ -1403,27 +1308,25 @@ function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
 
   if (!modal) return;
 
-  // Aggiorna contenuto
   document.getElementById("modal-taglio-nome").textContent =
     taglio.nome || "Taglio Personalizzato";
 
-  document.getElementById("modal-taglio-compatibilita").textContent =
-    `${Number(taglio.compatibilita) || 0}%`;
+  document.getElementById("modal-taglio-compatibilita").textContent = `${
+    Number(taglio.compatibilita) || 0
+  }%`;
 
   document.getElementById("modal-dettaglio-taglio").innerHTML =
     creaDettaglioTaglio(taglio);
 
-  document.getElementById("modal-scheda-parrucchiere").textContent =
-    `"${taglio.scheda_parrucchiere || taglio.nome || "Taglio personalizzato"}"`;
+  document.getElementById("modal-scheda-parrucchiere").textContent = `"${
+    taglio.scheda_parrucchiere || taglio.nome || "Taglio personalizzato"
+  }"`;
 
-  // Aggiorna buttons nella modal
   document
     .getElementById("btn-copia-scheda-modal")
     ?.addEventListener("click", () => {
       copiaInAppunti(
-        taglio.scheda_parrucchiere ||
-          taglio.nome ||
-          "Taglio personalizzato"
+        taglio.scheda_parrucchiere || taglio.nome || "Taglio personalizzato"
       );
 
       mostraToast("📋 Scheda copiata!");
@@ -1435,15 +1338,12 @@ function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
       trovaParrucchiere();
     });
 
-  // Mostra modal con animazione
   modal.style.display = "flex";
 
-  // Trigger animation
   setTimeout(() => {
     modal.classList.add("mostra");
   }, 10);
 
-  // Chiudi modal
   document
     .querySelector(".btn-chiudi-modal-taglio")
     ?.addEventListener("click", chiudiModalTaglio);
@@ -1452,12 +1352,10 @@ function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
     .querySelector(".modal-taglio-overlay")
     ?.addEventListener("click", chiudiModalTaglio);
 
-  // Collega tab navigation nella modal
   document.querySelectorAll(".modal-tab-link").forEach((link) => {
     link.addEventListener("click", () => {
       const tabId = link.dataset.tab;
 
-      // Rimuovi attivo da tutti i tab
       document.querySelectorAll(".modal-tab-link").forEach((l) => {
         l.classList.remove("attivo");
       });
@@ -1466,7 +1364,6 @@ function apriModalTaglio(taglio, tagli, indice, datiAnalisi) {
         pane.classList.remove("attivo");
       });
 
-      // Aggiungi attivo al tab selezionato
       link.classList.add("attivo");
 
       const pane = document.getElementById(tabId);
@@ -1499,20 +1396,15 @@ function chiudiModalTaglio() {
 ========================================================= */
 
 function collegaTabs() {
-
-  const tabs =
-    document.querySelectorAll(".tab-btn");
+  const tabs = document.querySelectorAll(".tab-btn");
 
   tabs.forEach((btn) => {
-
     if (btn.dataset.listenerAttached === "1") {
       return;
     }
 
     btn.addEventListener("click", () => {
-
-      const tabId =
-        btn.dataset.tab;
+      const tabId = btn.dataset.tab;
 
       if (!tabId) return;
 
@@ -1521,7 +1413,6 @@ function collegaTabs() {
 
     btn.dataset.listenerAttached = "1";
   });
-
 }
 
 /* =========================================================
@@ -1529,7 +1420,6 @@ function collegaTabs() {
 ========================================================= */
 
 function creaDettaglioTaglio(taglio) {
-
   if (!taglio) {
     return `
       <p>
@@ -1563,8 +1453,9 @@ function creaDettaglioTaglio(taglio) {
         ${taglio.nome || "Taglio Personalizzato"}
       </h2>
 
-      ${taglio.perche_adatto
-      ? `
+      ${
+        taglio.perche_adatto
+          ? `
             <div
               style="
                 background:rgba(226,136,89,0.1);
@@ -1596,21 +1487,22 @@ function creaDettaglioTaglio(taglio) {
 
             </div>
           `
-      : ""
-    }
+          : ""
+      }
 
-<button
-  type="button"
-  id="btn-genera-anteprima"
-  class="btn-continua"
-  data-nome-taglio="${escapeAttribute(taglio.nome || '')}"
-  data-descrizione-taglio="${escapeAttribute(taglio.descrizione || '')}"
-  style="margin-top:18px;"
->
-  🪄 Prova questo taglio su di te
-</button>
+      <button
+        type="button"
+        id="btn-genera-anteprima"
+        class="btn-continua"
+        data-nome-taglio="${escapeAttribute(taglio.nome || "")}"
+        data-descrizione-taglio="${escapeAttribute(taglio.descrizione || "")}"
+        style="margin-top:18px;"
+      >
+        🪄 Prova questo taglio su di te
+      </button>
 
-<div id="risultato-anteprima-taglio" style="margin-top:16px;"></div>
+      <div id="risultato-anteprima-taglio" style="margin-top:16px;"></div>
+
     </div>
   `;
 }
@@ -1620,7 +1512,6 @@ function creaDettaglioTaglio(taglio) {
 ========================================================= */
 
 function escapeAttribute(value) {
-
   return String(value)
     .replace(/&/g, "&amp;")
     .replace(/"/g, "&quot;")
@@ -1633,16 +1524,9 @@ function escapeAttribute(value) {
 ========================================================= */
 
 function collegaGenerazioneAnteprima() {
+  const bottone = document.getElementById("btn-genera-anteprima");
 
-  const bottone =
-    document.getElementById(
-      "btn-genera-anteprima"
-    );
-
-  const risultato =
-    document.getElementById(
-      "risultato-anteprima-taglio"
-    );
+  const risultato = document.getElementById("risultato-anteprima-taglio");
 
   if (!bottone || !risultato) {
     return;
@@ -1652,72 +1536,50 @@ function collegaGenerazioneAnteprima() {
     return;
   }
 
-  bottone.addEventListener(
-    "click",
-    async () => {
-
-      if (!fotoAnalizzata) {
-        mostraToast(
-          "Carica e analizza prima una foto."
-        );
-        return;
-      }
-
-      const testoOriginale =
-        bottone.textContent;
-
-      bottone.disabled = true;
-
-      bottone.textContent =
-        "Generazione della prova in corso...";
-
-      try {
-
-        const risposta =
-          await generaAnteprimaTaglio(
-            fotoAnalizzata,
-            bottone.dataset.nomeTaglio,
-            bottone.dataset.descrizioneTaglio
-          );
-
-        const immagine =
-          risposta.data?.immagineBase64;
-
-        if (!risposta.success || !immagine) {
-          throw new Error(
-            "Gemini non ha restituito un'immagine."
-          );
-        }
-
-        const mimeType =
-          risposta.data.mimeType ||
-          "image/png";
-
-        risultato.innerHTML = `
-          <img
-            class="anteprima-taglio-generata"
-            alt="Simulazione del taglio selezionato"
-            src="data:${mimeType};base64,${immagine}"
-          >
-        `;
-
-      } catch (errore) {
-
-        console.error(errore);
-
-        mostraToast(
-          `Impossibile generare la prova: ${errore.message}`
-        );
-
-      } finally {
-
-        bottone.disabled = false;
-
-        bottone.textContent =
-          testoOriginale;
-      }
+  bottone.addEventListener("click", async () => {
+    if (!fotoAnalizzata) {
+      mostraToast("Carica e analizza prima una foto.");
+      return;
     }
-  );
+
+    const testoOriginale = bottone.textContent;
+
+    bottone.disabled = true;
+
+    bottone.textContent = "Generazione della prova in corso...";
+
+    try {
+      const risposta = await generaAnteprimaTaglio(
+        fotoAnalizzata,
+        bottone.dataset.nomeTaglio,
+        bottone.dataset.descrizioneTaglio
+      );
+
+      const immagine = risposta.data?.immagineBase64;
+
+      if (!risposta.success || !immagine) {
+        throw new Error("Gemini non ha restituito un'immagine.");
+      }
+
+      const mimeType = risposta.data.mimeType || "image/png";
+
+      risultato.innerHTML = `
+        <img
+          class="anteprima-taglio-generata"
+          alt="Simulazione del taglio selezionato"
+          src="data:${mimeType};base64,${immagine}"
+        >
+      `;
+    } catch (errore) {
+      console.error(errore);
+
+      mostraToast(`Impossibile generare la prova: ${errore.message}`);
+    } finally {
+      bottone.disabled = false;
+
+      bottone.textContent = testoOriginale;
+    }
+  });
 
   bottone.dataset.listenerAttached = "1";
 }
@@ -1727,43 +1589,29 @@ function collegaGenerazioneAnteprima() {
 ========================================================= */
 
 function trovaParrucchiere() {
-
   if (!navigator.geolocation) {
-
-    window.open(
-      "https://www.google.com/maps/search/parrucchiere",
-      "_blank"
-    );
+    window.open("https://www.google.com/maps/search/parrucchiere", "_blank");
 
     return;
   }
 
   navigator.geolocation.getCurrentPosition(
-
     (position) => {
+      const lat = position.coords.latitude;
 
-      const lat =
-        position.coords.latitude;
+      const lon = position.coords.longitude;
 
-      const lon =
-        position.coords.longitude;
-
-      const url =
-        `https://www.google.com/maps/search/parrucchiere/@${lat},${lon},14z`;
+      const url = `https://www.google.com/maps/search/parrucchiere/@${lat},${lon},14z`;
 
       window.open(url, "_blank");
     },
 
     () => {
-
       mostraToast(
         "📍 Posizione non disponibile. Apro i parrucchieri più vicini."
       );
 
-      window.open(
-        "https://www.google.com/maps/search/parrucchiere",
-        "_blank"
-      );
+      window.open("https://www.google.com/maps/search/parrucchiere", "_blank");
     }
   );
 }
@@ -1773,18 +1621,9 @@ function trovaParrucchiere() {
 ========================================================= */
 
 window.cambiaTab = function (tabId) {
+  const contenuti = document.querySelectorAll(".tab-content");
 
-  const contenuti =
-    document.querySelectorAll(
-      ".tab-content"
-    );
-
-  const bottoni =
-    document.querySelectorAll(
-      ".tab-btn"
-    );
-
-  /* Rimuove stato precedente */
+  const bottoni = document.querySelectorAll(".tab-btn");
 
   bottoni.forEach((btn) => {
     btn.classList.remove("attivo");
@@ -1794,27 +1633,16 @@ window.cambiaTab = function (tabId) {
     content.classList.remove("attivo");
   });
 
-  /* Attiva contenuto */
-
-  const tabTarget =
-    document.getElementById(tabId);
+  const tabTarget = document.getElementById(tabId);
 
   if (!tabTarget) {
-    console.warn(
-      "Tab non trovata:",
-      tabId
-    );
+    console.warn("Tab non trovata:", tabId);
     return;
   }
 
   tabTarget.classList.add("attivo");
 
-  /* Attiva bottone */
-
-  const activeBtn =
-    document.querySelector(
-      `.tab-btn[data-tab="${tabId}"]`
-    );
+  const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
 
   if (activeBtn) {
     activeBtn.classList.add("attivo");
@@ -1826,59 +1654,43 @@ window.cambiaTab = function (tabId) {
 ========================================================= */
 
 function inizializzaTransizioniNav() {
+  const overlay = document.getElementById("overlay-transizione");
 
-  const overlay =
-    document.getElementById(
-      "overlay-transizione"
-    );
-
-  const linkNav =
-    document.querySelectorAll(
-      ".nav-link, .bottom-nav a, .brand"
-    );
+  const linkNav = document.querySelectorAll(
+    ".nav-link, .bottom-nav a, .brand"
+  );
 
   if (!overlay || linkNav.length === 0) {
     return;
   }
 
   linkNav.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const destinazione = link.getAttribute("href");
 
-    link.addEventListener(
-      "click",
-      (e) => {
-
-        const destinazione =
-          link.getAttribute("href");
-
-        if (
-          !destinazione ||
-          destinazione === "#" ||
-          destinazione.startsWith("javascript:")
-        ) {
-          return;
-        }
-
-        if (
-          link.classList.contains("attivo") ||
-          link.classList.contains("active")
-        ) {
-          return;
-        }
-
-        e.preventDefault();
-
-        overlay.classList.add(
-          "attiva"
-        );
-
-        setTimeout(() => {
-
-          window.location.href =
-            destinazione;
-
-        }, 350);
+      if (
+        !destinazione ||
+        destinazione === "#" ||
+        destinazione.startsWith("javascript:")
+      ) {
+        return;
       }
-    );
+
+      if (
+        link.classList.contains("attivo") ||
+        link.classList.contains("active")
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+
+      overlay.classList.add("attiva");
+
+      setTimeout(() => {
+        window.location.href = destinazione;
+      }, 350);
+    });
   });
 }
 
@@ -1886,9 +1698,6 @@ function inizializzaTransizioniNav() {
    DOM READY
 ========================================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    inizializzaTransizioniNav();
-  }
-);
+document.addEventListener("DOMContentLoaded", () => {
+  inizializzaTransizioniNav();
+});

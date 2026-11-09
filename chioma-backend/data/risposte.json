@@ -152,5 +152,19 @@
     "sesso": "donna",
     "conoscenza": "amico",
     "data": "2026-10-25T09:17:08.382Z"
+  },
+  {
+    "nome": "Lorenzo Rum",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "amico",
+    "data": "2026-11-02T11:13:53.026Z"
+  },
+  {
+    "nome": "kjnk",
+    "eta": null,
+    "sesso": "uomo",
+    "conoscenza": "social",
+    "data": "2026-11-02T11:17:06.169Z"
   }
 ]

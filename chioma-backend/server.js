@@ -19,8 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', aiRoutes);
 app.use('/api/account', accountRoutes);
-app.use('/api', questionarioRoutes); // ← spostato qui
-
+app.use('/api', questionarioRoutes); 
 app.use('/api', (req, res) => {
     res.status(404).json({ errore: 'Endpoint API non trovato.' });
 });
