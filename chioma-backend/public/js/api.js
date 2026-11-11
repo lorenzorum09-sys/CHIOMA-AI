@@ -25,7 +25,7 @@ export async function generaTryOn(fileImmagine, nomeTaglio, descrizioneTaglio) {
     formData.append('nomeTaglio', nomeTaglio);
     formData.append('descrizioneTaglio', descrizioneTaglio || '');
 
-    const risposta = await fetch('/api/try-on', {
+    const risposta = await fetch('/api/genera-immagine', {
         method: 'POST',
         body: formData
     });
