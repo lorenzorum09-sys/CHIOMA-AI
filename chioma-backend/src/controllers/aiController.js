@@ -1,4 +1,3 @@
-const replicateService = require('../services/replicateService');
 const aiService = require('../services/aiService');
 
 async function analizzaFoto(req, res, next) {
@@ -58,31 +57,8 @@ async function generaImmagineTaglio(req, res, next) {
     }
 }
 
-async function generaTryOn(req, res, next) {
-    try {
-        if (!req.file) {
-            return res.status(400).json({ errore: 'Nessuna foto selezionata.' });
-        }
-
-        const { nomeTaglio, descrizioneTaglio } = req.body;
-
-        const risultato = await replicateService.generaTryOnCapelli(
-            req.file.buffer,
-            req.file.mimetype,
-            nomeTaglio,
-            descrizioneTaglio
-        );
-
-        return res.json({ success: true, data: risultato });
-
-    } catch (errore) {
-        next(errore);
-    }
-}
-
 module.exports = {
     analizzaFoto,
     healthCheck,
-    generaImmagineTaglio,
-    generaTryOn
+    generaImmagineTaglio
 };
